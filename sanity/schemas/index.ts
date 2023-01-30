@@ -1,3 +1,3 @@
-import hero from './hero'
+import tag from './tag'
 
-export const schemaTypes = [hero]
+export const schemaTypes = [tag]

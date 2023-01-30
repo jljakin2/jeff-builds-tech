@@ -1,7 +1,7 @@
 export default {
-  name: 'hero',
+  name: 'tag',
   type: 'document',
-  title: 'Hero',
+  title: 'Tag',
   fields: [
     {
       name: 'header',
