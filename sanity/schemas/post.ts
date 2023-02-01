@@ -59,6 +59,9 @@ export default {
       title: 'Featured Image',
       type: 'image',
       description: 'The image used for any card and header about the post.',
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
       fields: [
         {
           name: 'attribution',
@@ -74,8 +77,8 @@ export default {
       name: 'author',
       title: 'Author',
       description: 'Who is the author of the post?',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'author'}]}],
+      type: 'reference',
+      to: [{type: 'author'}],
     },
     {
       name: 'category',

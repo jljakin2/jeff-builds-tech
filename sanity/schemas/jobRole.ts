@@ -20,7 +20,7 @@ export default {
           title: 'Responsibility',
           name: 'responsibility',
           description: 'Explanation of responsibility.',
-          type: 'string',
+          type: 'text',
         },
       ],
     },

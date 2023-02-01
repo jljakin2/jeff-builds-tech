@@ -12,7 +12,7 @@ export default {
     },
     {
       name: 'subheader',
-      type: 'string',
+      type: 'text',
       title: 'Subheader',
       description: 'Subheader for about item.',
     },

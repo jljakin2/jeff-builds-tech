@@ -30,6 +30,9 @@ export default {
       title: 'Profile Image',
       type: 'image',
       description: 'Profile picture of the author.',
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
       fields: [
         {
           name: 'attribution',

@@ -78,6 +78,9 @@ export default {
       title: 'Featured Image',
       type: 'image',
       description: 'The image used for any card and header.',
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
       fields: [
         {
           name: 'attribution',
@@ -100,6 +103,9 @@ export default {
           name: 'carouselImages',
           description: 'Add screenshots of the project.',
           type: 'image',
+          options: {
+            hotspot: true, // <-- Defaults to false
+          },
           fields: [
             {
               name: 'attribution',

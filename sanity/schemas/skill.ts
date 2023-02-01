@@ -8,7 +8,8 @@ export default {
       name: 'name',
       type: 'string',
       title: 'Name',
-      description: 'What is the name of the skill?',
+      description:
+        'Only use this skill if it is not tech related. All tech related names will come from the tag relationship.',
     },
     {
       name: 'level',
@@ -23,11 +24,11 @@ export default {
       type: 'boolean',
     },
     {
-      name: 'tags',
-      title: 'Tags',
+      name: 'tag',
+      title: 'Tag',
       description: 'What tags are related to the skill?',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'tag'}]}],
+      type: 'reference',
+      to: [{type: 'tag'}],
     },
   ],
 }
