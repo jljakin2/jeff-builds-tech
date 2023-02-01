@@ -1,22 +1,33 @@
 export default {
-  name: 'tag',
+  name: 'skill',
   type: 'document',
-  title: 'Tag',
+  title: 'Skill',
+  icon: () => '🔨',
   fields: [
     {
-      name: 'header',
+      name: 'name',
       type: 'string',
-      title: 'Header',
+      title: 'Name',
+      description: 'What is the name of the skill?',
     },
     {
-      name: 'subheader',
-      type: 'string',
-      title: 'Subheader',
+      name: 'level',
+      type: 'number',
+      title: 'Skill Level',
+      description: 'What is your proficiency from 0 - 1?',
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: 'isTech',
+      title: 'Tech Skill?',
+      description: 'Is this a tech skill?',
+      type: 'boolean',
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      description: 'What tags are related to the skill?',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'tag'}]}],
     },
   ],
 }

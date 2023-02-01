@@ -2,7 +2,7 @@ export default {
   name: 'tag',
   title: 'Tag',
   type: 'document',
-  icon: '🎟️',
+  icon: () => '🎟️',
   fields: [
     {
       name: 'name',

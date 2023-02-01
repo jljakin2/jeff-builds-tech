@@ -1,22 +1,37 @@
 export default {
-  name: 'tag',
+  name: 'jobRole',
   type: 'document',
-  title: 'Tag',
+  title: 'Job Role',
+  icon: () => '💼',
   fields: [
     {
-      name: 'header',
+      name: 'title',
       type: 'string',
-      title: 'Header',
+      title: 'Job Title',
+      description: 'What is the job title?',
     },
     {
-      name: 'subheader',
-      type: 'string',
-      title: 'Subheader',
+      name: 'responsibilities',
+      title: 'Job Responsibilities',
+      description: 'What types of job responsibilities do you want to show off?',
+      type: 'array',
+      of: [
+        {
+          title: 'Responsibility',
+          name: 'responsibility',
+          description: 'Explanation of responsibility.',
+          type: 'string',
+        },
+      ],
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: 'isTech',
+      title: 'Tech Job',
+      description: 'Is this a tech job?',
+      type: 'boolean',
+      options: {
+        select: 'toggle',
+      },
     },
   ],
 }

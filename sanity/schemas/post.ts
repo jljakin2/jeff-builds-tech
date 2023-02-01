@@ -1,22 +1,88 @@
 export default {
-  name: 'tag',
+  name: 'post',
   type: 'document',
-  title: 'Tag',
+  title: 'Post',
+  icon: () => '📄',
   fields: [
     {
-      name: 'header',
+      name: 'title',
+      title: 'Post Title',
       type: 'string',
-      title: 'Header',
+      description: 'What is the blog post title?',
     },
     {
-      name: 'subheader',
-      type: 'string',
-      title: 'Subheader',
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 100,
+      },
     },
     {
-      name: 'image',
-      title: 'Image',
+      name: 'excerpt',
+      title: 'Blog Post Excerpt',
+      description: 'What is the elevator pitch for the blog post?',
+      type: 'text',
+    },
+    {
+      name: 'body',
+      type: 'array',
+      description: 'Body of blog post.',
+      title: 'Content',
+      of: [
+        {
+          type: 'block',
+        },
+        {
+          type: 'image',
+        },
+        {
+          type: 'code',
+          options: {
+            withFileName: true,
+          },
+        },
+      ],
+    },
+    {
+      name: 'featured',
+      title: 'Featured',
+      description: 'Do you want to feature this post?',
+      type: 'boolean',
+      options: {
+        layout: 'toggle',
+      },
+    },
+    {
+      name: 'featuredImage',
+      title: 'Featured Image',
       type: 'image',
+      description: 'The image used for any card and header about the post.',
+      fields: [
+        {
+          name: 'attribution',
+          type: 'string',
+          title: 'Attribution',
+          options: {
+            isHighlighted: true, // <-- make this field easily accessible
+          },
+        },
+      ],
+    },
+    {
+      name: 'author',
+      title: 'Author',
+      description: 'Who is the author of the post?',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'author'}]}],
+    },
+    {
+      name: 'category',
+      title: 'Categories',
+      description: 'What categories is this blog post related to?',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'category'}]}],
     },
   ],
 }

@@ -1,22 +1,52 @@
 export default {
-  name: 'tag',
+  name: 'author',
   type: 'document',
-  title: 'Tag',
+  title: 'Author',
+  icon: () => '👤',
   fields: [
     {
-      name: 'header',
+      name: 'name',
+      title: 'Name',
+      description: 'What is the name of the author?',
       type: 'string',
-      title: 'Header',
     },
     {
-      name: 'subheader',
-      type: 'string',
-      title: 'Subheader',
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 100,
+      },
     },
     {
-      name: 'image',
-      title: 'Image',
+      name: 'bio',
+      title: 'Author Bio',
+      description: 'What is the author bio?',
+      type: 'text',
+    },
+    {
+      name: 'profileImage',
+      title: 'Profile Image',
       type: 'image',
+      description: 'Profile picture of the author.',
+      fields: [
+        {
+          name: 'attribution',
+          type: 'string',
+          title: 'Attribution',
+          options: {
+            isHighlighted: true, // <-- make this field easily accessible
+          },
+        },
+      ],
+    },
+    {
+      name: 'posts',
+      title: 'Posts',
+      description: 'Posts written by an author.',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'post'}]}],
     },
   ],
 }

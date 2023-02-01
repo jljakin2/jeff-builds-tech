@@ -24,3 +24,8 @@
 
 # Typescript
 *.tsbuildinfo
+
+# Env variables
+.env
+.env.*
+.*.env
