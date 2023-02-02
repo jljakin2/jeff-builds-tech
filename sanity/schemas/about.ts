@@ -26,9 +26,7 @@ export default {
           name: 'attribution',
           type: 'string',
           title: 'Attribution',
-          options: {
-            isHighlighted: true, // <-- make this field easily accessible
-          },
+          options: {},
         },
       ],
     },

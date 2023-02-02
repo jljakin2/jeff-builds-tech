@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Jeff Builds Tech`,
     siteUrl: `https://www.yourdomain.tld`,
+    description: "Portfolio and blog for Full-Stack Developer Jeff Jakinovich.",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

@@ -11,8 +11,7 @@ export default defineConfig({
   name: 'default',
   title: 'Jeff Builds Tech CMS',
 
-  // @ts-expect-error
-  projectId: import.meta.env.SANITY_STUDIO_PROJECT_ID,
+  projectId: 'ch8y490c',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool(), codeInput()],

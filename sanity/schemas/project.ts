@@ -86,9 +86,7 @@ export default {
           name: 'attribution',
           type: 'string',
           title: 'Attribution',
-          options: {
-            isHighlighted: true, // <-- make this field easily accessible
-          },
+          options: {},
         },
       ],
     },
@@ -99,23 +97,9 @@ export default {
       type: 'array',
       of: [
         {
-          title: 'Carousel Images',
-          name: 'carouselImages',
-          description: 'Add screenshots of the project.',
-          type: 'image',
-          options: {
-            hotspot: true, // <-- Defaults to false
-          },
-          fields: [
-            {
-              name: 'attribution',
-              type: 'string',
-              title: 'Attribution',
-              options: {
-                isHighlighted: true, // <-- make this field easily accessible
-              },
-            },
-          ],
+          title: 'Carousel Image',
+          name: 'carouselImage',
+          type: 'carouselImage',
         },
       ],
     },
