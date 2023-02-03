@@ -13,7 +13,33 @@ export default function BlogHomePage({ data }: any) {
 export const query = graphql`
   query GetBlogHomePage {
     posts: allSanityPost {
-      totalCount
+      nodes {
+        id
+        title
+        slug {
+          current
+        }
+        featured
+        excerpt
+        author {
+          name
+          slug {
+            current
+          }
+          bio
+          profileImage {
+            asset {
+              gatsbyImageData
+            }
+          }
+        }
+        featuredImage {
+          asset {
+            gatsbyImageData
+          }
+        }
+        _rawBody
+      }
     }
   }
 `;
