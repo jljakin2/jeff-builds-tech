@@ -31,4 +31,11 @@ export default {
       to: [{type: 'tag'}],
     },
   ],
+  preview: {
+    select: {
+      name: 'name',
+      tag: 'tag.name',
+    },
+    prepare: ({name, tag}: any) => ({title: tag ? tag : name}),
+  },
 }

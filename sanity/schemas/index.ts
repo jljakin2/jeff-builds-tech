@@ -7,6 +7,9 @@ import about from './about'
 import jobRole from './jobRole'
 import skill from './skill'
 import carouselImage from './carouselImage'
+import hero from './hero'
+import socialLink from './socialLink'
+import contact from './contact'
 
 export const schemaTypes = [
   tag,
@@ -18,4 +21,7 @@ export const schemaTypes = [
   jobRole,
   skill,
   carouselImage,
+  hero,
+  socialLink,
+  contact,
 ]
