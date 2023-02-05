@@ -2,7 +2,12 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { PortableText } from "@portabletext/react";
 import { RichText } from "../components/RichText";
-import { HomePageStyles } from "../styles/RichText";
+import styled from "styled-components";
+// import { HomePageStyles } from "../styles/RichText";
+
+const HomePageStyles = styled.section`
+  padding: 1rem;
+`;
 
 export default function HomePage({ data }: any) {
   const hero = data.heroes.nodes[0];
@@ -10,12 +15,18 @@ export default function HomePage({ data }: any) {
 
   // const components = {
   //   types: {
-  //     code: (props: any) => {
-  //       console.log(props);
-  //       return <p>Test</p>;
-  //     },
+  //     // code: (props: any) => {
+  //     //   console.log(props);
+  //     //   return <p>Test</p>;
+  //     // },
   //     // Any other custom types you have in your content
   //     // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
+  //   },
+  //   block: {
+  //     h1: (props: any) => {
+  //       console.log(props);
+  //       return <h1>Test</h1>;
+  //     },
   //   },
   // };
 

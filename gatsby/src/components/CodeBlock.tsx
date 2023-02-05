@@ -5,6 +5,25 @@ import styled from "styled-components";
 
 Refractor.registerLanguage(js);
 
+const CodeBlockContainerStyles = styled.aside`
+  display: grid;
+  grid-template-rows: max-content;
+
+  width: 50%;
+
+  .header {
+    background: #224864;
+    color: #ffbb00;
+    border-radius: 1rem 1rem 0 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.75rem 2rem;
+  }
+`;
+
 const CodeBlockStyles = styled.div`
   code[class*="language-"],
   pre[class*="language-"] {
@@ -15,7 +34,7 @@ const CodeBlockStyles = styled.div`
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    line-height: 1.5;
+    line-height: 1.6;
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
@@ -23,8 +42,9 @@ const CodeBlockStyles = styled.div`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
+    border-radius: 0 0 1rem 1rem;
   }
-  pre[class*="language-"]::-moz-selection,
+  /* pre[class*="language-"]::-moz-selection,
   pre[class*="language-"] ::-moz-selection,
   code[class*="language-"]::-moz-selection,
   code[class*="language-"] ::-moz-selection {
@@ -37,7 +57,7 @@ const CodeBlockStyles = styled.div`
   code[class*="language-"] ::selection {
     text-shadow: none;
     background: #193549;
-  }
+  } */
   @media print {
     code[class*="language-"],
     pre[class*="language-"] {
@@ -47,7 +67,6 @@ const CodeBlockStyles = styled.div`
   /* Code blocks */
   pre[class*="language-"] {
     padding: 2rem;
-    margin: 0.5rem 0;
     overflow: auto;
   }
   :not(pre) > code[class*="language-"],
@@ -57,7 +76,6 @@ const CodeBlockStyles = styled.div`
   }
   :not(pre) > code[class*="language-"] {
     padding: 0.1rem;
-    border-radius: 0.3em;
     white-space: normal;
   }
   .token.comment {
@@ -106,8 +124,14 @@ const CodeBlockStyles = styled.div`
 
 export function CodeBlock(props: any) {
   return (
-    <CodeBlockStyles>
-      <Refractor language={props.value.language} value={props.value.code} />
-    </CodeBlockStyles>
+    <CodeBlockContainerStyles>
+      <div className="header">
+        <div className="file-name">{props.value.filename}</div>
+        <div className="copy-btn">X</div>
+      </div>
+      <CodeBlockStyles>
+        <Refractor language={props.value.language} value={props.value.code} />
+      </CodeBlockStyles>
+    </CodeBlockContainerStyles>
   );
 }
