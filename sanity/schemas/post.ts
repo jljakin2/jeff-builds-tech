@@ -27,23 +27,9 @@ export default {
     },
     {
       name: 'body',
-      type: 'array',
+      type: 'blockContent',
       description: 'Body of blog post.',
-      title: 'Content',
-      of: [
-        {
-          type: 'block',
-        },
-        {
-          type: 'image',
-        },
-        {
-          type: 'code',
-          options: {
-            withFileName: true,
-          },
-        },
-      ],
+      title: 'Body',
     },
     {
       name: 'featured',

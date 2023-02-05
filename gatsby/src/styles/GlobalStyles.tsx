@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
   :root {
     --red: #FF4949;
@@ -16,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-size: 1rem;
-    font-family: "IBM Plex Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 
@@ -87,6 +86,8 @@ const GlobalStyles = createGlobalStyle`
   img {
     max-width: 100%;
   }
+
+
 
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {

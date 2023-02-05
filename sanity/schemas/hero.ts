@@ -12,14 +12,9 @@ export default {
     },
     {
       name: 'body',
-      type: 'array',
+      type: 'blockContent',
       description: 'Main header for hero section',
       title: 'Header',
-      of: [
-        {
-          type: 'block',
-        },
-      ],
     },
     {
       name: 'socialLinks',

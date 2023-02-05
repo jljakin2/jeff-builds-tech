@@ -47,9 +47,12 @@ const config: GatsbyConfig = {
         ],
         web: [
           {
-            // TODO: change the following two parameters to whatever font you want to use
-            name: "IBM Plex Sans",
-            file: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap",
+            name: "Open Sans",
+            file: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap",
+          },
+          {
+            name: "Inconsolata",
+            file: "https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap",
           },
         ],
       },

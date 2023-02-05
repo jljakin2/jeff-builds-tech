@@ -1,19 +1,22 @@
+import React from "react";
 import Image from "gatsby";
 import Link from "gatsby";
 import styled from "styled-components";
+import { CodeBlock } from "./CodeBlock";
 
 export const RichText = {
   types: {
-    span: ({ children }: any) => {
-      //@ts-ignore
-      return <p style={{ color: "red" }}>{children}</p>;
-    },
     image: ({ value }: any) => {
       return (
         //@ts-ignore
         <Image alt="" />
       );
     },
+    code: (props: any) => {
+      console.log(props);
+      return <CodeBlock {...props} />;
+    },
+
     list: {
       bullet: ({ children }: any) => (
         //@ts-ignore
@@ -25,19 +28,32 @@ export const RichText = {
       ),
     },
     block: {
-      //@ts-ignore
-      h1: ({ children }: any) => <h1 className="">{children}</h1>,
-      //@ts-ignore
-      h2: ({ children }: any) => <h2 className="">{children}</h2>,
-      //@ts-ignore
-      h3: ({ children }: any) => <h3 className="">{children}</h3>,
-      //@ts-ignore
-      h4: ({ children }: any) => <h4 className="">{children}</h4>,
+      h1: ({ children }: any) => (
+        //@ts-ignore
+        <h1 class="test">{children}</h1>
+      ),
+      h2: ({ children }: any) => (
+        //@ts-ignore
+        <h2 className="">{children}</h2>
+      ),
+      h3: ({ children }: any) => (
+        //@ts-ignore
+        <h3 className="">{children}</h3>
+      ),
+      h4: ({ children }: any) => (
+        //@ts-ignore
+        <h4 className="">{children}</h4>
+      ),
+      normal: ({ children }: any) => {
+        //@ts-ignore
+        return <p className="test">{children}</p>;
+      },
     },
     blockquote: ({ children }: any) => (
       //@ts-ignore
       <blockquote className="">{children}</blockquote>
     ),
+
     marks: {
       link: ({ children, value }: any) => {
         const rel = !value.href.startsWith("/")
@@ -46,11 +62,7 @@ export const RichText = {
 
         return (
           //@ts-ignore
-          <Link
-            href={value.href}
-            rel={rel}
-            style={{ color: "red" }}
-            className="">
+          <Link href={value.href} rel={rel} className="">
             {children}
           </Link>
         );

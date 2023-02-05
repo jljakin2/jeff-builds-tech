@@ -27,23 +27,9 @@ export default {
     },
     {
       name: 'body',
-      type: 'array',
+      type: 'blockContent',
       description: 'Full description and story of the project.',
-      title: 'Content',
-      of: [
-        {
-          type: 'block',
-        },
-        {
-          type: 'image',
-        },
-        {
-          type: 'code',
-          options: {
-            withFileName: true,
-          },
-        },
-      ],
+      title: 'Body',
     },
     {
       name: 'featured',

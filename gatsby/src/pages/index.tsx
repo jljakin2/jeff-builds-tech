@@ -2,13 +2,25 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { PortableText } from "@portabletext/react";
 import { RichText } from "../components/RichText";
+import { HomePageStyles } from "../styles/RichText";
 
-export default function IndexPage({ data }: any) {
-  console.table(data);
+export default function HomePage({ data }: any) {
   const hero = data.heroes.nodes[0];
+  console.table(hero._rawBody);
+
+  // const components = {
+  //   types: {
+  //     code: (props: any) => {
+  //       console.log(props);
+  //       return <p>Test</p>;
+  //     },
+  //     // Any other custom types you have in your content
+  //     // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
+  //   },
+  // };
 
   return (
-    <div>
+    <HomePageStyles>
       <h4>{hero.greeting}</h4>
       {/* @ts-ignore */}
       <PortableText
@@ -16,7 +28,7 @@ export default function IndexPage({ data }: any) {
         // @ts-ignore
         components={RichText}
       />
-    </div>
+    </HomePageStyles>
   );
 }
 

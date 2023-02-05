@@ -10,6 +10,7 @@ import carouselImage from './carouselImage'
 import hero from './hero'
 import socialLink from './socialLink'
 import contact from './contact'
+import blockContent from './blockContent'
 
 export const schemaTypes = [
   tag,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   hero,
   socialLink,
   contact,
+  blockContent,
 ]
