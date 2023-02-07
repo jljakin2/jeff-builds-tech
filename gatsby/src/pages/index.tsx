@@ -1,17 +1,23 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { PortableText } from "@portabletext/react";
-import { RichText } from "../components/RichText";
+import { RichText } from "../components/BlogRichText";
 import styled from "styled-components";
+import Icon from "../components/Icon";
+import Hero from "../components/Hero";
 // import { HomePageStyles } from "../styles/RichText";
 
 const HomePageStyles = styled.section`
   padding: 1rem;
+
+  svg {
+    stroke: black;
+    fill: transparent;
+  }
 `;
 
 export default function HomePage({ data }: any) {
   const hero = data.heroes.nodes[0];
-  console.table(hero._rawBody);
 
   // const components = {
   //   types: {
@@ -32,13 +38,9 @@ export default function HomePage({ data }: any) {
 
   return (
     <HomePageStyles>
-      <h4>{hero.greeting}</h4>
+      <Hero data={hero} />
+
       {/* @ts-ignore */}
-      <PortableText
-        value={hero._rawBody}
-        // @ts-ignore
-        components={RichText}
-      />
     </HomePageStyles>
   );
 }

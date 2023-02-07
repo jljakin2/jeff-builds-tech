@@ -14,13 +14,13 @@ const CodeBlockContainerStyles = styled.aside`
   .header {
     background: #224864;
     color: #ffbb00;
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 4px 4px 0 0;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 0.75rem 2rem;
+    padding: 1rem 2rem 0.75rem 2rem;
   }
 `;
 
@@ -42,7 +42,7 @@ const CodeBlockStyles = styled.div`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 4px 4px;
   }
   /* pre[class*="language-"]::-moz-selection,
   pre[class*="language-"] ::-moz-selection,

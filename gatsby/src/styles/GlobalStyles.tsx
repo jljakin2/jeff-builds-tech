@@ -3,7 +3,31 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
   :root {
-    --red: #FF4949;
+    --text: "#2A272A";
+    --lightText: "rgba(42, 39, 42, .75)";
+
+    --white: "#fefefe";
+    --bg: "#f9f9f9";
+    --inputBorder: "#CFCFCF";
+
+    --primary-500: "#1B2E40";
+    --primary-500--hover: "rgba(27, 46, 64, .7)";
+
+    --secondary-500: "#49BAAC";
+
+    /* --skillsBar: "##1B2E40"; */
+    /* --leadership: "#49BAAC"; */
+
+    --error: "#F67280";
+
+    /* inset | offset-x | offset-y | blur-radius | color */
+    --inner-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12); // text inputs
+    --shadow: 3px 4px 12px -2px rgba(38, 38, 38, 0.2); // base shadow
+    --shadow--hover: 5px 6px 12px -2px rgba(38, 38, 38, 0.21); // quick actions hover event on homepage
+    --shadow--inverse: -3px 4px 12px -2px rgba(0, 0, 0, 0.25); // just for preview panel
+    --shadow--dropdown: 1px 1px 2px rgba(0, 0, 0, 0.12); // just for dropdown menus
+
+    --radius: 8px; // border radius
   }
 
   html {
