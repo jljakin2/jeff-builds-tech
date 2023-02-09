@@ -5,6 +5,8 @@ import { RichText } from "../components/BlogRichText";
 import styled from "styled-components";
 import Icon from "../components/Icon";
 import Hero from "../components/Hero";
+import BlogIntro from "../components/BlogIntro";
+import ProjectsIntro from "../components/ProjectsIntro";
 // import { HomePageStyles } from "../styles/RichText";
 
 const HomePageStyles = styled.section`
@@ -39,8 +41,8 @@ export default function HomePage({ data }: any) {
   return (
     <HomePageStyles>
       <Hero data={hero} />
-
-      {/* @ts-ignore */}
+      <BlogIntro />
+      <ProjectsIntro />
     </HomePageStyles>
   );
 }
