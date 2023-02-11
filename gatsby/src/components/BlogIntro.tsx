@@ -10,7 +10,7 @@ export default function BlogIntro() {
     <BlogIntroStyles>
       <div className="content-container">
         <h4>Writing</h4>
-        <h1>Building for the future</h1>
+        <h1>Learn. Create. Write. Repeat.</h1>
         <h5>Here is some more context for what the blog is about</h5>
         <ul>
           {Array.from([1, 2, 3, 4]).map(category => (

@@ -5,7 +5,20 @@ import Twitter from "./Twitter";
 
 interface IconProps {
   name: "LinkedIn" | "Github" | "Twitter";
-  size: "12" | "14" | "16" | "18" | "20" | "24" | "28" | "36" | "40" | "48";
+  size:
+    | "12"
+    | "14"
+    | "16"
+    | "18"
+    | "20"
+    | "24"
+    | "28"
+    | "36"
+    | "40"
+    | "48"
+    | "60"
+    | "72"
+    | "80";
 }
 
 export default function Icon(props: IconProps) {

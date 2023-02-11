@@ -2,7 +2,7 @@ import { PortableText } from "@portabletext/react";
 import React from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
-import { RichText } from "./BlogRichText";
+import { NormalRichText } from "./NormalRichText";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
@@ -26,7 +26,7 @@ export default function Hero({ data }: any) {
       <PortableText
         value={data._rawBody}
         // @ts-ignore
-        components={RichText}
+        components={NormalRichText}
       />
       <Link to="/blog" className="outline-btn">
         Go To Blog
