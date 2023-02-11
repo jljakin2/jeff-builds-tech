@@ -2,6 +2,9 @@ import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import * as React from "react";
 import styled from "styled-components";
+import AboutItem from "../components/AboutItem";
+import RoleItem from "../components/RoleItem";
+import SkillBarItem from "../components/SkillBarItem";
 
 const AboutPageStyles = styled.section``;
 
@@ -15,20 +18,32 @@ export default function AboutPage({ data }: any) {
       <div className="about-container">
         <h1>About</h1>
         {aboutItems.map((item: any) => {
-          return (
-            <div className="about-item">
-              <GatsbyImage image={item.image.asset.gatsbyImageData} alt="" />
-              <div className="about-tex">
-                <h3>{item.header}</h3>
-                <p>{item.subheader}</p>
-              </div>
-            </div>
-          );
+          return <AboutItem key={item.id} aboutItem={item} />;
         })}
       </div>
 
       <div className="skills-container">
-        <h1>Skills</h1>
+        <div className="skills-header">
+          <h1>Skills</h1>
+          <div className="skills-toggle">
+            <div className="skills-toggle--technical" />
+            <div className="skills-toggle--leadership" />
+          </div>
+        </div>
+
+        <div className="skills-content">
+          <div className="roles-container">
+            {roles.map((role: any) => {
+              return <RoleItem key={role.id} roleItem={role} />;
+            })}
+          </div>
+
+          <div className="skill-bar-container">
+            {skills.map((skill: any) => {
+              return <SkillBarItem key={skill.id} skillItem={skill} />;
+            })}
+          </div>
+        </div>
       </div>
     </AboutPageStyles>
   );
