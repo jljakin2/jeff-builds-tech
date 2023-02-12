@@ -20,6 +20,12 @@ export default {
       },
     },
     {
+      name: 'description',
+      title: 'Brief description of category',
+      description: 'What is a brief 1-2 sentence description of the category?',
+      type: 'text',
+    },
+    {
       name: 'featured',
       title: 'Featured',
       description: 'Do you want to feature this category?',
@@ -45,10 +51,9 @@ export default {
       },
       fields: [
         {
-          name: 'attribution',
+          name: 'altText',
           type: 'string',
-          title: 'Attribution',
-          options: {},
+          title: 'Alt Text',
         },
       ],
     },

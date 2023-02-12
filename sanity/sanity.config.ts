@@ -5,6 +5,7 @@ import {schemaTypes} from './schemas'
 
 import {myTheme} from './theme'
 import {codeInput} from '@sanity/code-input'
+import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
 
 export default defineConfig({
   basePath: '/studio',
@@ -14,7 +15,7 @@ export default defineConfig({
   projectId: 'ch8y490c',
   dataset: 'production',
 
-  plugins: [deskTool(), visionTool(), codeInput()],
+  plugins: [deskTool(), visionTool(), codeInput(), unsplashImageAsset()],
 
   schema: {
     // @ts-ignore
