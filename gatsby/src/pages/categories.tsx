@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 const CategoryHomePageStyles = styled.section``;
 
-export default function BlogCategoryHomePage({ data }: any) {
+export default function CategoriesPage({ data }: any) {
   const categories = data.categories.nodes;
   return (
     <CategoryHomePageStyles>
       {categories.map((cat: any) => {
         return (
-          <Link to={`/category/${cat.slug.current}`}>
+          <Link to={`/categories/${cat.slug.current}`}>
             <h4>{cat.name}</h4>
             <p>{cat.description}</p>
           </Link>

@@ -2,10 +2,19 @@ import { graphql } from "gatsby";
 import * as React from "react";
 
 export default function BlogHomePage({ data }: any) {
-  console.log(data);
+  const posts = data.posts.nodes;
+  const categories = data.categories.nodes;
+
   return (
     <div>
-      <p>This is the blog home page</p>
+      <h1>This is the blog home page</h1>
+      {categories.map((category: any) => {
+        return <p>{category.name}</p>;
+      })}
+
+      {posts.map((post: any) => {
+        return <p>{post.title}</p>;
+      })}
     </div>
   );
 }
@@ -38,7 +47,22 @@ export const query = graphql`
             gatsbyImageData
           }
         }
-        _rawBody
+      }
+    }
+
+    categories: allSanityCategory {
+      nodes {
+        id
+        name
+        slug {
+          current
+        }
+        description
+        image {
+          asset {
+            gatsbyImageData
+          }
+        }
       }
     }
   }
