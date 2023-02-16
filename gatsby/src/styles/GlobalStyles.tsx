@@ -3,22 +3,22 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
   :root {
-    --text: "#2A272A";
-    --lightText: "rgba(42, 39, 42, .75)";
+    --text: #2A272A;
+    --lightText: rgba(42, 39, 42, .75);
 
-    --white: "#fefefe";
-    --bg: "#f9f9f9";
-    --inputBorder: "#CFCFCF";
+    --white: #fefefe;
+    --bg: #f9f9f9;
+    --inputBorder: #CFCFCF;
 
-    --primary-500: "#1B2E40";
-    --primary-500--hover: "rgba(27, 46, 64, .7)";
+    --primary-500: #1B2E40;
+    --primary-500--hover: rgba(27, 46, 64, .7);
 
-    --secondary-500: "#49BAAC";
+    --secondary-500: #49BAAC;
 
     /* --skillsBar: "##1B2E40"; */
     /* --leadership: "#49BAAC"; */
 
-    --error: "#F67280";
+    --error: #F67280;
 
     /* inset | offset-x | offset-y | blur-radius | color */
     --inner-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12); // text inputs
