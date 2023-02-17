@@ -38,6 +38,12 @@ const NavStyles = styled.nav`
     transition: all 0.3s ease-in;
     z-index: 10000;
 
+    li {
+      opacity: 0;
+
+      transition: all 0.2s ease-in;
+    }
+
     a {
       color: var(--text);
       cursor: pointer;
@@ -46,6 +52,10 @@ const NavStyles = styled.nav`
     &.open {
       height: 100vh;
       visibility: visible;
+
+      li {
+        opacity: 100;
+      }
     }
 
     .close {
@@ -72,11 +82,15 @@ const NavStyles = styled.nav`
 
     a {
       color: var(--lightText);
+
+      &.link-btn {
+        color: var(--white);
+      }
     }
 
     li:not(:last-child) {
       a {
-        color: var(--lightText);
+        color: var(--veryLightText);
         position: relative;
 
         transition: all 0.2s ease-in-out;
@@ -93,6 +107,10 @@ const NavStyles = styled.nav`
 
           width: 0%;
           height: 2px;
+        }
+
+        &[aria-current="page"] {
+          color: var(--text);
         }
 
         &[aria-current="page"]::after {
@@ -118,17 +136,6 @@ const NavStyles = styled.nav`
         }
       }
     }
-
-    .contact-btn {
-      color: var(--white);
-
-      padding: 0.5rem 1rem;
-    }
-  }
-
-  .contact-btn {
-    background: var(--secondary-500);
-    border-radius: var(--radius);
   }
 `;
 
@@ -149,7 +156,9 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
             <Icon name="Hamburger" size="36" />
           </div>
 
-          <ul className={isOpen ? "sub-nav open" : "sub-nav"}>
+          <ul
+            className={isOpen ? "sub-nav open" : "sub-nav"}
+            onClick={() => setIsOpen(false)}>
             <span className="close" onClick={() => setIsOpen(false)}>
               &times;
             </span>
@@ -163,7 +172,7 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/#contact" className="contact-btn">
+              <Link to="/#contact" className="link-btn secondary contact-btn">
                 Contact
               </Link>
             </li>
@@ -181,7 +190,7 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/#contact" className="contact-btn">
+            <Link to="/#contact" className="link-btn secondary">
               Contact
             </Link>
           </li>

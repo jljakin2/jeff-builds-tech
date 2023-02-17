@@ -5,15 +5,18 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --text: #2A272A;
     --lightText: rgba(42, 39, 42, .75);
+    --veryLightText: rgba(42, 39, 42, .6);
 
     --white: #fefefe;
     --bg: #f9f9f9;
     --inputBorder: #CFCFCF;
+    --grey-500: #94a3b8;
 
     --primary-500: #1B2E40;
     --primary-500--hover: rgba(27, 46, 64, .7);
 
     --secondary-500: #49BAAC;
+    --secondary-500--hover: rgba(73, 186, 172, .7);
 
     /* --skillsBar: "##1B2E40"; */
     /* --leadership: "#49BAAC"; */
@@ -54,7 +57,7 @@ const GlobalStyles = createGlobalStyle`
     list-style: none;
   }
 
-  button {
+  /* button {
     font-weight: 400;
     font-size: 0.85rem;
     line-height: 1.35rem;
@@ -71,9 +74,9 @@ const GlobalStyles = createGlobalStyle`
     svg {
       margin-right: 0.5rem;
     }
-  }
+  } */
 
-  button.primary {
+  /* button.primary {
     background: $primary-500;
     border: 1px solid $primary-500;
     color: $white;
@@ -81,9 +84,46 @@ const GlobalStyles = createGlobalStyle`
     &:hover {
       background: $primary-400;
     }
+  } */
+
+  .link-btn {
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+
+    transition: all 0.2s ease-in;
+
+    &.primary {
+      background: var(--primary-500);
+      color: var(--white);
+
+      &:hover {
+        background: var(--primary-500--hover);
+      }
+    }
+
+    &.secondary {
+      background: var(--secondary-500);
+      color: var(--white);
+
+      &:hover {
+        background: var(--secondary-500--hover);
+      }
+    }
+
+    &.outline {
+      background: var(--white);
+      border: 1px solid var(--primary-500);
+      color: var(--primary-500);
+
+      &:hover {
+        background: var(--primary-500);
+        color: var(--white);
+      }
+    }
   }
 
-  button.secondary {
+  /* button.secondary {
     border: 1px solid $primary-500;
     color: $primary-500;
     background: transparent;
@@ -92,7 +132,7 @@ const GlobalStyles = createGlobalStyle`
       background: $primary-500;
       color: $white;
     }
-  }
+  } */
 
   button.normal {
     padding: 0.5rem 1rem;

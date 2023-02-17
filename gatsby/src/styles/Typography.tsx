@@ -1,11 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+import { media } from "../utils/mediaQueries";
 
 export const Typography = createGlobalStyle`
     h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 700;
         line-height: 3.625rem;
         letter-spacing: 2px;
+
+        ${media.tablet} {
+            font-size: 3.5rem;
+        }
     }
 
     h2 {
