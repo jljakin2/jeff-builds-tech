@@ -10,18 +10,22 @@ const NavStyles = styled.nav`
   justify-content: space-between;
   align-items: center;
 
-  div > svg {
+  padding: 1.5rem;
+
+  .hamburger {
     stroke: var(--text);
     cursor: pointer;
   }
 
   .sub-nav {
     background: var(--white);
+    font-size: 1.25rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    row-gap: 5rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -34,16 +38,30 @@ const NavStyles = styled.nav`
     transition: all 0.3s ease-in;
     z-index: 10000;
 
+    a {
+      color: var(--text);
+      cursor: pointer;
+    }
+
     &.open {
       height: 100vh;
       visibility: visible;
     }
 
     .close {
+      font-size: 2rem;
+      color: var(--lightText);
+
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 2rem;
+      right: 2rem;
       cursor: pointer;
+    }
+
+    .contact-btn {
+      color: var(--white);
+
+      padding: 1rem 1.5rem;
     }
   }
 
@@ -52,14 +70,65 @@ const NavStyles = styled.nav`
     align-items: center;
     column-gap: 4rem;
 
+    a {
+      color: var(--lightText);
+    }
+
+    li:not(:last-child) {
+      a {
+        color: var(--lightText);
+        position: relative;
+
+        transition: all 0.2s ease-in-out;
+
+        &::after {
+          content: "";
+          background: var(--text);
+
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: width 0.2s ease-in-out;
+
+          width: 0%;
+          height: 2px;
+        }
+
+        &[aria-current="page"]::after {
+          content: "";
+          background: var(--text);
+
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: width 0.2s ease-in-out;
+
+          width: 100%;
+          height: 2px;
+        }
+
+        &:hover {
+          color: var(--text);
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
     .contact-btn {
+      color: var(--white);
+
       padding: 0.5rem 1rem;
     }
   }
 
   .contact-btn {
     background: var(--secondary-500);
-    color: var(--white);
+    border-radius: var(--radius);
   }
 `;
 
@@ -69,10 +138,14 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
   return (
     //@ts-expect-error
     <NavStyles isOpen={isOpen}>
-      <Logo />
+      <Link to="/">
+        <div>
+          <Logo />
+        </div>
+      </Link>
       {isSmall ? (
         <>
-          <div onClick={() => setIsOpen(!isOpen)}>
+          <div onClick={() => setIsOpen(!isOpen)} className="hamburger">
             <Icon name="Hamburger" size="36" />
           </div>
 
@@ -90,7 +163,9 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/#contact">Contact</Link>
+              <Link to="/#contact" className="contact-btn">
+                Contact
+              </Link>
             </li>
           </ul>
         </>

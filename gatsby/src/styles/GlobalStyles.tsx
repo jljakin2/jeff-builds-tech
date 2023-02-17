@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     --shadow--inverse: -3px 4px 12px -2px rgba(0, 0, 0, 0.25); // just for preview panel
     --shadow--dropdown: 1px 1px 2px rgba(0, 0, 0, 0.12); // just for dropdown menus
 
-    --radius: 8px; // border radius
+    --radius: 6px; // border radius
   }
 
   html {
