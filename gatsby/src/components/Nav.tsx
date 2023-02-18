@@ -59,12 +59,12 @@ const NavStyles = styled.nav`
     }
 
     .close {
-      font-size: 2rem;
+      font-size: 3rem;
       color: var(--lightText);
 
       position: absolute;
-      top: 2rem;
-      right: 2rem;
+      top: 1.75rem;
+      right: 2.5rem;
       cursor: pointer;
     }
 

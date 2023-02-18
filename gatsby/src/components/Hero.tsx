@@ -7,6 +7,10 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import SocialBtn from "./SocialBtn";
 import { media } from "../utils/mediaQueries";
+//@ts-expect-error
+import build from "../assets/images/build_squiggle.svg";
+//@ts-expect-error
+import write from "../assets/images/write_squiggle.svg";
 
 const HeroStyles = styled.section`
   display: grid;
@@ -49,6 +53,44 @@ const HeroStyles = styled.section`
 
   .body-container {
     grid-area: body;
+
+    h1,
+    h4 {
+      margin: 0;
+    }
+
+    h1 {
+      line-height: 4.25rem;
+    }
+
+    .unknown__pt__mark__highlight:first-of-type,
+    .unknown__pt__mark__highlight:last-of-type {
+      position: relative;
+    }
+
+    .unknown__pt__mark__highlight:first-of-type::after {
+      content: url(${build});
+      position: absolute;
+      top: 20px;
+      left: 0;
+
+      ${media.laptop} {
+        top: 24px;
+        left: 16px;
+      }
+    }
+
+    .unknown__pt__mark__highlight:last-of-type::after {
+      content: url(${write});
+      position: absolute;
+      top: 20px;
+      left: 12px;
+
+      ${media.laptop} {
+        top: 24px;
+        left: 16px;
+      }
+    }
   }
 
   .button-container {
@@ -114,6 +156,9 @@ export default function Hero({ data }: any) {
         <GatsbyImage
           image={data.image.asset.gatsbyImageData}
           alt="Jeff working at his desk on his laptop"
+          objectFit="cover"
+          loading="lazy"
+          aria-placeholder="none"
         />
       </div>
     </HeroStyles>

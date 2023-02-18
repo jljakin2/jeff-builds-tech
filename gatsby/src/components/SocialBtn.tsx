@@ -8,7 +8,7 @@ interface ISocialBtnProps {
 
 const SocialBtnStyles = styled.a`
   background: transparent;
-  border: 1px solid var(--primary-500--hover);
+  border: 1px solid var(--grey-500);
   border-radius: 50%;
   cursor: pointer;
 
@@ -21,8 +21,13 @@ const SocialBtnStyles = styled.a`
 
   transition: all 0.2s ease-in;
 
+  &:hover {
+    border: 1px solid var(--primary-500);
+  }
+
   svg {
-    stroke: var(--primary-500--hover);
+    stroke: var(--grey-500);
+    fill: var(--grey-500);
 
     transition: all 0.2s ease-in;
   }
@@ -32,6 +37,7 @@ const SocialBtnStyles = styled.a`
 
     svg {
       stroke: var(--white);
+      fill: var(--white);
     }
   }
 `;

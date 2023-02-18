@@ -33,24 +33,25 @@ const GlobalStyles = createGlobalStyle`
     --radius: 6px; // border radius
   }
 
-  html {
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      font-size: 100%; // 16px
-    }
-
-  body {
-    font-size: 1rem;
-    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
-
   *, *::before, *::after {
       box-sizing: inherit;
 
       margin: 0;
       padding: 0;
+  }
+
+  html {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      font-size: 100%; // 16px
+  }
+
+  body {
+    font-size: 1rem;
+    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: var(--text);
   }
 
   ul, ol {
