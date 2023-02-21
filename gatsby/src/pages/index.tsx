@@ -12,8 +12,6 @@ import ContactForm from "../components/ContactForm/ContactForm";
 // import { HomePageStyles } from "../styles/RichText";
 
 const HomePageStyles = styled.section`
-  padding: 1rem;
-
   svg {
     stroke: black;
     fill: transparent;
@@ -23,6 +21,7 @@ const HomePageStyles = styled.section`
 export default function HomePage({ data }: any) {
   const hero = data.heroes.nodes[0];
   const contact = data.contacts.nodes[0];
+  const categories = data.categories.nodes;
 
   // const components = {
   //   types: {
@@ -44,7 +43,7 @@ export default function HomePage({ data }: any) {
   return (
     <HomePageStyles>
       <Hero data={hero} />
-      <BlogIntro />
+      <BlogIntro data={categories} />
       <ProjectsIntro />
       <div className="contact-content-container">
         <h2>{contact.header}</h2>
@@ -86,22 +85,6 @@ export const query = graphql`
       nodes {
         id
         name
-      }
-    }
-
-    posts: allSanityPost {
-      nodes {
-        id
-        title
-        featuredImage {
-          asset {
-            gatsbyImageData
-          }
-        }
-        category {
-          id
-          name
-        }
       }
     }
 

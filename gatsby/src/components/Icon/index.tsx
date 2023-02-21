@@ -3,9 +3,10 @@ import Github from "./Github";
 import Hamburger from "./Hamburger";
 import LinkedIn from "./LinkedIn";
 import Twitter from "./Twitter";
+import Check from "./Check";
 
 interface IconProps {
-  name: "LinkedIn" | "Github" | "Twitter" | "Hamburger";
+  name: "LinkedIn" | "Github" | "Twitter" | "Hamburger" | "Check";
   size:
     | "12"
     | "14"
@@ -34,6 +35,8 @@ export default function Icon(props: IconProps) {
       return <Twitter size={size} />;
     case "Hamburger":
       return <Hamburger size={size} />;
+    case "Check":
+      return <Check size={size} />;
     default:
       return <p>default</p>;
   }
