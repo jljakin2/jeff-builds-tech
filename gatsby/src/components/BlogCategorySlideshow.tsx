@@ -1,13 +1,55 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const BlogCategorySlideshowStyles = styled.div``;
+const BlogCategorySlideshowStyles = styled.div`
+  border: 1px solid red;
 
-export default function BlogCategorySlideshow({ categories }: any) {
-  const { posts } = useStaticQuery(graphql`
-    query GetPosts {
-      posts: allSanityPost {
+  .categories-container {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+
+    .item {
+      cursor: pointer;
+
+      &.current {
+        background: var(--white);
+        color: var(--primary-500);
+        border-radius: 1rem;
+
+        padding: 0.5rem 0.75rem;
+      }
+    }
+  }
+
+  .slideshow-container {
+    width: 100%;
+  }
+
+  .btn {
+    background: var(--error);
+    color: var(--white);
+    border-radius: 1rem;
+    cursor: pointer;
+
+    padding: 0.5rem 0.75rem;
+
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      background: rgba(247, 122, 135, 0.9);
+    }
+  }
+`;
+
+export default function BlogCategorySlideshow() {
+  const { posts, categories } = useStaticQuery(graphql`
+    query GetFeaturedPostsAndCategories {
+      posts: allSanityPost(filter: { featured: { eq: true } }) {
         nodes {
           id
           title
@@ -23,14 +65,29 @@ export default function BlogCategorySlideshow({ categories }: any) {
           }
         }
       }
+
+      categories: allSanityCategory(filter: { featured: { eq: true } }) {
+        nodes {
+          id
+          name
+          slug {
+            current
+          }
+        }
+      }
     }
   `);
 
   return (
     <BlogCategorySlideshowStyles>
-      <ul className="categories">
-        {categories.map((category: any) => (
-          <li>{category.name}</li>
+      <ul className="categories-container">
+        {categories.nodes.map((category: any) => (
+          <li
+            key={category.id}
+            id={category.name.toLowerCase()}
+            className="item current">
+            {category.name}
+          </li>
         ))}
       </ul>
       <div className="slideshow-container">
@@ -40,7 +97,9 @@ export default function BlogCategorySlideshow({ categories }: any) {
           ))}
         </ul>
       </div>
-      <Link to="/blog">See all posts 👀</Link>
+      <Link to="/blog" className="btn">
+        See all posts 👀
+      </Link>
     </BlogCategorySlideshowStyles>
   );
 }

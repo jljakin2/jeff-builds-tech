@@ -72,7 +72,7 @@ export default function BlogIntro({ data }: any) {
         </Link>
       </div>
       {/* only pass in the featured categories for the carousel */}
-      <BlogCategorySlideshow categories={getFeatured(data)} />
+      <BlogCategorySlideshow />
     </BlogIntroStyles>
   );
 }
