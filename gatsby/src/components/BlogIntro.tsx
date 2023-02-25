@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { getFeatured } from "../utils/getFeatured";
 import BlogCategorySlideshow from "./BlogCategorySlideshow";
 import Icon from "./Icon";
 
@@ -9,6 +8,9 @@ const BlogIntroStyles = styled.section`
   background: var(--primary-500);
   color: var(--white);
 
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
   text-align: center;
 
   ul {
