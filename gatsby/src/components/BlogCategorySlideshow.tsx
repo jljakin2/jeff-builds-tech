@@ -1,28 +1,25 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
-import React, { useState } from "react";
+import { GatsbyImage } from "gatsby-plugin-image";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const BlogCategorySlideshowStyles = styled.div`
-  border: 1px solid red;
-
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   row-gap: 2rem;
 
   overflow: hidden;
 
   .categories-container {
-    border: 1px solid blue;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     column-gap: 2rem;
     text-align: left;
 
     .item {
-      border: 1px solid var(--white);
       border-radius: 1rem;
       cursor: pointer;
 
@@ -31,13 +28,69 @@ const BlogCategorySlideshowStyles = styled.div`
       &.current {
         background: var(--white);
         color: var(--primary-500);
-        border: 1px solid var(--white);
       }
     }
   }
 
+  .category-carousel-container {
+    opacity: 0.75;
+
+    transition: all 0.3s ease-in;
+
+    &.current {
+      opacity: 1;
+    }
+  }
+
   .slideshow-container {
-    /* width: 120%; */
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+
+    transform: translateX(
+      calc(-70dvw * ${({ activeIdx }: { activeIdx: string }) => activeIdx})
+    );
+    transition: all 0.3s ease-in;
+
+    .card-container {
+      background: var(--white);
+      border-radius: var(--radius);
+      color: var(--text);
+      text-align: left;
+
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      /* align-items: center; */
+
+      width: 70dvw;
+      /* height: 4rem; */
+
+      .image-container {
+        height: 100%;
+        /* width: 10rem; */
+        /* max-width: 6rem; */
+
+        .gatsby-image-wrapper {
+          border-radius: var(--radius) 0 0 var(--radius);
+          /* width: 10rem; */
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .text-container {
+        padding: 0.5rem;
+
+        p {
+          font-weight: 600;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
   }
 
   .btn {
@@ -95,23 +148,56 @@ export default function BlogCategorySlideshow() {
       }
     }
   `);
+  console.log({ categories });
 
-  console.log({ posts, categories });
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [numCategories, setNumCategories] = useState(0);
+  const timeoutRef = useRef(null);
 
-  const [activeIdx, setActiveIdx] = useState("0");
-
-  function handleSelection(e: any) {
-    setActiveIdx(e.target.id);
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
   }
 
+  useEffect(() => {
+    setNumCategories(categories.nodes.length);
+    resetTimeout();
+    // @ts-ignore
+    timeoutRef.current = setTimeout(
+      () =>
+        setActiveIdx(activeIdx =>
+          activeIdx === numCategories - 1 ? 0 : activeIdx + 1
+        ),
+      1000
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [activeIdx]);
+
+  function handleSelection(e: any) {
+    setActiveIdx(parseInt(e.target.id));
+  }
+
+  // function moveCarousel() {
+  //   if (activeIdx < numCategories) {
+  //     setActiveIdx(activeIdx + 1);
+  //   } else {
+  //     setActiveIdx(0);
+  //   }
+  // }
+
   return (
-    <BlogCategorySlideshowStyles>
+    // @ts-ignore
+    <BlogCategorySlideshowStyles activeIdx={activeIdx}>
       <ul className="categories-container">
         {categories.nodes.map((category: any, idx: string) => (
           <li
             key={category.id}
             id={idx}
-            className={`item ${activeIdx == idx ? "current" : ""}`}
+            className={`item ${activeIdx === parseInt(idx) ? "current" : ""}`}
             onClick={handleSelection}>
             {category.name}
           </li>
@@ -119,8 +205,12 @@ export default function BlogCategorySlideshow() {
       </ul>
 
       <div className="slideshow-container">
-        {categories.nodes.map((category: any) => (
-          <ul className="category-carousel-container">
+        {categories.nodes.map((category: any, idx: string) => (
+          <ul
+            className={`category-carousel-container ${
+              parseInt(idx) == activeIdx ? "current" : ""
+            }`}>
+            {/* find all the posts where the category name and post category name are the same */}
             {posts.nodes
               .filter((post: any) => {
                 const foundCategory = post.category.find(
@@ -130,7 +220,17 @@ export default function BlogCategorySlideshow() {
                 return !!foundCategory;
               })
               .map((post: any) => (
-                <li>{post.title}</li>
+                <li className="card-container">
+                  <div className="image-container">
+                    <GatsbyImage
+                      image={post.featuredImage.asset.gatsbyImageData}
+                      alt={`"${post.title}'s featured image"`}
+                    />
+                  </div>
+                  <div className="text-container">
+                    <p>{post.title}</p>
+                  </div>
+                </li>
               ))}
           </ul>
         ))}
