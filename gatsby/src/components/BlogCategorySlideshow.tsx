@@ -148,7 +148,6 @@ export default function BlogCategorySlideshow() {
       }
     }
   `);
-  console.log({ categories });
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [numCategories, setNumCategories] = useState(0);
@@ -169,7 +168,7 @@ export default function BlogCategorySlideshow() {
         setActiveIdx(activeIdx =>
           activeIdx === numCategories - 1 ? 0 : activeIdx + 1
         ),
-      1000
+      5000
     );
 
     return () => {
@@ -180,14 +179,6 @@ export default function BlogCategorySlideshow() {
   function handleSelection(e: any) {
     setActiveIdx(parseInt(e.target.id));
   }
-
-  // function moveCarousel() {
-  //   if (activeIdx < numCategories) {
-  //     setActiveIdx(activeIdx + 1);
-  //   } else {
-  //     setActiveIdx(0);
-  //   }
-  // }
 
   return (
     // @ts-ignore

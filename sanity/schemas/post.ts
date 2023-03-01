@@ -71,5 +71,12 @@ export default {
       type: 'array',
       of: [{type: 'reference', to: [{type: 'category'}]}],
     },
+    {
+      name: 'realCreatedDate',
+      title: 'Real Created Date',
+      description:
+        'What was the data you actual wrote the post? This is mostly for the Ship 30 stuff',
+      type: 'datetime',
+    },
   ],
 }
