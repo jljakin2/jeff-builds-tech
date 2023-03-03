@@ -3,55 +3,74 @@ import { media } from "../utils/mediaQueries";
 
 export const Typography = createGlobalStyle`
     h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: 700;
-        line-height: 3.625rem;
+        line-height: 3rem;
         letter-spacing: 2px;
 
         ${media.tablet} {
             font-size: 3.5rem;
+            line-height: 3.625rem;
         }
     }
 
     h2 {
         font-weight: 700;
-        font-size: 2.5rem;
+        font-size: 2.25rem;
         line-height: 2.75rem;
-        letter-spacing: 1.42857px;
+        letter-spacing: 1.43px;
+
+        ${media.tablet} {
+            font-size: 2.5rem;
+        }
     }
 
     h3 {
         font-weight: 700;
-        font-size: 2rem;
-        line-height: 2.25rem;
-        letter-spacing: 1.14286px;
+        font-size: 1.75rem;
+        line-height: 2rem;
+        letter-spacing: 1.14px;
+
+        ${media.tablet} {
+            font-size: 2rem;
+        }
     }
 
     h4 {
         font-weight: 600;
-        font-size: 1.75rem;
-        line-height: 2.375rem;
+        font-size: 1.5rem;
         letter-spacing: 2px;
+
+        ${media.tablet} {
+            font-size: 1.75rem;
+        }
     }
 
     h5 {
         font-weight: 400;
-        font-size: 1.5rem;
-        line-height: 2.0625rem;
-        letter-spacing: 1.71429px;
+        font-size: 1.25rem;
+        letter-spacing: 1.71px;
+
+        ${media.tablet} {
+            font-size: 1.5rem;
+        }
     }
 
     h6 {
         font-weight: 400;
-        font-size: 1.125rem;
-        line-height: 1.5625rem;
-        letter-spacing: 1.28571px;
+        font-size: 1rem;
+        letter-spacing: 1.28px;
+
+        ${media.tablet} {
+            font-size: 1.125rem;
+        }
     }
 
     p {
         font-weight: 300;
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
         line-height: 1.5625rem;
+        letter-spacing: 0;
     }
 
     a {

@@ -25,12 +25,12 @@ const GlobalStyles = createGlobalStyle`
 
     /* inset | offset-x | offset-y | blur-radius | color */
     --inner-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12); // text inputs
-    --shadow: 3px 4px 12px -2px rgba(38, 38, 38, 0.2); // base shadow
+    --shadow: 0.25rem 0.25rem 1rem 0 rgba(0, 0, 0, 0.25); // base shadow
     --shadow--hover: 5px 6px 12px -2px rgba(38, 38, 38, 0.21); // quick actions hover event on homepage
     --shadow--inverse: -3px 4px 12px -2px rgba(0, 0, 0, 0.25); // just for preview panel
     --shadow--dropdown: 1px 1px 2px rgba(0, 0, 0, 0.12); // just for dropdown menus
 
-    --radius: 6px; // border radius
+    --radius: 0.5rem; // border radius
   }
 
   *, *::before, *::after {

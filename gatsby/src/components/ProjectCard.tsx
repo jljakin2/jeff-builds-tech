@@ -3,17 +3,22 @@ import React from "react";
 import styled from "styled-components";
 
 const ProjectCardStyles = styled.div`
-  color: var(--white);
   box-shadow: var(--shadow);
-  border-radius: var(--border);
+  border-radius: var(--radius);
 
   width: 15rem;
+  min-height: 16rem;
 
   .text-container {
     color: var(--text);
 
-    .name {
-      font-weight: 600;
+    display: grid;
+    row-gap: 0.5rem;
+
+    padding: 1.5rem 1rem;
+
+    .excerpt {
+      color: var(--lightText);
     }
   }
 `;
@@ -28,7 +33,7 @@ export default function ProjectCard({ project }: any) {
         />
       </div>
       <div className="text-container">
-        <p className="name">{project.name}</p>
+        <h6 className="name">{project.name}</h6>
         <p className="excerpt">{project.excerpt}</p>
       </div>
     </ProjectCardStyles>

@@ -44,7 +44,7 @@ const BlogCategorySlideshowStyles = styled.div`
 
   .slideshow-container {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     column-gap: 1.5rem;
 
     transform: translateX(
@@ -148,6 +148,7 @@ export default function BlogCategorySlideshow() {
       }
     }
   `);
+  console.log({ posts, categories });
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [numCategories, setNumCategories] = useState(0);
@@ -211,7 +212,7 @@ export default function BlogCategorySlideshow() {
                 return !!foundCategory;
               })
               .map((post: any) => (
-                <li className="card-container">
+                <li className="card-container" key={post.id}>
                   <div className="image-container">
                     <GatsbyImage
                       image={post.featuredImage.asset.gatsbyImageData}
