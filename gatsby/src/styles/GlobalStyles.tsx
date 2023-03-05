@@ -124,6 +124,23 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  .red-link-btn {
+    background: var(--error);
+    color: var(--white);
+    border-radius: 1rem;
+    cursor: pointer;
+
+    align-self: center;
+
+    padding: 0.5rem 0.75rem;
+
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      background: rgba(247, 122, 135, 0.9);
+    }
+  }
+
   /* button.secondary {
     border: 1px solid $primary-500;
     color: $primary-500;

@@ -44,7 +44,6 @@ const BlogCategorySlideshowStyles = styled.div`
 
   .slideshow-container {
     display: flex;
-    /* align-items: center; */
     column-gap: 1.5rem;
 
     transform: translateX(
@@ -60,19 +59,15 @@ const BlogCategorySlideshowStyles = styled.div`
 
       display: grid;
       grid-template-columns: 5rem 1fr;
-      /* align-items: center; */
 
       width: 70dvw;
-      /* height: 4rem; */
 
       .image-container {
         height: 100%;
-        /* width: 10rem; */
-        /* max-width: 6rem; */
 
         .gatsby-image-wrapper {
           border-radius: var(--radius) 0 0 var(--radius);
-          /* width: 10rem; */
+
           height: 100%;
           object-fit: cover;
         }
@@ -90,23 +85,6 @@ const BlogCategorySlideshowStyles = styled.div`
           text-overflow: ellipsis;
         }
       }
-    }
-  }
-
-  .btn {
-    background: var(--error);
-    color: var(--white);
-    border-radius: 1rem;
-    cursor: pointer;
-
-    align-self: center;
-
-    padding: 0.5rem 0.75rem;
-
-    transition: all 0.2s ease-in;
-
-    &:hover {
-      background: rgba(247, 122, 135, 0.9);
     }
   }
 `;
@@ -148,7 +126,6 @@ export default function BlogCategorySlideshow() {
       }
     }
   `);
-  console.log({ posts, categories });
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [numCategories, setNumCategories] = useState(0);
@@ -228,7 +205,7 @@ export default function BlogCategorySlideshow() {
         ))}
       </div>
 
-      <Link to="/blog" className="btn">
+      <Link to="/blog" className="red-link-btn">
         See all posts 👀
       </Link>
     </BlogCategorySlideshowStyles>

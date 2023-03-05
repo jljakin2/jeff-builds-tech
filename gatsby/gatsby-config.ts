@@ -3,6 +3,14 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
 
+const myCustomQueries = {
+  xs: "(max-width: 320px)",
+  sm: "(max-width: 700px)",
+  md: "(max-width: 1000px)",
+  l: "(max-width: 1900px)",
+  portrait: "(orientation: portrait)",
+};
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Jeff Builds Tech`,
@@ -15,7 +23,7 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-styled-components",
-    "gatsby-plugin-google-gtag",
+    // "gatsby-plugin-google-gtag",
     "gatsby-plugin-image",
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
@@ -27,6 +35,12 @@ const config: GatsbyConfig = {
         path: "./src/assets/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: "gatsby-plugin-breakpoints",
+      options: {
+        queries: myCustomQueries,
+      },
     },
     {
       resolve: "gatsby-source-filesystem",

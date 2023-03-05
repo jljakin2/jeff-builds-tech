@@ -1,16 +1,65 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+// @ts-ignore
+import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
+import { media } from "../utils/mediaQueries";
 
-const BlogIntroStyles = styled.section`
+const ProjectsIntroStyles = styled.section`
   overflow: hidden;
+  position: relative;
+  height: 40rem;
+
   .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* display: flex;
+    flex-wrap: wrap; */
+    justify-content: center;
 
-    width: 150%;
-    transform: translateX(-50px);
+    gap: 1rem;
+
+    width: 120%;
+    transform: translate(
+      -10%,
+      calc(-12rem * ${({ activeRow }: { activeRow: string }) => activeRow})
+    );
+
+    transition: all 0.3s ease-in;
+
+    ${media.laptop} {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    ${media.desktop} {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .filter {
+      background: rgba(255, 255, 255, 0.8);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      height: 100%;
+      width: 120%;
+
+      z-index: 1000;
+    }
+  }
+
+  .cta-container {
+    text-align: center;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 10000;
   }
 `;
 
@@ -35,16 +84,70 @@ export default function ProjectsIntro() {
     }
   `);
 
+  const [activeRow, setActiveRow] = useState(0);
+
+  const timeoutRef = useRef(null);
+
+  const breakpoints = useBreakpoint();
+  const numPerRow =
+    breakpoints.xs || breakpoints.sm ? 3 : breakpoints.md ? 4 : 5;
+
+  // make sure the projects array contains enough to have full rows
+  const cleanProjects = projects.nodes.slice(
+    0,
+    numPerRow * Math.floor(projects.nodes.length / numPerRow)
+  );
+
+  // create the new array with buffers on the ends
+  const firstRowCopy = cleanProjects.slice(0, numPerRow);
+  const lastRowCopy = cleanProjects.slice(
+    cleanProjects.length - numPerRow,
+    cleanProjects.length
+  );
+  // we need to make this expanded array for the illusion that the carousel is infinite
+  const finalProjects = [...lastRowCopy, ...cleanProjects, ...firstRowCopy];
+  console.log({ lastRowCopy, cleanProjects, firstRowCopy, finalProjects });
+  const totalRows = finalProjects.length / numPerRow;
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    resetTimeout();
+    // @ts-ignore
+    timeoutRef.current = setTimeout(
+      () =>
+        setActiveRow(activeRow =>
+          activeRow === totalRows - Math.floor(totalRows / 2 + 1)
+            ? 0
+            : activeRow + 1
+        ),
+      1000
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [activeRow]);
+
   return (
-    <BlogIntroStyles>
+    <ProjectsIntroStyles activeRow={activeRow.toString()}>
       <div className="projects-container">
-        {projects.nodes.map((project: any) => (
-          <ProjectCard project={project} key={project.id} />
+        <div className="filter" />
+        {finalProjects.map((project: any, idx: number) => (
+          <ProjectCard project={project} key={idx} />
         ))}
       </div>
-      {/* <ProjectCard project={projects.nodes[0]} /> */}
-      <h1>I love to build.</h1>
-      <Link to="/projects">See all projects 👀</Link>
-    </BlogIntroStyles>
+
+      <div className="cta-container">
+        <h1>I love to build.</h1>
+        <Link to="/projects" className="red-link-btn">
+          See all projects 👀
+        </Link>
+      </div>
+    </ProjectsIntroStyles>
   );
 }

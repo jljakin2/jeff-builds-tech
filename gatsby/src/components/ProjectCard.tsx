@@ -6,11 +6,13 @@ const ProjectCardStyles = styled.div`
   box-shadow: var(--shadow);
   border-radius: var(--radius);
 
-  width: 15rem;
-  min-height: 16rem;
+  width: 100%;
+
+  /* min-height: 16rem; */
 
   .text-container {
     color: var(--text);
+    font-size: 0.85em;
 
     display: grid;
     row-gap: 0.5rem;
@@ -19,6 +21,7 @@ const ProjectCardStyles = styled.div`
 
     .excerpt {
       color: var(--lightText);
+      font-size: 0.75em;
     }
   }
 `;
@@ -34,7 +37,7 @@ export default function ProjectCard({ project }: any) {
       </div>
       <div className="text-container">
         <h6 className="name">{project.name}</h6>
-        <p className="excerpt">{project.excerpt}</p>
+        {/* <p className="excerpt">{project.excerpt}</p> */}
       </div>
     </ProjectCardStyles>
   );
