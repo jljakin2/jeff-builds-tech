@@ -9,7 +9,7 @@ import { media } from "../utils/mediaQueries";
 const ProjectsIntroStyles = styled.section`
   overflow: hidden;
   position: relative;
-  height: 40rem;
+  height: 44rem;
 
   .projects-container {
     display: grid;
@@ -22,19 +22,30 @@ const ProjectsIntroStyles = styled.section`
     gap: 1rem;
 
     width: 120%;
+    transition: ${({ activeRow }: { activeRow: string }) =>
+      parseInt(activeRow) === 0 ? "none" : "all 0.3s ease-in"};
     transform: translate(
       -10%,
-      calc(-12rem * ${({ activeRow }: { activeRow: string }) => activeRow})
+      calc(-10rem * ${({ activeRow }: { activeRow: string }) => activeRow})
     );
 
-    transition: all 0.3s ease-in;
+    ${media.tablet} {
+      transform: translate(
+        -10%,
+        calc(-11rem * ${({ activeRow }: { activeRow: string }) => activeRow})
+      );
+    }
 
     ${media.laptop} {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      transform: translate(
+        -10%,
+        calc(-15rem * ${({ activeRow }: { activeRow: string }) => activeRow})
+      );
     }
 
     ${media.desktop} {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .filter {
@@ -92,7 +103,7 @@ export default function ProjectsIntro() {
   const numPerRow =
     breakpoints.xs || breakpoints.sm ? 3 : breakpoints.md ? 4 : 5;
 
-  // make sure the projects array contains enough to have full rows
+  // make sure the projects array contains enough to have full rows only
   const cleanProjects = projects.nodes.slice(
     0,
     numPerRow * Math.floor(projects.nodes.length / numPerRow)
@@ -105,9 +116,13 @@ export default function ProjectsIntro() {
     cleanProjects.length
   );
   // we need to make this expanded array for the illusion that the carousel is infinite
-  const finalProjects = [...lastRowCopy, ...cleanProjects, ...firstRowCopy];
-  console.log({ lastRowCopy, cleanProjects, firstRowCopy, finalProjects });
-  const totalRows = finalProjects.length / numPerRow;
+  const finalProjects = [...cleanProjects, ...cleanProjects, ...firstRowCopy];
+  console.log({
+    activeRow,
+    clean: cleanProjects.length,
+    final: finalProjects.length,
+  });
+  const totalRows = Math.ceil(cleanProjects.length / numPerRow);
 
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -121,9 +136,7 @@ export default function ProjectsIntro() {
     timeoutRef.current = setTimeout(
       () =>
         setActiveRow(activeRow =>
-          activeRow === totalRows - Math.floor(totalRows / 2 + 1)
-            ? 0
-            : activeRow + 1
+          activeRow === totalRows ? 0 : activeRow + 1
         ),
       1000
     );
@@ -134,7 +147,11 @@ export default function ProjectsIntro() {
   }, [activeRow]);
 
   return (
-    <ProjectsIntroStyles activeRow={activeRow.toString()}>
+    <ProjectsIntroStyles
+      // @ts-ignore
+      activeRow={activeRow.toString()}
+      // @ts-ignore
+      totalRows={totalRows}>
       <div className="projects-container">
         <div className="filter" />
         {finalProjects.map((project: any, idx: number) => (

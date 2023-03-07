@@ -1,12 +1,22 @@
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
+import { media } from "../utils/mediaQueries";
 
 const ProjectCardStyles = styled.div`
   box-shadow: var(--shadow);
   border-radius: var(--radius);
 
   width: 100%;
+  height: 9rem;
+
+  ${media.tablet} {
+    height: 10rem;
+  }
+
+  ${media.laptop} {
+    height: 14rem;
+  }
 
   /* min-height: 16rem; */
 
