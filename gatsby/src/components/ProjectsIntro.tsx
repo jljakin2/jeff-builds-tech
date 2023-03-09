@@ -26,26 +26,32 @@ const ProjectsIntroStyles = styled.section`
       parseInt(activeRow) === 0 ? "none" : "all 0.3s ease-in"};
     transform: translate(
       -10%,
-      calc(-10rem * ${({ activeRow }: { activeRow: string }) => activeRow})
+      ${({ height, activeRow }: any) =>
+        `calc(((-${height + "px"} - 0.6rem) * ${activeRow}))`}
     );
 
-    ${media.tablet} {
-      transform: translate(
-        -10%,
-        calc(-11rem * ${({ activeRow }: { activeRow: string }) => activeRow})
-      );
-    }
-
     ${media.laptop} {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       transform: translate(
         -10%,
-        calc(-15rem * ${({ activeRow }: { activeRow: string }) => activeRow})
+        calc(
+          -10% * ${({ activeRow }: { activeRow: string }) => activeRow} - 2rem
+        )
       );
     }
 
     ${media.desktop} {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 3rem;
+
+      width: 110%;
+      transform: translate(
+        -5%,
+        calc(
+          -10% * ${({ activeRow }: { activeRow: string }) => activeRow} - 3rem
+        )
+      );
     }
 
     .filter {
@@ -59,6 +65,10 @@ const ProjectsIntroStyles = styled.section`
       width: 120%;
 
       z-index: 1000;
+    }
+
+    .card-container {
+      width: 100%;
     }
   }
 
@@ -94,14 +104,19 @@ export default function ProjectsIntro() {
       }
     }
   `);
-
+  const [height, setHeight] = useState();
   const [activeRow, setActiveRow] = useState(0);
 
   const timeoutRef = useRef(null);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    // @ts-ignore
+    setHeight(ref.current.offsetHeight);
+  });
 
   const breakpoints = useBreakpoint();
-  const numPerRow =
-    breakpoints.xs || breakpoints.sm ? 3 : breakpoints.md ? 4 : 5;
+  const numPerRow = breakpoints.xs || breakpoints.sm ? 3 : 5;
 
   // make sure the projects array contains enough to have full rows only
   const cleanProjects = projects.nodes.slice(
@@ -117,11 +132,6 @@ export default function ProjectsIntro() {
   );
   // we need to make this expanded array for the illusion that the carousel is infinite
   const finalProjects = [...cleanProjects, ...cleanProjects, ...firstRowCopy];
-  console.log({
-    activeRow,
-    clean: cleanProjects.length,
-    final: finalProjects.length,
-  });
   const totalRows = Math.ceil(cleanProjects.length / numPerRow);
 
   function resetTimeout() {
@@ -151,11 +161,15 @@ export default function ProjectsIntro() {
       // @ts-ignore
       activeRow={activeRow.toString()}
       // @ts-ignore
-      totalRows={totalRows}>
+      totalRows={totalRows}
+      // @ts-ignore
+      height={height}>
       <div className="projects-container">
         <div className="filter" />
         {finalProjects.map((project: any, idx: number) => (
-          <ProjectCard project={project} key={idx} />
+          <div key={idx} ref={ref} className="card-container">
+            <ProjectCard project={project} />
+          </div>
         ))}
       </div>
 
