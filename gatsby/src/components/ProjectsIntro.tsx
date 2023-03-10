@@ -11,24 +11,31 @@ const ProjectsIntroStyles = styled.section`
   position: relative;
   height: 44rem;
 
+  ${media.laptop} {
+    height: 50rem;
+  }
+
   .projects-container {
     display: grid;
-    /* grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); */
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    /* display: flex;
-    flex-wrap: wrap; */
     justify-content: center;
 
     gap: 1rem;
 
     width: 120%;
-    transition: ${({ activeRow }: { activeRow: string }) =>
-      parseInt(activeRow) === 0 ? "none" : "all 0.3s ease-in"};
+    transition: ${({ activeRow }: { activeRow: number }) =>
+      activeRow === 0 ? "none" : "all 0.3s ease-in"};
     transform: translate(
       -10%,
-      ${({ height, activeRow }: any) =>
-        `calc(((-${height + "px"} - 0.6rem) * ${activeRow}))`}
+      calc(-11rem * ${({ activeRow }: { activeRow: number }) => activeRow})
     );
+
+    ${media.tablet} {
+      transform: translate(
+        -10%,
+        calc(-15rem * ${({ activeRow }: { activeRow: number }) => activeRow})
+      );
+    }
 
     ${media.laptop} {
       gap: 2rem;
@@ -36,9 +43,7 @@ const ProjectsIntroStyles = styled.section`
       grid-template-columns: repeat(5, minmax(0, 1fr));
       transform: translate(
         -10%,
-        calc(
-          -10% * ${({ activeRow }: { activeRow: string }) => activeRow} - 2rem
-        )
+        calc(-18rem * ${({ activeRow }: { activeRow: number }) => activeRow})
       );
     }
 
@@ -48,9 +53,7 @@ const ProjectsIntroStyles = styled.section`
       width: 110%;
       transform: translate(
         -5%,
-        calc(
-          -10% * ${({ activeRow }: { activeRow: string }) => activeRow} - 3rem
-        )
+        calc(-22rem * ${({ activeRow }: { activeRow: number }) => activeRow})
       );
     }
 
@@ -65,10 +68,6 @@ const ProjectsIntroStyles = styled.section`
       width: 120%;
 
       z-index: 1000;
-    }
-
-    .card-container {
-      width: 100%;
     }
   }
 
@@ -104,16 +103,10 @@ export default function ProjectsIntro() {
       }
     }
   `);
-  const [height, setHeight] = useState();
+
   const [activeRow, setActiveRow] = useState(0);
 
   const timeoutRef = useRef(null);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    // @ts-ignore
-    setHeight(ref.current.offsetHeight);
-  });
 
   const breakpoints = useBreakpoint();
   const numPerRow = breakpoints.xs || breakpoints.sm ? 3 : 5;
@@ -131,8 +124,15 @@ export default function ProjectsIntro() {
     cleanProjects.length
   );
   // we need to make this expanded array for the illusion that the carousel is infinite
-  const finalProjects = [...cleanProjects, ...cleanProjects, ...firstRowCopy];
+  const finalProjects = [
+    ...cleanProjects,
+    ...cleanProjects,
+    ...cleanProjects,
+    ...firstRowCopy,
+  ];
   const totalRows = Math.ceil(cleanProjects.length / numPerRow);
+
+  console.log({ numPerRow, cleanProjects, finalProjects, totalRows });
 
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -159,17 +159,11 @@ export default function ProjectsIntro() {
   return (
     <ProjectsIntroStyles
       // @ts-ignore
-      activeRow={activeRow.toString()}
-      // @ts-ignore
-      totalRows={totalRows}
-      // @ts-ignore
-      height={height}>
+      activeRow={activeRow}>
       <div className="projects-container">
         <div className="filter" />
         {finalProjects.map((project: any, idx: number) => (
-          <div key={idx} ref={ref} className="card-container">
-            <ProjectCard project={project} />
-          </div>
+          <ProjectCard project={project} key={idx} />
         ))}
       </div>
 

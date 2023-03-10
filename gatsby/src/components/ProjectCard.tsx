@@ -8,19 +8,19 @@ const ProjectCardStyles = styled.div`
   border-radius: var(--radius);
 
   width: 100%;
-  height: 100%;
+  height: 10rem;
 
-  /* ${media.tablet} {
-    height: 10rem;
+  ${media.tablet} {
+    height: 14rem;
   }
 
   ${media.laptop} {
-    height: 16.5rem;
+    height: 16rem;
   }
 
   ${media.desktop} {
     height: 19rem;
-  } */
+  }
 
   .text-container {
     color: var(--text);
