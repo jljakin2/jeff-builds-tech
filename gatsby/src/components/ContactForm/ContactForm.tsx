@@ -7,7 +7,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "@emailjs/browser";
 
-const ContactFormStyles = styled.section``;
+const ContactFormStyles = styled.section`
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+
+  width: 100%;
+  padding: 2.5rem 2.25rem;
+`;
 
 export default function ContactForm() {
   const { inputs, handleChange, resetForm } = useForm({
@@ -137,13 +148,6 @@ export default function ContactForm() {
             {errors.message && (
               <small className="error">{errors.message}</small>
             )}
-            <input
-              type="text"
-              name="apple"
-              className="apple"
-              value={inputs.apple}
-              onChange={handleChange}
-            />
           </fieldset>
           <button className="primary full-width" type="submit">
             Send

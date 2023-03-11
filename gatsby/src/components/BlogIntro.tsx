@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import BlogCategorySlideshow from "./BlogCategorySlideshow";
@@ -52,7 +52,19 @@ const BlogIntroStyles = styled.section`
   }
 `;
 
-export default function BlogIntro({ data }: any) {
+export default function BlogIntro() {
+  const { categories } = useStaticQuery(graphql`
+    query GetSingleCategoryNames {
+      categories: allSanityCategory {
+        nodes {
+          id
+          name
+        }
+      }
+    }
+  `);
+  const data = categories.nodes;
+
   return (
     <BlogIntroStyles>
       <div className="content-container">

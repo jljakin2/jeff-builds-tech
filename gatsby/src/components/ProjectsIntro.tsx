@@ -119,10 +119,6 @@ export default function ProjectsIntro() {
 
   // create the new array with buffers on the ends
   const firstRowCopy = cleanProjects.slice(0, numPerRow);
-  const lastRowCopy = cleanProjects.slice(
-    cleanProjects.length - numPerRow,
-    cleanProjects.length
-  );
   // we need to make this expanded array for the illusion that the carousel is infinite
   const finalProjects = [
     ...cleanProjects,
@@ -131,8 +127,6 @@ export default function ProjectsIntro() {
     ...firstRowCopy,
   ];
   const totalRows = Math.ceil(cleanProjects.length / numPerRow);
-
-  console.log({ numPerRow, cleanProjects, finalProjects, totalRows });
 
   function resetTimeout() {
     if (timeoutRef.current) {

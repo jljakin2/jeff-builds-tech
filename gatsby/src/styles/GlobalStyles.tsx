@@ -77,15 +77,7 @@ const GlobalStyles = createGlobalStyle`
     }
   } */
 
-  /* button.primary {
-    background: $primary-500;
-    border: 1px solid $primary-500;
-    color: $white;
 
-    &:hover {
-      background: $primary-400;
-    }
-  } */
 
   .link-btn {
     border: 1px solid transparent;
@@ -138,6 +130,17 @@ const GlobalStyles = createGlobalStyle`
 
     &:hover {
       background: rgba(247, 122, 135, 0.9);
+    }
+  }
+
+  button.primary {
+    background: var(--primary-500);
+    border: 1px solid var(---primary-500);
+    border-radius: var(--radius);
+    color: var(--white);
+
+    &:hover {
+      background: var(--primary-500--hover);
     }
   }
 

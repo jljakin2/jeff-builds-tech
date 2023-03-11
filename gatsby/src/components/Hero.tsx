@@ -4,13 +4,14 @@ import styled from "styled-components";
 import Icon from "./Icon";
 import { NormalRichText } from "./NormalRichText";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import SocialBtn from "./SocialBtn";
 import { media } from "../utils/mediaQueries";
 //@ts-expect-error
 import build from "../assets/images/build_squiggle.svg";
 //@ts-expect-error
 import write from "../assets/images/write_squiggle.svg";
+import SocialLinks from "./SocialLinks";
 
 const HeroStyles = styled.section`
   display: grid;
@@ -43,8 +44,6 @@ const HeroStyles = styled.section`
 
   .social-links-container {
     grid-area: social;
-    display: flex;
-    column-gap: 1.5rem;
   }
 
   .greeting-container {
@@ -114,21 +113,41 @@ const HeroStyles = styled.section`
   }
 `;
 
-export default function Hero({ data }: any) {
-  const [linkedin, github, twitter] = data.socialLinks;
+export default function Hero() {
+  const { heroes } = useStaticQuery(graphql`
+    query GetHeroSection {
+      heroes: allSanityHero {
+        nodes {
+          id
+          greeting
+          _rawBody
+          socialLinks {
+            id
+            name
+            link
+          }
+          image {
+            asset {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+
+      categories: allSanityCategory {
+        nodes {
+          id
+          name
+        }
+      }
+    }
+  `);
+  const data = heroes.nodes[0];
 
   return (
     <HeroStyles>
-      <div className="social-links-container">
-        <SocialBtn link={github.link}>
-          <Icon name={github.name} size="20" />
-        </SocialBtn>
-        <SocialBtn link={linkedin.link}>
-          <Icon name={linkedin.name} size="20" />
-        </SocialBtn>
-        <SocialBtn link={twitter.link}>
-          <Icon name={twitter.name} size="20" />
-        </SocialBtn>
+      <div className="social-content-container">
+        <SocialLinks socials={data.socialLinks} />
       </div>
 
       <div className="greeting-container">
