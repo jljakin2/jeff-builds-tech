@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
     --bg: #f9f9f9;
     --inputBorder: #CFCFCF;
     --grey-500: #94a3b8;
+    --grey-400: #667085;
 
     --primary-500: #1B2E40;
     --primary-500--hover: rgba(27, 46, 64, .7);

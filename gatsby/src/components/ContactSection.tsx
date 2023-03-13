@@ -20,6 +20,7 @@ const ContactSectionStyles = styled.section`
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 1.5rem;
   }
 `;

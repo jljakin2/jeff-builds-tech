@@ -9,8 +9,6 @@ const SocialLinksStyles = styled.div`
 `;
 
 export default function SocialLinks({ socials }: any) {
-  //   const { github, linkedin, twitter } = socials;
-
   return (
     <SocialLinksStyles>
       {socials.map((item: any) => (
@@ -18,21 +16,6 @@ export default function SocialLinks({ socials }: any) {
           <Icon name={item.name} size="20" />
         </SocialBtn>
       ))}
-      {/* //{" "}
-      <SocialBtn link={github.link}>
-        // <Icon name={github.name} size="20" />
-        //{" "}
-      </SocialBtn>
-      //{" "}
-      <SocialBtn link={linkedin.link}>
-        // <Icon name={linkedin.name} size="20" />
-        //{" "}
-      </SocialBtn>
-      //{" "}
-      <SocialBtn link={twitter.link}>
-        // <Icon name={twitter.name} size="20" />
-        //{" "}
-      </SocialBtn> */}
     </SocialLinksStyles>
   );
 }
