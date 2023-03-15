@@ -22,12 +22,13 @@ const HeroStyles = styled.section`
     "image"
     "body"
     "button";
-  row-gap: 1rem;
+  row-gap: 1.5rem;
   justify-items: center;
   align-items: center;
   text-align: center;
 
   min-height: 100svh;
+  padding: 2rem var(--gutter) 4rem var(--gutter);
 
   ${media.laptop} {
     grid-template-columns: 1fr 1fr;
@@ -70,11 +71,11 @@ const HeroStyles = styled.section`
     .unknown__pt__mark__highlight:first-of-type::after {
       content: url(${build});
       position: absolute;
-      top: 20px;
+      top: 14px;
       left: 0;
 
       ${media.laptop} {
-        top: 24px;
+        top: 18px;
         left: 16px;
       }
     }
@@ -82,11 +83,11 @@ const HeroStyles = styled.section`
     .unknown__pt__mark__highlight:last-of-type::after {
       content: url(${write});
       position: absolute;
-      top: 20px;
+      top: 14px;
       left: 12px;
 
       ${media.laptop} {
-        top: 24px;
+        top: 18px;
         left: 16px;
       }
     }
@@ -98,6 +99,8 @@ const HeroStyles = styled.section`
     display: flex;
     align-items: center;
     column-gap: 1rem;
+
+    margin-top: 2rem;
 
     .link-btn {
       padding: 1rem;

@@ -9,7 +9,7 @@ const FooterStyles = styled.footer`
 
   text-align: center;
 
-  padding: 2rem;
+  padding: 2rem var(--gutter);
 
   .top {
     border-bottom: 1px solid var(--grey-400);

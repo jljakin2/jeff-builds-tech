@@ -13,6 +13,24 @@ const BlogIntroStyles = styled.section`
   row-gap: 3rem;
   text-align: center;
 
+  padding: 4rem 0;
+
+  .content-container {
+    padding: 0 var(--gutter);
+  }
+
+  .cat-container {
+    border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+
+    & > * {
+      border: 1px solid blue;
+      width: min-content;
+    }
+  }
+
   ul {
     display: flex;
     flex-direction: column;
@@ -71,7 +89,7 @@ export default function BlogIntro() {
         <h4>Writing</h4>
         <h1>Learn. Build. Write. Repeat.</h1>
         <h5>Here is some more context for what the blog is about</h5>
-        <ul>
+        <ul className="cat-container">
           {data.map((category: any) => (
             <li>
               <div className="check-logo">

@@ -10,6 +10,8 @@ const ProjectsIntroStyles = styled.section`
   overflow: hidden;
   position: relative;
   height: 44rem;
+  margin-top: 4rem;
+  padding-bottom: 4rem;
 
   ${media.laptop} {
     height: 50rem;

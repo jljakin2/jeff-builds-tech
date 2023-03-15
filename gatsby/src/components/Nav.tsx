@@ -10,7 +10,7 @@ const NavStyles = styled.nav`
   justify-content: space-between;
   align-items: center;
 
-  padding: 1.5rem;
+  padding: 1.5rem var(--gutter);
 
   .hamburger {
     stroke: var(--text);
@@ -64,7 +64,7 @@ const NavStyles = styled.nav`
 
       position: absolute;
       top: 1.75rem;
-      right: 2.5rem;
+      right: 1.5rem;
       cursor: pointer;
     }
 

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { media } from "../utils/mediaQueries";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -27,11 +28,27 @@ const GlobalStyles = createGlobalStyle`
     /* inset | offset-x | offset-y | blur-radius | color */
     --inner-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12); // text inputs
     --shadow: 0.25rem 0.25rem 1rem 0 rgba(0, 0, 0, 0.25); // base shadow
+    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; */
     --shadow--hover: 5px 6px 12px -2px rgba(38, 38, 38, 0.21); // quick actions hover event on homepage
     --shadow--inverse: -3px 4px 12px -2px rgba(0, 0, 0, 0.25); // just for preview panel
     --shadow--dropdown: 1px 1px 2px rgba(0, 0, 0, 0.12); // just for dropdown menus
 
     --radius: 0.5rem; // border radius
+
+    --gutter: 1rem; // 16px
+
+    ${media.tablet} {
+      --gutter: 1.5rem; // 24px
+    }
+
+    ${media.laptop} {
+      --gutter: 2.5rem;
+    }
+
+    ${media.desktop} {
+      --gutter: 5rem;
+    }
+
   }
 
   *, *::before, *::after {

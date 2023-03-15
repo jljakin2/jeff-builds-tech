@@ -15,6 +15,8 @@ const ContactSectionStyles = styled.section`
   align-items: center;
   row-gap: 2rem;
 
+  padding: 4rem var(--gutter);
+
   .contact-content-container {
     text-align: center;
 

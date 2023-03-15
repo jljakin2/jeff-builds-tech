@@ -22,6 +22,12 @@ const ProjectCardStyles = styled.div`
     height: 19rem;
   }
 
+  .image-container {
+    .gatsby-image-wrapper {
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+  }
+
   .text-container {
     color: var(--text);
     font-size: 0.85em;
