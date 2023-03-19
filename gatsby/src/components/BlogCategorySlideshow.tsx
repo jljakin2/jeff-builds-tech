@@ -9,6 +9,7 @@ const BlogCategorySlideshowStyles = styled.div`
   row-gap: 2rem;
 
   overflow: hidden;
+  padding: 0 var(--gutter);
 
   .categories-container {
     display: flex;
@@ -34,6 +35,10 @@ const BlogCategorySlideshowStyles = styled.div`
 
   .category-carousel-container {
     opacity: 0.75;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
 
     transition: all 0.3s ease-in;
 

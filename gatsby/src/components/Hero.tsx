@@ -56,6 +56,8 @@ const HeroStyles = styled.section`
 
     h1,
     h4 {
+      color: var(--white);
+
       margin: 0;
     }
 

@@ -8,39 +8,52 @@ const BlogIntroStyles = styled.section`
   background: var(--primary-500);
   color: var(--white);
 
+  position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 3rem;
+  row-gap: 5rem;
   text-align: center;
 
   padding: 4rem 0;
 
+  &::before {
+    content: "";
+    background: var(--primary-500);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 46rem;
+
+    transform: translateY(-45rem);
+    -webkit-clip-path: polygon(0 38%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 38%, 100% 0, 100% 100%, 0% 100%);
+    z-index: -1;
+  }
+
   .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2.5rem;
+
     padding: 0 var(--gutter);
   }
 
   .cat-container {
-    border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     flex-basis: 100%;
+    row-gap: 0.75rem;
+    column-gap: 1rem;
 
     & > * {
-      border: 1px solid blue;
-      width: min-content;
+      display: flex;
+      align-items: center;
+      column-gap: 0.5rem;
     }
-  }
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-  }
-
-  ul > li {
-    display: flex;
-    align-items: center;
-    column-gap: 0.5rem;
   }
 
   .check-logo {

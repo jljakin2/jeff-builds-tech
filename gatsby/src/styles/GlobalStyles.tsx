@@ -35,10 +35,10 @@ const GlobalStyles = createGlobalStyle`
 
     --radius: 0.5rem; // border radius
 
-    --gutter: 1rem; // 16px
+    --gutter: 1.5rem; // 16px
 
     ${media.tablet} {
-      --gutter: 1.5rem; // 24px
+      --gutter: 2rem; // 24px
     }
 
     ${media.laptop} {

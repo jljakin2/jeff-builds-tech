@@ -8,14 +8,32 @@ import { NormalRichText } from "../components/NormalRichText";
 import SocialLinks from "./SocialLinks";
 
 const ContactSectionStyles = styled.section`
-  background: var(--bg);
+  background: var(--white);
 
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 2rem;
 
   padding: 4rem var(--gutter);
+  z-index: 100;
+
+  &::before {
+    content: "";
+    background: var(--bg);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    -webkit-clip-path: polygon(0 25%, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 25%, 100% 10%, 100% 100%, 0 100%);
+
+    z-index: -1;
+  }
 
   .contact-content-container {
     text-align: center;

@@ -18,6 +18,10 @@ const ContactFormStyles = styled.section`
 
   width: 100%;
   padding: 2.5rem 2.25rem;
+
+  .error {
+    color: var(--error);
+  }
 `;
 
 export default function ContactForm() {

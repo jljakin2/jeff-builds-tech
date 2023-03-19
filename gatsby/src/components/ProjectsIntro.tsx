@@ -10,11 +10,36 @@ const ProjectsIntroStyles = styled.section`
   overflow: hidden;
   position: relative;
   height: 44rem;
-  margin-top: 4rem;
-  padding-bottom: 4rem;
+  /* margin-top: 5rem; */
+  padding-bottom: 10rem;
 
   ${media.laptop} {
     height: 50rem;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+    filter: blur(1rem);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4rem;
+
+    z-index: 10000;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
   }
 
   .projects-container {
@@ -158,6 +183,7 @@ export default function ProjectsIntro() {
       activeRow={activeRow}>
       <div className="projects-container">
         <div className="filter" />
+        <div className="fuzzy-border" />
         {finalProjects.map((project: any, idx: number) => (
           <ProjectCard project={project} key={idx} />
         ))}
