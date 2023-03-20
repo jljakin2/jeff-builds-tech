@@ -32,6 +32,10 @@ const AboutPageStyles = styled.section`
     .skills-header {
       display: flex;
       flex-direction: column;
+
+      h1 {
+        text-align: center;
+      }
     }
 
     .skills-toggle {
@@ -49,7 +53,7 @@ const AboutPageStyles = styled.section`
 
         flex-basis: 1;
 
-        padding: 1.5rem 1rem;
+        padding: 1rem;
       }
 
       & > *:first-child {
@@ -86,12 +90,12 @@ const AboutPageStyles = styled.section`
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+  }
 
-    .skill-bar-container {
-      display: flex;
-      flex-direction: column;
-      row-gap: 1rem;
-    }
+  .skill-bar-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.75rem;
   }
 `;
 
