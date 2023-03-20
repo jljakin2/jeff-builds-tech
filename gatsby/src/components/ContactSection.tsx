@@ -29,8 +29,8 @@ const ContactSectionStyles = styled.section`
     width: 100%;
     height: 100%;
 
-    -webkit-clip-path: polygon(0 25%, 100% 10%, 100% 100%, 0 100%);
-    clip-path: polygon(0 25%, 100% 10%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 35%, 100% 20%, 100% 100%, 0 100%);
+    clip-path: polygon(0 35%, 100% 20%, 100% 100%, 0 100%);
 
     z-index: -1;
   }
