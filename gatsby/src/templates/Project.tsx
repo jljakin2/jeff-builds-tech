@@ -1,6 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
+import { BlogRichText } from "../components/BlogRichText";
+import { PortableText } from "@portabletext/react";
 
 const ProjectStyles = styled.article``;
 
@@ -10,6 +12,7 @@ export default function Project({ data }: any) {
   return (
     <ProjectStyles>
       <h1>{project.name}</h1>
+      <PortableText value={project._rawBody} components={BlogRichText} />
     </ProjectStyles>
   );
 }

@@ -4,9 +4,18 @@ import Hamburger from "./Hamburger";
 import LinkedIn from "./LinkedIn";
 import Twitter from "./Twitter";
 import Check from "./Check";
+import Calendar from "./Calendar";
+import Clock from "./Clock";
 
 interface IconProps {
-  name: "LinkedIn" | "Github" | "Twitter" | "Hamburger" | "Check";
+  name:
+    | "LinkedIn"
+    | "Github"
+    | "Twitter"
+    | "Hamburger"
+    | "Check"
+    | "Calendar"
+    | "Clock";
   size:
     | "12"
     | "14"
@@ -37,6 +46,10 @@ export default function Icon(props: IconProps) {
       return <Hamburger size={size} />;
     case "Check":
       return <Check size={size} />;
+    case "Calendar":
+      return <Calendar size={size} />;
+    case "Clock":
+      return <Clock size={size} />;
     default:
       return <p>default</p>;
   }

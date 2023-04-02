@@ -126,11 +126,6 @@ export default function Hero() {
           id
           greeting
           _rawBody
-          socialLinks {
-            id
-            name
-            link
-          }
           image {
             asset {
               gatsbyImageData
@@ -152,7 +147,7 @@ export default function Hero() {
   return (
     <HeroStyles>
       <div className="social-content-container">
-        <SocialLinks socials={data.socialLinks} />
+        <SocialLinks />
       </div>
 
       <div className="greeting-container">

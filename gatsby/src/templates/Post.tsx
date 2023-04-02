@@ -1,6 +1,11 @@
 import React from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
+import { PortableText } from "@portabletext/react";
+import { BlogRichText } from "../components/BlogRichText";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { estimateReadingTime } from "../utils/estimateReadingTime";
+import SocialLinks from "../components/SocialLinks";
 
 const PostStyles = styled.article`
   width: 100%;
@@ -18,6 +23,17 @@ export default function Post({ data }: any) {
   return (
     <PostStyles>
       <h1>{post.title}</h1>
+      <div className="post-info-container">
+        <p>
+          Written by{" "}
+          <span>
+            {post.author.name} • {estimateReadingTime(post)} min
+          </span>
+        </p>
+        <SocialLinks />
+      </div>
+      <GatsbyImage image={post.featuredImage.asset.gatsbyImageData} alt="" />
+      <PortableText value={post._rawBody} components={BlogRichText} />
     </PostStyles>
   );
 }

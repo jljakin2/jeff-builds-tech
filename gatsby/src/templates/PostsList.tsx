@@ -1,21 +1,32 @@
 import { graphql, Link } from "gatsby";
 import * as React from "react";
 import styled from "styled-components";
+import BlogCard from "../components/BlogCard";
 
-const CategoryHomePageStyles = styled.section``;
+const CategoryHomePageStyles = styled.section`
+  padding: 0 var(--gutter) 4rem var(--gutter);
+
+  .category-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+`;
 
 export default function PostsList({ data }: any) {
   const posts = data.posts.nodes;
 
   return (
     <CategoryHomePageStyles>
-      {posts.map((post: any) => {
-        return (
-          <Link to={`/blog/post/${post.slug.current}`}>
-            <p>{post.title}</p>
-          </Link>
-        );
-      })}
+      <div className="category-container">
+        {posts.map((post: any) => {
+          return (
+            <Link to={`/blog/post/${post.slug.current}`}>
+              <BlogCard key={post.id} post={post} />
+            </Link>
+          );
+        })}
+      </div>
     </CategoryHomePageStyles>
   );
 }
@@ -31,6 +42,7 @@ export const query = graphql`
         slug {
           current
         }
+        _rawBody
         featured
         featuredImage {
           asset {
