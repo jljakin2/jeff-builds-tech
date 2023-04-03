@@ -43,6 +43,7 @@ export const query = graphql`
           current
         }
         _rawBody
+        realCreatedDate
         featured
         featuredImage {
           asset {

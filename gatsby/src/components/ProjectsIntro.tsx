@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 // @ts-ignore
 import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import styled from "styled-components";
-import ProjectCard from "./ProjectCard";
+import SimpleProjectCard from "./SimpleProjectCard";
 import { media } from "../utils/mediaQueries";
 
 const ProjectsIntroStyles = styled.section`
@@ -185,7 +185,7 @@ export default function ProjectsIntro() {
         <div className="filter" />
         <div className="fuzzy-border" />
         {finalProjects.map((project: any, idx: number) => (
-          <ProjectCard project={project} key={idx} />
+          <SimpleProjectCard project={project} key={idx} />
         ))}
       </div>
 

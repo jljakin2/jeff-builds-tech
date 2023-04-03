@@ -8,19 +8,6 @@ const ProjectCardStyles = styled.div`
   border-radius: var(--radius);
 
   width: 100%;
-  height: 10rem;
-
-  ${media.tablet} {
-    height: 14rem;
-  }
-
-  ${media.laptop} {
-    height: 16rem;
-  }
-
-  ${media.desktop} {
-    height: 19rem;
-  }
 
   .image-container {
     .gatsby-image-wrapper {
@@ -30,7 +17,6 @@ const ProjectCardStyles = styled.div`
 
   .text-container {
     color: var(--text);
-    font-size: 0.85em;
 
     display: grid;
     row-gap: 0.5rem;
@@ -39,12 +25,11 @@ const ProjectCardStyles = styled.div`
 
     .excerpt {
       color: var(--lightText);
-      font-size: 0.75em;
     }
   }
 `;
 
-export default function ProjectCard({ project }: any) {
+export default function FullProjectCard({ project }: any) {
   return (
     <ProjectCardStyles>
       <div className="image-container">
@@ -55,7 +40,7 @@ export default function ProjectCard({ project }: any) {
       </div>
       <div className="text-container">
         <h6 className="name">{project.name}</h6>
-        {/* <p className="excerpt">{project.excerpt}</p> */}
+        <p className="excerpt">{project.excerpt}</p>
       </div>
     </ProjectCardStyles>
   );
