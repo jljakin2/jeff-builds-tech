@@ -6,6 +6,7 @@ import Twitter from "./Twitter";
 import Check from "./Check";
 import Calendar from "./Calendar";
 import Clock from "./Clock";
+import Search from "./Search";
 
 interface IconProps {
   name:
@@ -15,7 +16,8 @@ interface IconProps {
     | "Hamburger"
     | "Check"
     | "Calendar"
-    | "Clock";
+    | "Clock"
+    | "Search";
   size:
     | "12"
     | "14"
@@ -50,6 +52,8 @@ export default function Icon(props: IconProps) {
       return <Calendar size={size} />;
     case "Clock":
       return <Clock size={size} />;
+    case "Search":
+      return <Search size={size} />;
     default:
       return <p>default</p>;
   }

@@ -66,6 +66,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background: var(--bg);
     font-size: 1rem;
     font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

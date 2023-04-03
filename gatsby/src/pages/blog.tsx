@@ -4,6 +4,7 @@ import BlogCard from "../components/BlogCard";
 import FeaturedBlogPost from "../components/FeaturedPost";
 import styled from "styled-components";
 import CategoryCard from "../components/CategoryCard";
+import Pagination from "../components/Pagination";
 
 const BlogHomePageStyles = styled.section`
   display: flex;
@@ -61,6 +62,8 @@ export default function BlogHomePage({ data }: any) {
           })}
         </div>
       </div>
+
+      <Pagination />
 
       <div className="categories-section">
         <h2>Categories</h2>
