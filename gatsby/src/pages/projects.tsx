@@ -58,6 +58,11 @@ const ProjectsPageStyles = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+
+    .active {
+      background: var(--primary-500);
+      color: var(--white);
+    }
   }
 
   .projects-container {
@@ -68,8 +73,37 @@ const ProjectsPageStyles = styled.section`
 `;
 
 export default function ProjectsPage({ data }: any) {
-  const projects = data.projects.nodes;
   const tags = data.tags.nodes;
+  const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
+  const [projects, setProjects] = React.useState<string[]>(data.projects.nodes);
+
+  function filterProjectsByTags(selectedTags: string[], project: any) {
+    return selectedTags.every(function (tag) {
+      return project.tags.some(function (projectTag: any) {
+        return projectTag.name === tag;
+      });
+    });
+  }
+
+  function handleTagSelection(e: any) {
+    const tag = e.currentTarget.innerText;
+
+    if (selectedTags.includes(tag)) {
+      const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
+      setSelectedTags(updatedTags);
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  }
+
+  React.useEffect(() => {
+    const updatedProjects = data.projects.nodes.filter((project: any) => {
+      return filterProjectsByTags(selectedTags, project);
+    });
+    setProjects(updatedProjects);
+  }, [selectedTags]);
+
+  console.log({ projects });
 
   return (
     <ProjectsPageStyles>
@@ -77,7 +111,7 @@ export default function ProjectsPage({ data }: any) {
         <h1>Projects</h1>
         <h5>
           Here are a collection of projects I built. There is a Github link and
-          a Live link for each project so you can explor them further.
+          a Live link for each project so you can explore them further.
         </h5>
       </div>
 
@@ -92,7 +126,9 @@ export default function ProjectsPage({ data }: any) {
 
       <div className="tags-container">
         {tags.map((tag: any) => (
-          <Tag key={tag.id} name={tag.name} />
+          <div onClick={handleTagSelection}>
+            <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
+          </div>
         ))}
       </div>
 
@@ -125,6 +161,10 @@ export const query = graphql`
           }
         }
         excerpt
+        tags {
+          id
+          name
+        }
       }
     }
 

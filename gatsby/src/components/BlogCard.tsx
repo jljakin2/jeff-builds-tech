@@ -6,6 +6,14 @@ import { formatDate } from "../utils/formatDate";
 import Icon from "./Icon";
 
 const BlogCardStyles = styled.div`
+  display: grid;
+  row-gap: 0.25rem;
+
+  .content-container {
+    display: grid;
+    row-gap: 0.5rem;
+  }
+
   .content-header {
     display: flex;
     justify-content: space-between;

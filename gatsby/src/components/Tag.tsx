@@ -12,11 +12,7 @@ const TagStyles = styled.div`
 
   padding: 0.5rem 1rem;
 
-  transition: all 0.2s ease-in;
-
-  &:hover {
-    background: var(--bg);
-  }
+  transition: all 0.1s ease-out;
 `;
 
 interface TagProps {
