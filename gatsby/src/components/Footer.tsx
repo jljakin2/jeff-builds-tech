@@ -2,6 +2,7 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import Logo from "./Logo";
+import SmoothScrollLink from "./SmoothScrollLink";
 
 const FooterStyles = styled.footer`
   background: var(--primary-500);
@@ -73,37 +74,37 @@ export default function Footer() {
         <ul className="projects">
           <li className="link-header">Projects</li>
           <li className="link-item">
-            <Link to="">All Projects</Link>
+            <Link to="/projects">All Projects</Link>
           </li>
           <li className="link-item">
-            <Link to="">Featured</Link>
+            <Link to="/projects">Featured</Link>
           </li>
         </ul>
         <ul className="blog">
           <li className="link-header">Blog</li>
           <li className="link-item">
-            <Link to="">Categories</Link>
+            <Link to="/blog">Categories</Link>
           </li>
           <li className="link-item">
-            <Link to="">Coding</Link>
+            <Link to="/blog">Coding</Link>
           </li>
           <li className="link-item">
             <Link to="">Creativity</Link>
           </li>
           <li className="link-item">
-            <Link to="">Leadership</Link>
+            <Link to="/blog">Leadership</Link>
           </li>
           <li className="link-item">
-            <Link to="">Learning</Link>
+            <Link to="/blog">Learning</Link>
           </li>
         </ul>
         <ul className="extras">
           <li className="link-header">Extras</li>
           <li className="link-item">
-            <Link to="">About Me</Link>
+            <Link to="/about">About Me</Link>
           </li>
           <li className="link-item">
-            <Link to="">Contact Me</Link>
+            <SmoothScrollLink to="/#contact-me">Contact Me</SmoothScrollLink>
           </li>
         </ul>
         <ul className="social">

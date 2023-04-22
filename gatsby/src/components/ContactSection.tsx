@@ -66,10 +66,11 @@ export default function ContactSection() {
   const contact = contacts.nodes[0];
 
   return (
-    <ContactSectionStyles>
+    <ContactSectionStyles id="contact-me">
       <div className="contact-content-container">
         <h2>{contact.header}</h2>
         <PortableText value={contact._rawBody} components={NormalRichText} />
+        {/* @ts-expect-error */}
         <SocialLinks socials={contact.socialLinks} />
         {/* <div className="socials-cont">
           {contact.socialLinks.map((item: any) => (

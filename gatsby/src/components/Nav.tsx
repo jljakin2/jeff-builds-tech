@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
 import Logo from "./Logo";
+import SmoothScrollLink from "./SmoothScrollLink";
 
 const NavStyles = styled.nav`
   position: relative;
@@ -172,9 +173,11 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/#contact" className="link-btn secondary contact-btn">
+              <SmoothScrollLink
+                to="/#contact-me"
+                className="link-btn secondary contact-btn">
                 Contact
-              </Link>
+              </SmoothScrollLink>
             </li>
           </ul>
         </>
@@ -190,7 +193,7 @@ export default function Nav({ isSmall }: { isSmall: boolean }) {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/#contact" className="link-btn secondary">
+            <Link to="/#contact-me" className="link-btn secondary">
               Contact
             </Link>
           </li>
