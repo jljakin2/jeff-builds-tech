@@ -38,17 +38,19 @@ const BlogHomePageStyles = styled.section`
   }
 `;
 
-export default function BlogHomePage({ data }: any) {
+export default function BlogHomePage({ data, pageContext }: any) {
   const posts = data.posts.nodes;
   const categories = data.categories.nodes;
-  const featuredPost = posts.filter((post: any) => post.featured)[0];
+  const featuredPost = posts.filter((post: any) => post.featured)[0]; // TODO: update field in sanity to include new featured field
 
   return (
     <BlogHomePageStyles>
-      <div className="featured-container">
-        <h1>Featured Post</h1>
-        <FeaturedBlogPost post={featuredPost} />
-      </div>
+      {pageContext.currentPage === 1 && (
+        <div className="featured-container">
+          <h1>Featured Post</h1>
+          <FeaturedBlogPost post={featuredPost} />
+        </div>
+      )}
 
       <div className="posts-section">
         <h2>All Posts</h2>
@@ -63,7 +65,14 @@ export default function BlogHomePage({ data }: any) {
         </div>
       </div>
 
-      <Pagination />
+      <Pagination
+        // @ts-expect-error
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        totalCount={data.posts.totalCount}
+        currentPage={pageContext.currentPage || 1}
+        skip={pageContext.skip}
+        base="/blog"
+      />
 
       <div className="categories-section">
         <h2>Categories</h2>
@@ -78,8 +87,12 @@ export default function BlogHomePage({ data }: any) {
 }
 
 export const query = graphql`
-  query GetBlogHomePage {
-    posts: allSanityPost(sort: { realCreatedDate: DESC }) {
+  query ($skip: Int, $pageSize: Int) {
+    posts: allSanityPost(
+      sort: { realCreatedDate: DESC }
+      limit: $pageSize
+      skip: $skip
+    ) {
       nodes {
         id
         title

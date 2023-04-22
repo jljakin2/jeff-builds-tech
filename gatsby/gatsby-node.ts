@@ -27,12 +27,19 @@ async function turnCategoryPostsIntoPages({ graphql, actions }: any) {
   console.log("CATEGORIES CREATED!");
 }
 
-async function turnPostsIntoPages({ graphql, actions }: any) {
+async function turnPostsIntoPages({
+  graphql,
+  actions,
+}: {
+  graphql: any;
+  actions: any;
+}) {
   console.log("CREATING POSTS...");
-  const PostTemplate = path.resolve("./src/templates/Post.tsx");
+  // 1) Query all posts
   const { data } = await graphql(`
     query GetPosts {
       posts: allSanityPost {
+        totalCount
         nodes {
           slug {
             current
@@ -42,17 +49,66 @@ async function turnPostsIntoPages({ graphql, actions }: any) {
     }
   `);
 
+  // 2. Turn each post into a page
   data.posts.nodes.forEach((post: any) => {
     actions.createPage({
       path: `blog/post/${post.slug.current}`,
-      component: PostTemplate,
+      component: path.resolve("./src/templates/Post.tsx"),
       context: {
         slug: post.slug.current,
       },
     });
   });
-  console.log("POSTS CREATED!");
+
+  // 3. Figure out how many pages there are based on how many posts there are, and how many per page
+  // @ts-ignore
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  const pageCount = Math.ceil(data.posts.totalCount / pageSize);
+  console.log(
+    `There are ${data.posts.totalCount} total posts. And we have ${pageCount} pages with ${pageSize} per page`
+  );
+
+  // 4. Loop from 1 to n and create the pages for them
+  Array.from({ length: pageCount }).forEach((_, i) => {
+    console.log(`Creating page ${i}`);
+    actions.createPage({
+      path: `/blog/${i + 1}`,
+      component: path.resolve("./src/pages/blog.tsx"),
+      context: {
+        skip: i * pageSize,
+        currentPage: i + 1,
+        pageSize,
+      },
+    });
+  });
 }
+
+// async function turnPostsIntoPages({ graphql, actions }: any) {
+//   console.log("CREATING POSTS...");
+//   const PostTemplate = path.resolve("./src/templates/Post.tsx");
+//   const { data } = await graphql(`
+//     query GetPosts {
+//       posts: allSanityPost {
+//         nodes {
+//           slug {
+//             current
+//           }
+//         }
+//       }
+//     }
+//   `);
+
+//   data.posts.nodes.forEach((post: any) => {
+//     actions.createPage({
+//       path: `blog/post/${post.slug.current}`,
+//       component: PostTemplate,
+//       context: {
+//         slug: post.slug.current,
+//       },
+//     });
+//   });
+//   console.log("POSTS CREATED!");
+// }
 
 async function turnProjectsIntoPages({ graphql, actions }: any) {
   console.log("CREATING PROJECTS...");
@@ -86,5 +142,6 @@ export async function createPages(params: any) {
     turnCategoryPostsIntoPages(params),
     turnPostsIntoPages(params),
     turnProjectsIntoPages(params),
+    // turnPostBrowsingIntoPages(params),
   ]);
 }
