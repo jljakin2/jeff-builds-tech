@@ -10,7 +10,7 @@ const ProjectCardStyles = styled.div`
   border-radius: var(--radius);
   cursor: default;
 
-  width: 100%;
+  width: 320px;
 
   .image-container {
     cursor: pointer;

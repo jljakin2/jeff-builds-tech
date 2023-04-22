@@ -4,33 +4,39 @@ import styled from "styled-components";
 
 const PaginationStyles = styled.div`
   display: flex;
-  align-content: center;
-  align-items: center;
-  justify-items: center;
-  /* border: 1px solid var(--grey);
-  margin: 2rem 0;
-  border-radius: 5px;
-  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 100%;
+
+  .word {
+    display: none;
+  }
+
   & > * {
-    padding: 1rem;
-    flex: 1;
-    border-right: 1px solid var(--grey);
+    background: var(--white);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
     text-decoration: none;
+
+    padding: 1rem 1.5rem;
+
+    &:focus {
+      color: var(--text);
+    }
+
     &[aria-current],
     &.current {
-      color: var(--red);
+      background: var(--primary-500);
+      color: var(--white);
     }
+
     &[disabled] {
       pointer-events: none;
-      color: var(--grey);
+      color: var(--grey-500);
     }
   }
-  @media (max-width: 800px) {
-    .word {
-      display: none;
-    }
-    font-size: 1.4rem;
-  } */
 `;
 
 interface IPaginationProps {
