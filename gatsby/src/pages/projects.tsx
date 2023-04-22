@@ -134,11 +134,7 @@ export default function ProjectsPage({ data }: any) {
 
       <div className="projects-container">
         {projects.map((project: any) => {
-          return (
-            <Link to={`/project/${project.slug.current}`} key={project.id}>
-              <FullProjectCard project={project} />
-            </Link>
-          );
+          return <FullProjectCard project={project} key={project.id} />;
         })}
       </div>
     </ProjectsPageStyles>

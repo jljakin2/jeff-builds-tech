@@ -45,7 +45,7 @@ export default function BlogHomePage({ data, pageContext }: any) {
 
   return (
     <BlogHomePageStyles>
-      {pageContext.currentPage === 1 && (
+      {!pageContext.currentPage && (
         <div className="featured-container">
           <h1>Featured Post</h1>
           <FeaturedBlogPost post={featuredPost} />
@@ -87,12 +87,13 @@ export default function BlogHomePage({ data, pageContext }: any) {
 }
 
 export const query = graphql`
-  query ($skip: Int, $pageSize: Int) {
+  query ($skip: Int = 0, $pageSize: Int = 7) {
     posts: allSanityPost(
       sort: { realCreatedDate: DESC }
       limit: $pageSize
       skip: $skip
     ) {
+      totalCount
       nodes {
         id
         title

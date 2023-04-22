@@ -7,7 +7,7 @@ const PaginationStyles = styled.div`
   align-content: center;
   align-items: center;
   justify-items: center;
-  border: 1px solid var(--grey);
+  /* border: 1px solid var(--grey);
   margin: 2rem 0;
   border-radius: 5px;
   text-align: center;
@@ -30,7 +30,7 @@ const PaginationStyles = styled.div`
       display: none;
     }
     font-size: 1.4rem;
-  }
+  } */
 `;
 
 interface IPaginationProps {

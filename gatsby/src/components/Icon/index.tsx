@@ -7,6 +7,7 @@ import Check from "./Check";
 import Calendar from "./Calendar";
 import Clock from "./Clock";
 import Search from "./Search";
+import Live from "./Live";
 
 interface IconProps {
   name:
@@ -17,7 +18,8 @@ interface IconProps {
     | "Check"
     | "Calendar"
     | "Clock"
-    | "Search";
+    | "Search"
+    | "Live";
   size:
     | "12"
     | "14"
@@ -54,6 +56,8 @@ export default function Icon(props: IconProps) {
       return <Clock size={size} />;
     case "Search":
       return <Search size={size} />;
+    case "Live":
+      return <Live size={size} />;
     default:
       return <p>default</p>;
   }
