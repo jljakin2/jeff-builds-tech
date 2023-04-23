@@ -5,6 +5,7 @@ import FeaturedBlogPost from "../components/FeaturedPost";
 import styled from "styled-components";
 import CategoryCard from "../components/CategoryCard";
 import Pagination from "../components/Pagination";
+import SEO from "../components/SEO";
 
 const BlogHomePageStyles = styled.section`
   display: flex;
@@ -44,45 +45,49 @@ export default function BlogHomePage({ data, pageContext }: any) {
   const featuredPost = posts.filter((post: any) => post.featured)[0]; // TODO: update field in sanity to include new featured field
 
   return (
-    <BlogHomePageStyles>
-      {!pageContext.currentPage && (
-        <div className="featured-container">
-          <h1>Featured Post</h1>
-          <FeaturedBlogPost post={featuredPost} />
-        </div>
-      )}
+    <>
+      <SEO title="Blog" />
 
-      <div className="posts-section">
-        <h2>All Posts</h2>
-        <div className="posts-container">
-          {posts.map((post: any) => {
-            return (
-              <Link to={`/blog/post/${post.slug.current}`}>
-                <BlogCard post={post} />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+      <BlogHomePageStyles>
+        {!pageContext.currentPage && (
+          <div className="featured-container">
+            <h1>Featured Post</h1>
+            <FeaturedBlogPost post={featuredPost} />
+          </div>
+        )}
 
-      <Pagination
-        // @ts-expect-error
-        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
-        totalCount={data.posts.totalCount}
-        currentPage={pageContext.currentPage || 1}
-        skip={pageContext.skip}
-        base="/blog"
-      />
-
-      <div className="categories-section">
-        <h2>Categories</h2>
-        <div className="categories-container">
-          {categories.map((category: any) => {
-            return <CategoryCard key={category.id} category={category} />;
-          })}
+        <div className="posts-section">
+          <h2>All Posts</h2>
+          <div className="posts-container">
+            {posts.map((post: any) => {
+              return (
+                <Link to={`/blog/post/${post.slug.current}`}>
+                  <BlogCard post={post} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </BlogHomePageStyles>
+
+        <Pagination
+          // @ts-expect-error
+          pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+          totalCount={data.posts.totalCount}
+          currentPage={pageContext.currentPage || 1}
+          skip={pageContext.skip}
+          base="/blog"
+        />
+
+        <div className="categories-section">
+          <h2>Categories</h2>
+          <div className="categories-container">
+            {categories.map((category: any) => {
+              return <CategoryCard key={category.id} category={category} />;
+            })}
+          </div>
+        </div>
+      </BlogHomePageStyles>
+    </>
   );
 }
 

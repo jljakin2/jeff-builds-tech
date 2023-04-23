@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import styled from "styled-components";
 import { BlogRichText } from "../components/BlogRichText";
 import { PortableText } from "@portabletext/react";
+import SEO from "../components/SEO";
 
 const ProjectStyles = styled.article``;
 
@@ -10,10 +11,14 @@ export default function Project({ data }: any) {
   const project = data.project;
 
   return (
-    <ProjectStyles>
-      <h1>{project.name}</h1>
-      <PortableText value={project._rawBody} components={BlogRichText} />
-    </ProjectStyles>
+    <>
+      <SEO title={project.name} />
+
+      <ProjectStyles>
+        <h1>{project.name}</h1>
+        <PortableText value={project._rawBody} components={BlogRichText} />
+      </ProjectStyles>
+    </>
   );
 }
 

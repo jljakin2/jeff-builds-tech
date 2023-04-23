@@ -7,6 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { estimateReadingTime } from "../utils/estimateReadingTime";
 import SocialLinks from "../components/SocialLinks";
 import { BlogPostStyles } from "../styles/BlogPostStyles";
+import SEO from "../components/SEO";
 
 const PostStyles = styled.article`
   width: 100%;
@@ -27,22 +28,26 @@ export default function Post({ data }: any) {
   const post = data.post;
 
   return (
-    <PostStyles>
-      <h1>{post.title}</h1>
-      <div className="post-info-container">
-        <p>
-          Written by{" "}
-          <span>
-            {post.author.name} • {estimateReadingTime(post)} min
-          </span>
-        </p>
-        <SocialLinks />
-      </div>
-      <GatsbyImage image={post.featuredImage.asset.gatsbyImageData} alt="" />
-      <BlogPostStyles>
-        <PortableText value={post._rawBody} components={BlogRichText} />
-      </BlogPostStyles>
-    </PostStyles>
+    <>
+      <SEO title={post.title} />
+
+      <PostStyles>
+        <h1>{post.title}</h1>
+        <div className="post-info-container">
+          <p>
+            Written by{" "}
+            <span>
+              {post.author.name} • {estimateReadingTime(post)} min
+            </span>
+          </p>
+          <SocialLinks />
+        </div>
+        <GatsbyImage image={post.featuredImage.asset.gatsbyImageData} alt="" />
+        <BlogPostStyles>
+          <PortableText value={post._rawBody} components={BlogRichText} />
+        </BlogPostStyles>
+      </PostStyles>
+    </>
   );
 }
 

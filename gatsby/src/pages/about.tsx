@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AboutItem from "../components/AboutItem";
 import RoleItem from "../components/RoleItem";
 import SkillBarItem from "../components/SkillBarItem";
+import SEO from "../components/SEO";
 
 const AboutPageStyles = styled.section`
   .about-container {
@@ -107,55 +108,58 @@ export default function AboutPage({ data }: any) {
   const [isTech, setIsTech] = React.useState(true);
 
   return (
-    // @ts-ignore
-    <AboutPageStyles isTech={isTech}>
-      <div className="about-container">
-        <h1>About</h1>
-        {aboutItems.map((item: any) => {
-          return <AboutItem key={item.id} aboutItem={item} />;
-        })}
-      </div>
+    <>
+      <SEO title="About" />
 
-      <div className="skills-container">
-        <div className="skills-header">
-          <h1>Skills</h1>
-          <div className="skills-toggle">
-            <div
-              className="skills-toggle--technical"
-              onClick={() => setIsTech(true)}>
-              Technical
-            </div>
-            <div
-              className="skills-toggle--leadership"
-              onClick={() => setIsTech(false)}>
-              Leadership
+      <AboutPageStyles isTech={isTech}>
+        <div className="about-container">
+          <h1>About</h1>
+          {aboutItems.map((item: any) => {
+            return <AboutItem key={item.id} aboutItem={item} />;
+          })}
+        </div>
+
+        <div className="skills-container">
+          <div className="skills-header">
+            <h1>Skills</h1>
+            <div className="skills-toggle">
+              <div
+                className="skills-toggle--technical"
+                onClick={() => setIsTech(true)}>
+                Technical
+              </div>
+              <div
+                className="skills-toggle--leadership"
+                onClick={() => setIsTech(false)}>
+                Leadership
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="skill-bar-container">
-          {skills
-            .filter((skill: any) => {
-              return skill.isTech === isTech;
-            })
-            .map((skill: any) => {
-              return <SkillBarItem key={skill.id} skillItem={skill} />;
-            })}
-        </div>
-
-        <div className="skills-content">
-          <div className="roles-container">
-            {roles
-              .filter((role: any) => {
-                return role.isTech === isTech;
+          <div className="skill-bar-container">
+            {skills
+              .filter((skill: any) => {
+                return skill.isTech === isTech;
               })
-              .map((role: any) => {
-                return <RoleItem key={role.id} roleItem={role} />;
+              .map((skill: any) => {
+                return <SkillBarItem key={skill.id} skillItem={skill} />;
               })}
           </div>
+
+          <div className="skills-content">
+            <div className="roles-container">
+              {roles
+                .filter((role: any) => {
+                  return role.isTech === isTech;
+                })
+                .map((role: any) => {
+                  return <RoleItem key={role.id} roleItem={role} />;
+                })}
+            </div>
+          </div>
         </div>
-      </div>
-    </AboutPageStyles>
+      </AboutPageStyles>
+    </>
   );
 }
 

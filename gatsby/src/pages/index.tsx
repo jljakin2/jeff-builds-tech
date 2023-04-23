@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import BlogIntro from "../components/BlogIntro";
 import ProjectsIntro from "../components/ProjectsIntro";
 import ContactSection from "../components/ContactSection";
+import SEO from "../components/SEO";
 // import { HomePageStyles } from "../styles/RichText";
 
 const HomePageStyles = styled.section`
@@ -33,11 +34,15 @@ export default function HomePage() {
   // };
 
   return (
+    <>
+    <SEO title="Welcome" />
+
     <HomePageStyles>
       <Hero />
       <BlogIntro />
       <ProjectsIntro />
       <ContactSection />
     </HomePageStyles>
+    </>
   );
 }

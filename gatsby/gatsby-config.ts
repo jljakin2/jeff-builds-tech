@@ -14,7 +14,7 @@ const myCustomQueries = {
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Jeff Builds Tech`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://www.jeffbuildstech.com`,
     description: "Portfolio and blog for Full-Stack Developer Jeff Jakinovich.",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.

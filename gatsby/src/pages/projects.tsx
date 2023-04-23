@@ -4,6 +4,7 @@ import styled from "styled-components";
 import FullProjectCard from "../components/FullProjectCard";
 import Icon from "../components/Icon";
 import Tag from "../components/Tag";
+import SEO from "../components/SEO";
 
 const ProjectsPageStyles = styled.section`
   display: grid;
@@ -214,40 +215,44 @@ export default function ProjectsPage({ data }: any) {
   }
 
   return (
-    <ProjectsPageStyles>
-      <div className="projects-header">
-        <h1>Projects</h1>
-        <h5>
-          Here are a collection of projects I built. There is a Github link and
-          a Live link for each project so you can explore them further.
-        </h5>
-      </div>
+    <>
+      <SEO title="Projects" />
 
-      <form className="search-form-container">
-        <Icon name="Search" size="18" />
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Search for a project, language, or technology"
-          className="search-bar"
-        />
-      </form>
+      <ProjectsPageStyles>
+        <div className="projects-header">
+          <h1>Projects</h1>
+          <h5>
+            Here are a collection of projects I built. There is a Github link
+            and a Live link for each project so you can explore them further.
+          </h5>
+        </div>
 
-      <div className="tags-container">
-        {tags.map((tag: any) => (
-          <div onClick={handleTagSelection}>
-            <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
-          </div>
-        ))}
-      </div>
+        <form className="search-form-container">
+          <Icon name="Search" size="18" />
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Search for a project, language, or technology"
+            className="search-bar"
+          />
+        </form>
 
-      <div className="projects-container">
-        {projects.map((project: any) => {
-          return <FullProjectCard project={project} key={project.id} />;
-        })}
-      </div>
-    </ProjectsPageStyles>
+        <div className="tags-container">
+          {tags.map((tag: any) => (
+            <div onClick={handleTagSelection}>
+              <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
+            </div>
+          ))}
+        </div>
+
+        <div className="projects-container">
+          {projects.map((project: any) => {
+            return <FullProjectCard project={project} key={project.id} />;
+          })}
+        </div>
+      </ProjectsPageStyles>
+    </>
   );
 }
 
