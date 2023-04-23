@@ -1,3 +1,5 @@
+import {youtube} from './youtube'
+
 export default {
   name: 'blockContent',
   type: 'array',
@@ -52,5 +54,6 @@ export default {
         withFilename: true,
       },
     },
+    youtube,
   ],
 }

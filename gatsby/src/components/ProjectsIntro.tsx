@@ -123,7 +123,7 @@ export default function ProjectsIntro() {
           excerpt
           featuredImage {
             asset {
-              gatsbyImageData
+              gatsbyImageData(placeholder: BLURRED)
             }
           }
         }

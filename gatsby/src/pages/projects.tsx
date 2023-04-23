@@ -268,7 +268,7 @@ export const query = graphql`
         githubLink
         featuredImage {
           asset {
-            gatsbyImageData
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
         excerpt

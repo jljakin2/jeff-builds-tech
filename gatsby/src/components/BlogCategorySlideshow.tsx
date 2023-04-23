@@ -105,7 +105,7 @@ export default function BlogCategorySlideshow() {
           excerpt
           featuredImage {
             asset {
-              gatsbyImageData
+              gatsbyImageData(placeholder: BLURRED)
             }
           }
           category {

@@ -128,7 +128,7 @@ export default function Hero() {
           _rawBody
           image {
             asset {
-              gatsbyImageData
+              gatsbyImageData(placeholder: BLURRED)
             }
           }
         }

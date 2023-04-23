@@ -172,7 +172,7 @@ export const query = graphql`
         subheader
         image {
           asset {
-            gatsbyImageData
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
       }

@@ -1,20 +1,17 @@
 import React from "react";
 import Image from "gatsby";
 import Link from "gatsby";
-import styled from "styled-components";
 import { CodeBlock } from "./CodeBlock";
+import YoutubeEmbed from "./YouTubeEmbed";
+import PortableTextImage from "./PortableTextImage";
 
 export const BlogRichText = {
   types: {
-    image: ({ value }: any) => {
-      return (
-        //@ts-ignore
-        <Image alt="" />
-      );
-    },
+    image: ({ node }: any) => <PortableTextImage node={node} />,
     code: (props: any) => {
       return <CodeBlock {...props} />;
     },
+    youtube: ({ node }: any) => <YoutubeEmbed url={node.url} />,
   },
 
   block: {

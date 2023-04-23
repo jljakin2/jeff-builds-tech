@@ -8,15 +8,29 @@ import { estimateReadingTime } from "../utils/estimateReadingTime";
 import SocialLinks from "../components/SocialLinks";
 import { BlogPostStyles } from "../styles/BlogPostStyles";
 import SEO from "../components/SEO";
+import { media } from "../utils/mediaQueries";
 
 const PostStyles = styled.article`
   width: 100%;
   margin: 0 auto;
-  padding: var(--gutter);
+  padding: 1rem var(--gutter) 4rem var(--gutter);
 
   h1 {
     font-size: 2.875rem;
     font-weight: 600;
+
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .post-info-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
   }
 
   .gatsby-image-wrapper {
@@ -60,7 +74,7 @@ export const query = graphql`
       }
       featuredImage {
         asset {
-          gatsbyImageData
+          gatsbyImageData(placeholder: BLURRED)
         }
       }
       featured
