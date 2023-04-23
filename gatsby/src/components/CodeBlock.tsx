@@ -1,26 +1,34 @@
 import React from "react";
 import Refractor from "react-refractor";
 import js from "refractor/lang/javascript";
+import ts from "refractor/lang/typescript";
+import tsx from "refractor/lang/tsx";
+import jsx from "refractor/lang/jsx";
 import styled from "styled-components";
 
 Refractor.registerLanguage(js);
+Refractor.registerLanguage(ts);
+Refractor.registerLanguage(tsx);
+Refractor.registerLanguage(jsx);
 
 const CodeBlockContainerStyles = styled.aside`
+  font-size: 0.875rem;
+
   display: grid;
   grid-template-rows: max-content;
 
-  width: 50%;
+  width: 100%;
 
   .header {
-    background: #224864;
-    color: #ffbb00;
-    border-radius: 4px 4px 0 0;
+    background: #285575;
+    color: var(--bg);
+    border-radius: var(--radius) var(--radius) 0 0;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 1rem 2rem 0.75rem 2rem;
+    padding: 0.5rem 2rem;
   }
 `;
 
@@ -42,7 +50,7 @@ const CodeBlockStyles = styled.div`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 var(--radius) var(--radius);
   }
   /* pre[class*="language-"]::-moz-selection,
   pre[class*="language-"] ::-moz-selection,
