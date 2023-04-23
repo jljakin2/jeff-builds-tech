@@ -5,6 +5,7 @@ import ts from "refractor/lang/typescript";
 import tsx from "refractor/lang/tsx";
 import jsx from "refractor/lang/jsx";
 import styled from "styled-components";
+import CopyBtn from "./CopyBtn";
 
 Refractor.registerLanguage(js);
 Refractor.registerLanguage(ts);
@@ -135,7 +136,9 @@ export function CodeBlock(props: any) {
     <CodeBlockContainerStyles>
       <div className="header">
         <div className="file-name">{props.value.filename}</div>
-        <div className="copy-btn">X</div>
+        <div className="copy-btn">
+          <CopyBtn code={props.value.code} />
+        </div>
       </div>
       <CodeBlockStyles>
         <Refractor language={props.value.language} value={props.value.code} />

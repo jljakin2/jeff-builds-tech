@@ -8,6 +8,7 @@ import Calendar from "./Calendar";
 import Clock from "./Clock";
 import Search from "./Search";
 import Live from "./Live";
+import Copy from "./Copy";
 
 interface IconProps {
   name:
@@ -19,7 +20,8 @@ interface IconProps {
     | "Calendar"
     | "Clock"
     | "Search"
-    | "Live";
+    | "Live"
+    | "Copy";
   size:
     | "12"
     | "14"
@@ -58,6 +60,8 @@ export default function Icon(props: IconProps) {
       return <Search size={size} />;
     case "Live":
       return <Live size={size} />;
+    case "Copy":
+      return <Copy size={size} />;
     default:
       return <p>default</p>;
   }
