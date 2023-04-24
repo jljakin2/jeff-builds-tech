@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "./Logo";
 import SmoothScrollLink from "./SmoothScrollLink";
+import { media } from "../utils/mediaQueries";
 
 const FooterStyles = styled.footer`
   background: var(--primary-500);
@@ -21,6 +22,14 @@ const FooterStyles = styled.footer`
     row-gap: 1.75rem;
 
     padding-bottom: 1.5rem;
+
+    ${media.laptop} {
+      flex-direction: row;
+      align-items: flex-start;
+      column-gap: 7rem;
+
+      padding-bottom: 2.5rem;
+    }
   }
 
   .link-header {

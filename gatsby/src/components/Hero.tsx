@@ -5,7 +5,6 @@ import Icon from "./Icon";
 import { NormalRichText } from "./NormalRichText";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import SocialBtn from "./SocialBtn";
 import { media } from "../utils/mediaQueries";
 //@ts-expect-error
 import build from "../assets/images/build_squiggle.svg";
@@ -38,9 +37,11 @@ const HeroStyles = styled.section`
       "body image"
       "button image";
     column-gap: 2rem;
-    row-gap: 0;
+    row-gap: 0.5rem;
     text-align: left;
     justify-items: start;
+
+    padding: 2rem var(--gutter) 8rem var(--gutter);
   }
 
   .social-links-container {
@@ -59,10 +60,18 @@ const HeroStyles = styled.section`
       color: var(--white);
 
       margin: 0;
+
+      ${media.laptop} {
+        color: var(--text);
+      }
     }
 
     h1 {
       line-height: 4.25rem;
+
+      ${media.tablet} {
+        line-height: 4.5rem;
+      }
     }
 
     .unknown__pt__mark__highlight:first-of-type,
@@ -76,6 +85,11 @@ const HeroStyles = styled.section`
       top: 14px;
       left: 0;
 
+      ${media.tablet} {
+        top: 24px;
+        left: 16px;
+      }
+
       ${media.laptop} {
         top: 18px;
         left: 16px;
@@ -87,6 +101,11 @@ const HeroStyles = styled.section`
       position: absolute;
       top: 14px;
       left: 12px;
+
+      ${media.tablet} {
+        top: 24px;
+        left: 24px;
+      }
 
       ${media.laptop} {
         top: 18px;
@@ -106,6 +125,14 @@ const HeroStyles = styled.section`
 
     .link-btn {
       padding: 1rem;
+    }
+
+    .portfolio {
+      border: 1px solid var(--white);
+
+      ${media.laptop} {
+        border: 1px solid transparent;
+      }
     }
   }
 
@@ -166,7 +193,7 @@ export default function Hero() {
         <Link to="/blog" className="link-btn outline">
           Go To Blog
         </Link>
-        <Link to="/projects" className="link-btn primary">
+        <Link to="/projects" className="link-btn primary portfolio">
           Go To Portfolio
         </Link>
       </div>

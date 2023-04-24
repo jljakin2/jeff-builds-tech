@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import BlogCategorySlideshow from "./BlogCategorySlideshow";
 import Icon from "./Icon";
+import { media } from "../utils/mediaQueries";
 
 const BlogIntroStyles = styled.section`
   background: var(--primary-500);
@@ -16,6 +17,13 @@ const BlogIntroStyles = styled.section`
 
   padding: 4rem 0;
 
+  ${media.laptop} {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    column-gap: 2rem;
+  }
+
   &::before {
     content: "";
     background: var(--primary-500);
@@ -27,9 +35,30 @@ const BlogIntroStyles = styled.section`
     height: 46rem;
 
     transform: translateY(-45rem);
-    -webkit-clip-path: polygon(0 38%, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(0 38%, 100% 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
     z-index: -1;
+
+    ${media.tablet} {
+      -webkit-clip-path: polygon(0 47%, 100% 0, 100% 100%, 0% 100%);
+      clip-path: polygon(0 47%, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    ${media.laptop} {
+      -webkit-clip-path: polygon(0 97%, 205% 0, 100% 100%, 0% 100%);
+      clip-path: polygon(0 97%, 205% 0, 100% 100%, 0% 100%);
+    }
+  }
+
+  h4 {
+    text-align: center;
+
+    ${media.laptop} {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .content-container {
@@ -39,6 +68,14 @@ const BlogIntroStyles = styled.section`
     row-gap: 2.5rem;
 
     padding: 0 var(--gutter);
+
+    ${media.laptop} {
+      flex-basis: 50%;
+      align-items: flex-start;
+      row-gap: 0;
+
+      padding: 0 0 0 var(--gutter);
+    }
   }
 
   .cat-container {
@@ -48,6 +85,14 @@ const BlogIntroStyles = styled.section`
     flex-basis: 100%;
     row-gap: 0.75rem;
     column-gap: 1rem;
+
+    ${media.laptop} {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      width: 100%;
+      margin: 2rem 0;
+    }
 
     & > * {
       display: flex;

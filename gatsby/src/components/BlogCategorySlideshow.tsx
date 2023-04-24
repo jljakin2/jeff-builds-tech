@@ -2,14 +2,23 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { media } from "../utils/mediaQueries";
 
 const BlogCategorySlideshowStyles = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+  border: 1px solid red;
 
   overflow: hidden;
   padding: 0 var(--gutter);
+
+  ${media.laptop} {
+    flex-basis: 50%;
+
+    margin: 0 var(--gutter) 0 0;
+    padding: 0;
+  }
 
   .categories-container {
     display: flex;
@@ -19,6 +28,12 @@ const BlogCategorySlideshowStyles = styled.div`
     justify-content: center;
     column-gap: 2rem;
     text-align: left;
+
+    width: 100%;
+
+    ${media.laptop} {
+      flex-wrap: nowrap;
+    }
 
     .item {
       border-radius: 1rem;
@@ -49,12 +64,26 @@ const BlogCategorySlideshowStyles = styled.div`
 
   .slideshow-container {
     display: flex;
+    justify-content: center;
     column-gap: 1.5rem;
 
     transform: translateX(
-      calc(-70dvw * ${({ activeIdx }: { activeIdx: string }) => activeIdx})
+      calc(
+        -70dvw * ${({ activeIdx }: { activeIdx: string }) => activeIdx} + 50vw -
+          35vw
+      )
     );
     transition: all 0.3s ease-in;
+
+    ${media.laptop} {
+      /* overflow: hidden; */
+      transform: translateX(
+        calc(
+          -15rem * ${({ activeIdx }: { activeIdx: string }) => activeIdx} + 50vw -
+            300px
+        )
+      );
+    }
 
     .card-container {
       background: var(--white);
@@ -65,7 +94,12 @@ const BlogCategorySlideshowStyles = styled.div`
       display: grid;
       grid-template-columns: 5rem 1fr;
 
-      width: 70dvw;
+      width: 70vw;
+      min-width: 250px;
+
+      ${media.laptop} {
+        width: 300px;
+      }
 
       .image-container {
         height: 100%;

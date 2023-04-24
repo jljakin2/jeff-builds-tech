@@ -42,11 +42,11 @@ const GlobalStyles = createGlobalStyle`
     }
 
     ${media.laptop} {
-      --gutter: 5rem;
+      --gutter: 7rem;
     }
 
     ${media.desktop} {
-      --gutter: 7rem;
+      --gutter: 20rem;
     }
 
   }
