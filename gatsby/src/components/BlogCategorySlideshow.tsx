@@ -69,13 +69,12 @@ const BlogCategorySlideshowStyles = styled.div<ActiveIndexProps>`
 
   .slideshow-container {
     display: flex;
-    justify-content: center;
     column-gap: 1.5rem;
 
     transform: translateX(
       calc(
         ${({ activeIdx }: { activeIdx: number }) =>
-          `calc((-50vw - 24px) * ${activeIdx + 1} + 25vw + 24px)`}
+          `calc((-70vw - 24px) * ${activeIdx + 1}) + 10vw`}
       )
     );
     transition: all 0.3s ease-in;
@@ -108,8 +107,10 @@ const BlogCategorySlideshowStyles = styled.div<ActiveIndexProps>`
 
       display: grid;
       grid-template-columns: 5rem 1fr;
+      flex: 1;
 
-      width: 50vw;
+      width: 70vw;
+
       /* min-width: 250px; */
 
       ${media.laptop} {
@@ -214,20 +215,24 @@ export default function BlogCategorySlideshow() {
 
   // array set up
   let mainPosts: any = [];
+  // create the array of arrays that make up the featured posts we want to show for each category
   categories.nodes.map((category: any, idx: string) => {
     mainPosts = [
       ...mainPosts,
       [
-        ...posts.nodes.filter((post: any) => {
-          const foundCategory = post.category.find(
-            (item: any) => item.slug.current === category.name.toLowerCase()
-          );
-          return !!foundCategory;
-        }),
+        ...posts.nodes
+          .filter((post: any) => {
+            const foundCategory = post.category.find(
+              (item: any) => item.slug.current === category.name.toLowerCase()
+            );
+            return !!foundCategory;
+          })
+          .slice(0, 3),
       ],
     ];
   });
 
+  // create the final array we will show which pads the ends
   const finalPosts = [
     mainPosts[mainPosts.length - 1],
     ...mainPosts,
@@ -240,7 +245,7 @@ export default function BlogCategorySlideshow() {
   return (
     <BlogCategorySlideshowStyles
       activeIdx={activeIdx}
-      numCategories={numCategories}>
+      numCategories={finalPosts.length}>
       <ul className="categories-container">
         {categories.nodes.map((category: any, idx: string) => (
           <li
