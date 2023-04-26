@@ -4,11 +4,15 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { media } from "../utils/mediaQueries";
 
-const BlogCategorySlideshowStyles = styled.div`
+interface ActiveIndexProps {
+  activeIdx: number;
+  numCategories: number;
+}
+
+const BlogCategorySlideshowStyles = styled.div<ActiveIndexProps>`
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  border: 1px solid red;
 
   overflow: hidden;
   padding: 0 var(--gutter);
@@ -27,6 +31,7 @@ const BlogCategorySlideshowStyles = styled.div`
     align-items: center;
     justify-content: center;
     column-gap: 2rem;
+    row-gap: 0.5rem;
     text-align: left;
 
     width: 100%;
@@ -49,7 +54,7 @@ const BlogCategorySlideshowStyles = styled.div`
   }
 
   .category-carousel-container {
-    opacity: 0.75;
+    opacity: 0.5;
 
     display: flex;
     flex-direction: column;
@@ -69,18 +74,28 @@ const BlogCategorySlideshowStyles = styled.div`
 
     transform: translateX(
       calc(
-        -70dvw * ${({ activeIdx }: { activeIdx: string }) => activeIdx} + 50vw -
-          35vw
+        ${({ activeIdx }: { activeIdx: number }) =>
+          `calc((-50vw - 24px) * ${activeIdx + 1} + 25vw + 24px)`}
       )
     );
     transition: all 0.3s ease-in;
 
     ${media.laptop} {
-      /* overflow: hidden; */
+      justify-content: flex-start;
+
       transform: translateX(
         calc(
-          -15rem * ${({ activeIdx }: { activeIdx: string }) => activeIdx} + 50vw -
-            300px
+          ${({ activeIdx }: { activeIdx: number }) =>
+            `calc((-20vw - 24px) * ${activeIdx + 1} + 10vw + 24px)`}
+        )
+      );
+    }
+
+    ${media.desktop} {
+      transform: translateX(
+        calc(
+          ${({ activeIdx }: { activeIdx: number }) =>
+            `calc((-20vw - 24px) * ${activeIdx + 1} + 10vw)`}
         )
       );
     }
@@ -94,11 +109,11 @@ const BlogCategorySlideshowStyles = styled.div`
       display: grid;
       grid-template-columns: 5rem 1fr;
 
-      width: 70vw;
-      min-width: 250px;
+      width: 50vw;
+      /* min-width: 250px; */
 
       ${media.laptop} {
-        width: 300px;
+        width: 20vw;
       }
 
       .image-container {
@@ -197,9 +212,35 @@ export default function BlogCategorySlideshow() {
     setActiveIdx(parseInt(e.target.id));
   }
 
+  // array set up
+  let mainPosts: any = [];
+  categories.nodes.map((category: any, idx: string) => {
+    mainPosts = [
+      ...mainPosts,
+      [
+        ...posts.nodes.filter((post: any) => {
+          const foundCategory = post.category.find(
+            (item: any) => item.slug.current === category.name.toLowerCase()
+          );
+          return !!foundCategory;
+        }),
+      ],
+    ];
+  });
+
+  const finalPosts = [
+    mainPosts[mainPosts.length - 1],
+    ...mainPosts,
+    mainPosts[0],
+    mainPosts[1],
+  ];
+
+  // =============
+
   return (
-    // @ts-ignore
-    <BlogCategorySlideshowStyles activeIdx={activeIdx}>
+    <BlogCategorySlideshowStyles
+      activeIdx={activeIdx}
+      numCategories={numCategories}>
       <ul className="categories-container">
         {categories.nodes.map((category: any, idx: string) => (
           <li
@@ -213,33 +254,25 @@ export default function BlogCategorySlideshow() {
       </ul>
 
       <div className="slideshow-container">
-        {categories.nodes.map((category: any, idx: string) => (
+        {/* @ts-ignore */}
+        {finalPosts.map((category: any, idx: string) => (
           <ul
             className={`category-carousel-container ${
-              parseInt(idx) == activeIdx ? "current" : ""
+              parseInt(idx) == activeIdx + 1 ? "current" : ""
             }`}>
-            {/* find all the posts where the category name and post category name are the same */}
-            {posts.nodes
-              .filter((post: any) => {
-                const foundCategory = post.category.find(
-                  (item: any) =>
-                    item.slug.current === category.name.toLowerCase()
-                );
-                return !!foundCategory;
-              })
-              .map((post: any) => (
-                <li className="card-container" key={post.id}>
-                  <div className="image-container">
-                    <GatsbyImage
-                      image={post.featuredImage.asset.gatsbyImageData}
-                      alt={`"${post.title}'s featured image"`}
-                    />
-                  </div>
-                  <div className="text-container">
-                    <p>{post.title}</p>
-                  </div>
-                </li>
-              ))}
+            {category.map((post: any) => (
+              <li className="card-container" key={post.id}>
+                <div className="image-container">
+                  <GatsbyImage
+                    image={post.featuredImage.asset.gatsbyImageData}
+                    alt={`"${post.title}'s featured image"`}
+                  />
+                </div>
+                <div className="text-container">
+                  <p>{post.title}</p>
+                </div>
+              </li>
+            ))}
           </ul>
         ))}
       </div>

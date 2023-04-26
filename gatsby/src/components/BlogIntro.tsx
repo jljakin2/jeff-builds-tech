@@ -83,7 +83,7 @@ const BlogIntroStyles = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     flex-basis: 100%;
-    row-gap: 0.75rem;
+    row-gap: 1rem;
     column-gap: 1rem;
 
     ${media.laptop} {
