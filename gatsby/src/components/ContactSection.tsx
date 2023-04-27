@@ -6,6 +6,7 @@ import ContactForm from "./ContactForm/ContactForm";
 import Icon from "./Icon";
 import { NormalRichText } from "../components/NormalRichText";
 import SocialLinks from "./SocialLinks";
+import { media } from "../utils/mediaQueries";
 
 const ContactSectionStyles = styled.section`
   background: var(--white);
@@ -18,6 +19,15 @@ const ContactSectionStyles = styled.section`
 
   padding: 4rem var(--gutter);
   z-index: 100;
+
+  ${media.laptop} {
+    flex-direction: row;
+    align-items: flex-start;
+    row-gap: 0;
+    column-gap: 2rem;
+
+    padding-top: 8rem;
+  }
 
   &::before {
     content: "";

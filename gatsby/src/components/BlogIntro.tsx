@@ -15,7 +15,7 @@ const BlogIntroStyles = styled.section`
   row-gap: 5rem;
   text-align: center;
 
-  padding: 4rem 0;
+  padding: 4rem 0 8rem 0;
 
   ${media.laptop} {
     flex-direction: row;

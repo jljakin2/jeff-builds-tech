@@ -6,8 +6,11 @@ import AboutItem from "../components/AboutItem";
 import RoleItem from "../components/RoleItem";
 import SkillBarItem from "../components/SkillBarItem";
 import SEO from "../components/SEO";
+import { media } from "../utils/mediaQueries";
 
 const AboutPageStyles = styled.section`
+  padding-bottom: 8rem;
+
   .about-container {
     display: flex;
     flex-direction: column;
@@ -15,6 +18,10 @@ const AboutPageStyles = styled.section`
     row-gap: 8rem;
 
     padding: 0 var(--gutter) 2rem var(--gutter);
+
+    ${media.tablet} {
+      padding: 0 calc(var(--gutter) + 5rem) 2rem calc(var(--gutter) + 5rem);
+    }
 
     h1 {
       margin-bottom: -6rem;
@@ -33,6 +40,8 @@ const AboutPageStyles = styled.section`
     .skills-header {
       display: flex;
       flex-direction: column;
+
+      margin-bottom: 2rem;
 
       h1 {
         text-align: center;
@@ -91,12 +100,33 @@ const AboutPageStyles = styled.section`
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+
+    margin-top: 4rem;
+
+    ${media.laptop} {
+      flex-basis: 50%;
+
+      margin-top: 0;
+    }
   }
 
   .skill-bar-container {
     display: flex;
     flex-direction: column;
     row-gap: 0.75rem;
+
+    ${media.laptop} {
+      flex-basis: 50%;
+    }
+  }
+
+  .professional-container {
+    ${media.laptop} {
+      display: flex;
+      column-gap: 3rem;
+
+      width: 100%;
+    }
   }
 `;
 
@@ -114,8 +144,8 @@ export default function AboutPage({ data }: any) {
       <AboutPageStyles isTech={isTech}>
         <div className="about-container">
           <h1>About</h1>
-          {aboutItems.map((item: any) => {
-            return <AboutItem key={item.id} aboutItem={item} />;
+          {aboutItems.map((item: any, idx: number) => {
+            return <AboutItem key={item.id} aboutItem={item} idx={idx} />;
           })}
         </div>
 
@@ -136,25 +166,27 @@ export default function AboutPage({ data }: any) {
             </div>
           </div>
 
-          <div className="skill-bar-container">
-            {skills
-              .filter((skill: any) => {
-                return skill.isTech === isTech;
-              })
-              .map((skill: any) => {
-                return <SkillBarItem key={skill.id} skillItem={skill} />;
-              })}
-          </div>
-
-          <div className="skills-content">
-            <div className="roles-container">
-              {roles
-                .filter((role: any) => {
-                  return role.isTech === isTech;
+          <div className="professional-container">
+            <div className="skill-bar-container">
+              {skills
+                .filter((skill: any) => {
+                  return skill.isTech === isTech;
                 })
-                .map((role: any) => {
-                  return <RoleItem key={role.id} roleItem={role} />;
+                .map((skill: any) => {
+                  return <SkillBarItem key={skill.id} skillItem={skill} />;
                 })}
+            </div>
+
+            <div className="skills-content">
+              <div className="roles-container">
+                {roles
+                  .filter((role: any) => {
+                    return role.isTech === isTech;
+                  })
+                  .map((role: any) => {
+                    return <RoleItem key={role.id} roleItem={role} />;
+                  })}
+              </div>
             </div>
           </div>
         </div>

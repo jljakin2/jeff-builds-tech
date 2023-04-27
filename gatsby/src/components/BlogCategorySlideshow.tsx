@@ -12,7 +12,7 @@ interface ActiveIndexProps {
 const BlogCategorySlideshowStyles = styled.div<ActiveIndexProps>`
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
+  row-gap: 3rem;
 
   overflow: hidden;
   padding: 0 var(--gutter);

@@ -19,7 +19,7 @@ const FooterStyles = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 1.75rem;
+    row-gap: 2rem;
 
     padding-bottom: 1.5rem;
 
@@ -29,6 +29,20 @@ const FooterStyles = styled.footer`
       column-gap: 7rem;
 
       padding-bottom: 2.5rem;
+    }
+
+    .items-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+
+      ${media.tablet} {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        width: 100%;
+      }
     }
   }
 
@@ -80,50 +94,52 @@ export default function Footer() {
             <Logo onDarkBackground />
           </div>
         </Link>
-        <ul className="projects">
-          <li className="link-header">Projects</li>
-          <li className="link-item">
-            <Link to="/projects">All Projects</Link>
-          </li>
-          <li className="link-item">
-            <Link to="/projects">Featured</Link>
-          </li>
-        </ul>
-        <ul className="blog">
-          <li className="link-header">Blog</li>
-          <li className="link-item">
-            <Link to="/blog">Categories</Link>
-          </li>
-          <li className="link-item">
-            <Link to="/blog">Coding</Link>
-          </li>
-          <li className="link-item">
-            <Link to="">Creativity</Link>
-          </li>
-          <li className="link-item">
-            <Link to="/blog">Leadership</Link>
-          </li>
-          <li className="link-item">
-            <Link to="/blog">Learning</Link>
-          </li>
-        </ul>
-        <ul className="extras">
-          <li className="link-header">Extras</li>
-          <li className="link-item">
-            <Link to="/about">About Me</Link>
-          </li>
-          <li className="link-item">
-            <SmoothScrollLink to="/#contact-me">Contact Me</SmoothScrollLink>
-          </li>
-        </ul>
-        <ul className="social">
-          <li className="link-header">Social</li>
-          {data.nodes[0].socialLinks.map((item: any) => (
-            <li className="link-item" key={item.id}>
-              <a href={item.link}>{item.name}</a>
+        <div className="items-container">
+          <ul className="projects">
+            <li className="link-header">Projects</li>
+            <li className="link-item">
+              <Link to="/projects">All Projects</Link>
             </li>
-          ))}
-        </ul>
+            <li className="link-item">
+              <Link to="/projects">Featured</Link>
+            </li>
+          </ul>
+          <ul className="blog">
+            <li className="link-header">Blog</li>
+            <li className="link-item">
+              <Link to="/blog">Categories</Link>
+            </li>
+            <li className="link-item">
+              <Link to="/blog">Coding</Link>
+            </li>
+            <li className="link-item">
+              <Link to="">Creativity</Link>
+            </li>
+            <li className="link-item">
+              <Link to="/blog">Leadership</Link>
+            </li>
+            <li className="link-item">
+              <Link to="/blog">Learning</Link>
+            </li>
+          </ul>
+          <ul className="extras">
+            <li className="link-header">Extras</li>
+            <li className="link-item">
+              <Link to="/about">About Me</Link>
+            </li>
+            <li className="link-item">
+              <SmoothScrollLink to="/#contact-me">Contact Me</SmoothScrollLink>
+            </li>
+          </ul>
+          <ul className="social">
+            <li className="link-header">Social</li>
+            {data.nodes[0].socialLinks.map((item: any) => (
+              <li className="link-item" key={item.id}>
+                <a href={item.link}>{item.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="bottom">
         <p>{`© ${new Date().getFullYear()} Jeff Jakinovich. All rights reserved.`}</p>
