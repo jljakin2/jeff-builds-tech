@@ -1,4 +1,4 @@
-import {youtube} from './youtube'
+import youtube from './youtube'
 
 export default {
   name: 'blockContent',

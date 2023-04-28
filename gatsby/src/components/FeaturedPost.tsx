@@ -3,25 +3,29 @@ import React from "react";
 import styled from "styled-components";
 import { formatDate } from "../utils/formatDate";
 import { media } from "../utils/mediaQueries";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 
 const FeaturedPostStyles = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
+  a {
+    color: var(--text);
 
-  ${media.laptop} {
-    flex-direction: row;
-    column-gap: 2rem;
-  }
-
-  .content-container {
     display: flex;
     flex-direction: column;
-    row-gap: 0.5rem;
+    row-gap: 1rem;
 
     ${media.laptop} {
-      flex-basis: calc(40% - 1rem);
+      flex-direction: row;
+      column-gap: 2rem;
+    }
+
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5rem;
+
+      ${media.laptop} {
+        flex-basis: calc(40% - 1rem);
+      }
     }
   }
 
@@ -35,7 +39,25 @@ const FeaturedPostStyles = styled.div`
   }
 `;
 
-export default function FeaturedPost({ post }: any) {
+export default function FeaturedPost() {
+  const { post } = useStaticQuery(graphql`
+    query GetSuperFeatured {
+      post: sanityPost(superFeatured: { eq: true }) {
+        id
+        title
+        excerpt
+        featuredImage {
+          asset {
+            gatsbyImageData(placeholder: BLURRED)
+          }
+        }
+        slug {
+          current
+        }
+      }
+    }
+  `);
+
   const formattedDate = formatDate(post.realCreatedDate || post._createdAt);
 
   return (

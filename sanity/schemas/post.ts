@@ -32,9 +32,18 @@ export default {
       title: 'Body',
     },
     {
+      name: 'superFeatured',
+      title: 'Super Featured',
+      description: 'This will make the post the number one featured post on the blog home page.',
+      type: 'boolean',
+      options: {
+        layout: 'toggle',
+      },
+    },
+    {
       name: 'featured',
       title: 'Featured',
-      description: 'Do you want to feature this post?',
+      description: 'This will feature the post in the blog intro carousel.',
       type: 'boolean',
       options: {
         layout: 'toggle',

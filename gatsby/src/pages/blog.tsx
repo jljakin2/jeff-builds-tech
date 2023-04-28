@@ -6,13 +6,18 @@ import styled from "styled-components";
 import CategoryCard from "../components/CategoryCard";
 import Pagination from "../components/Pagination";
 import SEO from "../components/SEO";
+import { media } from "../utils/mediaQueries";
 
 const BlogHomePageStyles = styled.section`
   display: flex;
   flex-direction: column;
   row-gap: 4rem;
 
-  padding: 0 var(--gutter) 4rem var(--gutter);
+  padding: 0 var(--gutter) 8rem var(--gutter);
+
+  ${media.laptop} {
+    row-gap: 6rem;
+  }
 
   .posts-section {
     display: flex;
@@ -43,7 +48,6 @@ const BlogHomePageStyles = styled.section`
 export default function BlogHomePage({ data, pageContext }: any) {
   const posts = data.posts.nodes;
   const categories = data.categories.nodes;
-  const featuredPost = posts.filter((post: any) => post.featured)[0]; // TODO: update field in sanity to include new featured field
 
   return (
     <>
@@ -53,7 +57,7 @@ export default function BlogHomePage({ data, pageContext }: any) {
         {!pageContext.currentPage && (
           <div className="featured-container">
             <h1>Featured Post</h1>
-            <FeaturedBlogPost post={featuredPost} />
+            <FeaturedBlogPost />
           </div>
         )}
 
@@ -107,6 +111,7 @@ export const query = graphql`
           current
         }
         realCreatedDate
+        superFeatured
         featured
         excerpt
         _rawBody

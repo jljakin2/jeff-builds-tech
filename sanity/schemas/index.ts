@@ -11,6 +11,7 @@ import hero from './hero'
 import socialLink from './socialLink'
 import contact from './contact'
 import blockContent from './blockContent'
+import youtube from './youtube'
 
 export const schemaTypes = [
   tag,
@@ -26,4 +27,5 @@ export const schemaTypes = [
   socialLink,
   contact,
   blockContent,
+  youtube,
 ]

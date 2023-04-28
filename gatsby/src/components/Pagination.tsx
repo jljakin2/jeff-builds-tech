@@ -9,7 +9,7 @@ const PaginationStyles = styled.div`
   justify-content: space-around;
 
   width: 100%;
-  margin: 2rem 0;
+  margin: 5rem 0;
 
   .word {
     display: none;
