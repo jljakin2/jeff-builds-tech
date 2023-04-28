@@ -7,7 +7,7 @@ import Icon from "./Icon";
 
 const BlogCardStyles = styled.div`
   display: grid;
-  row-gap: 0.25rem;
+  row-gap: 0.5rem;
 
   .content-container {
     display: grid;

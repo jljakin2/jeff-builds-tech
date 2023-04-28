@@ -38,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
     --gutter: 1.5rem; // 16px
 
     ${media.tablet} {
-      --gutter: 2rem; // 24px
+      --gutter: 3rem; // 24px
     }
 
     ${media.laptop} {
@@ -68,7 +68,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background: var(--bg);
     font-size: 1rem;
-    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    font-family: "Roboto", --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     color: var(--text);
   }

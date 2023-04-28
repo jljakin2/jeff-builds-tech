@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
+import { media } from "../utils/mediaQueries";
 
 const PaginationStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 
   width: 100%;
+  margin: 2rem 0;
 
   .word {
     display: none;
@@ -19,8 +21,13 @@ const PaginationStyles = styled.div`
     box-shadow: var(--shadow);
     border-radius: var(--radius);
     text-decoration: none;
+    color: var(--text);
 
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1rem;
+
+    ${media.tablet} {
+      padding: 1rem 1.5rem;
+    }
 
     &:focus {
       color: var(--text);

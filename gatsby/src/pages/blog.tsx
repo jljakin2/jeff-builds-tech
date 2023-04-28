@@ -22,7 +22,8 @@ const BlogHomePageStyles = styled.section`
     .posts-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      column-gap: 2rem;
+      row-gap: 3rem;
     }
   }
 

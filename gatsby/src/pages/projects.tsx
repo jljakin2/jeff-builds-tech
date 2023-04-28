@@ -68,8 +68,11 @@ const ProjectsPageStyles = styled.section`
 
   .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: 2rem;
+    row-gap: 3rem;
+    justify-content: center;
+    justify-items: center;
   }
 `;
 

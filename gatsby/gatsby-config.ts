@@ -61,12 +61,8 @@ const config: GatsbyConfig = {
         ],
         web: [
           {
-            name: "Open Sans",
-            file: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap",
-          },
-          {
-            name: "Inconsolata",
-            file: "https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap",
+            name: "Roboto",
+            file: "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap",
           },
         ],
       },

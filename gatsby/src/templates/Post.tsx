@@ -11,16 +11,22 @@ import SEO from "../components/SEO";
 import { media } from "../utils/mediaQueries";
 
 const PostStyles = styled.article`
+  font-family: inherit;
+
   width: 100%;
   margin: 0 auto;
   padding: 1rem var(--gutter) 4rem var(--gutter);
 
   h1 {
-    font-size: 2.875rem;
+    font-size: 2.5rem;
     font-weight: 600;
 
     max-width: 700px;
     margin: 0 auto 2rem auto;
+
+    ${media.tablet} {
+      font-size: 2.875rem;
+    }
   }
 
   .post-info-container {
@@ -35,6 +41,11 @@ const PostStyles = styled.article`
 
   .gatsby-image-wrapper {
     border-radius: var(--radius);
+
+    ${media.laptop} {
+      width: 800px
+      height: 600px;
+    }
   }
 `;
 

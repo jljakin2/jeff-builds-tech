@@ -24,7 +24,16 @@ const AboutPageStyles = styled.section`
     }
 
     h1 {
-      margin-bottom: -6rem;
+      font-size: 2rem
+      margin-bottom: -4rem;
+
+      ${media.tablet} {
+        font-size: 1.75rem;
+
+        margin-bottom: -2rem;
+      }
+
+
     }
   }
 

@@ -10,7 +10,7 @@ export const BlogPostStyles = styled.article`
   h2,
   h3,
   h4 {
-    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI",
+    font-family: "Roboto", --apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
     font-weight: 700;
@@ -35,7 +35,7 @@ export const BlogPostStyles = styled.article`
   }
 
   p {
-    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI",
+    font-family: "Roboto", --apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
     font-size: 1rem;
@@ -57,7 +57,7 @@ export const BlogPostStyles = styled.article`
   }
 
   li {
-    font-family: "Open Sans", --apple-system, BlinkMacSystemFont, "Segoe UI",
+    font-family: "Roboto", --apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
     font-size: 1rem;

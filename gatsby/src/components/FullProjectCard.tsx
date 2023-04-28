@@ -10,7 +10,11 @@ const ProjectCardStyles = styled.div`
   border-radius: var(--radius);
   cursor: default;
 
-  width: 320px;
+  width: 100%;
+
+  ${media.tablet} {
+    width: 300px;
+  }
 
   .image-container {
     cursor: pointer;
