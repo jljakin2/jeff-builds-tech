@@ -17,7 +17,7 @@ const ProjectCardStyles = styled.div`
   }
 
   .image-container {
-    cursor: pointer;
+    /* cursor: pointer; */
     .gatsby-image-wrapper {
       border-radius: var(--radius) var(--radius) 0 0;
     }
@@ -68,19 +68,19 @@ const ProjectCardStyles = styled.div`
 export default function FullProjectCard({ project }: any) {
   return (
     <ProjectCardStyles>
-      <Link to={`/project/${project.slug.current}`}>
-        <div className="image-container">
-          <GatsbyImage
-            image={project.featuredImage.asset.gatsbyImageData}
-            alt={`${project.name} screenshot`}
-          />
-        </div>
-      </Link>
+      {/* <Link to={`/project/${project.slug.current}`}> */}
+      <div className="image-container">
+        <GatsbyImage
+          image={project.featuredImage.asset.gatsbyImageData}
+          alt={`${project.name} screenshot`}
+        />
+      </div>
+      {/* </Link> */}
       <div className="text-container">
         <div className="header">
-          <Link to={`/project/${project.slug.current}`}>
-            <h6 className="name">{project.name}</h6>
-          </Link>
+          {/* <Link to={`/project/${project.slug.current}`}> */}
+          <h6 className="name">{project.name}</h6>
+          {/* </Link> */}
           <div className="icon-set">
             <a href={project.githubLink} target="_blank" rel="noreferrer">
               <Icon size="18" name="Github" />

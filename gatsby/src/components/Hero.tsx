@@ -50,6 +50,8 @@ const HeroStyles = styled.section`
 
   .greeting-container {
     grid-area: greeting;
+
+    margin: 0.5rem 0;
   }
 
   .body-container {

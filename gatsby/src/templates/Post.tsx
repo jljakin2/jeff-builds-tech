@@ -9,6 +9,7 @@ import SocialLinks from "../components/SocialLinks";
 import { BlogPostStyles } from "../styles/BlogPostStyles";
 import SEO from "../components/SEO";
 import { media } from "../utils/mediaQueries";
+import { formatDate } from "../utils/formatDate";
 
 const PostStyles = styled.article`
   font-family: inherit;
@@ -16,6 +17,10 @@ const PostStyles = styled.article`
   width: 100%;
   margin: 0 auto;
   padding: 1rem var(--gutter) 4rem var(--gutter);
+
+  ${media.tablet} {
+    padding: 1rem var(--gutter) 8rem var(--gutter);
+  }
 
   h1 {
     font-size: 2.5rem;
@@ -47,10 +52,17 @@ const PostStyles = styled.article`
       height: 600px;
     }
   }
+
+  .date {
+    font-weight: 500;
+
+    margin-bottom: -1rem;
+  }
 `;
 
 export default function Post({ data }: any) {
   const post = data.post;
+  const formattedDate = formatDate(post.realCreatedDate || post._createdAt);
 
   return (
     <>
@@ -59,6 +71,7 @@ export default function Post({ data }: any) {
       <PostStyles>
         <h1>{post.title}</h1>
         <div className="post-info-container">
+          <p className="date">{formattedDate}</p>
           <p>
             Written by{" "}
             <span>
@@ -83,6 +96,8 @@ export const query = graphql`
       slug {
         current
       }
+      realCreatedDate
+      _createdAt
       featuredImage {
         asset {
           gatsbyImageData(placeholder: BLURRED)

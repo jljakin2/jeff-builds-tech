@@ -113,58 +113,6 @@ interface QueryData {
 }
 
 export default function ProjectsPage({ data }: any) {
-  // const tags = data.tags.nodes;
-  // const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
-  // const [projects, setProjects] = React.useState<string[]>(data.projects.nodes);
-  // const [searchTerm, setSearchTerm] = React.useState("");
-
-  // const handleSearchChange = (e: any) => {
-  //   const value = e.target.value;
-  //   setSearchTerm(value);
-  //   filterProjectsBySearchQuery(value);
-  // };
-
-  // const filterProjectsBySearchQuery = (query: any) => {
-  //   const filteredProjects = projects.filter(project => {
-  //     // @ts-expect-error
-  //     const nameMatch = project.name
-  //       .toLowerCase()
-  //       .includes(query.toLowerCase());
-  //     // @ts-expect-error
-  //     const tagsMatch = project.tags.some((tag: string) =>
-  //       tag.toLowerCase().includes(query.toLowerCase())
-  //     );
-
-  //     return nameMatch || tagsMatch;
-  //   });
-  // };
-
-  // function filterProjectsByTags(selectedTags: string[], project: any) {
-  //   return selectedTags.every(function (tag) {
-  //     return project.tags.some(function (projectTag: any) {
-  //       return projectTag.name === tag;
-  //     });
-  //   });
-  // }
-
-  // function handleTagSelection(e: any) {
-  //   const tag = e.currentTarget.innerText;
-
-  //   if (selectedTags.includes(tag)) {
-  //     const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
-  //     setSelectedTags(updatedTags);
-  //   } else {
-  //     setSelectedTags([...selectedTags, tag]);
-  //   }
-  // }
-
-  // React.useEffect(() => {
-  //   const updatedProjects = data.projects.nodes.filter((project: any) => {
-  //     return filterProjectsByTags(selectedTags, project);
-  //   });
-  //   setProjects(updatedProjects);
-  // }, [selectedTags]);
-
   const tags = data.tags.nodes;
   const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   const [projects, setProjects] = React.useState<Project[]>(
@@ -230,7 +178,9 @@ export default function ProjectsPage({ data }: any) {
           </h5>
         </div>
 
-        <form className="search-form-container">
+        <form
+          className="search-form-container"
+          onSubmit={e => e.preventDefault()}>
           <Icon name="Search" size="18" />
           <input
             type="text"

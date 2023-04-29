@@ -18,7 +18,7 @@ export const FormStyles = styled.form`
     padding: 0;
 
     & label {
-      color: var(--text-300);
+      color: var(--text);
     }
 
     & small {
@@ -44,7 +44,7 @@ export const FormStyles = styled.form`
     padding: 1rem;
 
     &::placeholder {
-      color: var(--text-300);
+      color: var(--veryLightText);
     }
   }
 
@@ -59,7 +59,7 @@ export const FormStyles = styled.form`
     resize: none;
 
     &::placeholder {
-      color: var(--text-300);
+      color: var(--veryLightText);
     }
   }
 `;

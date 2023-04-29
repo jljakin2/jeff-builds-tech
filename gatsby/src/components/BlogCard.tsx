@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { estimateReadingTime } from "../utils/estimateReadingTime";
 import { formatDate } from "../utils/formatDate";
 import Icon from "./Icon";
+import EstimatedTime from "./EstimatedTime";
 
 const BlogCardStyles = styled.div`
   display: grid;
@@ -22,12 +23,6 @@ const BlogCardStyles = styled.div`
     width: 100%;
   }
 
-  .estimated-time {
-    display: flex;
-    align-items: center;
-    column-gap: 0.25rem;
-  }
-
   .title {
     color: var(--text);
   }
@@ -35,11 +30,6 @@ const BlogCardStyles = styled.div`
   p,
   .excerpt {
     color: var(--lightText);
-  }
-
-  svg {
-    fill: transparent;
-    stroke: var(--lightText);
   }
 
   .gatsby-image-wrapper {
@@ -61,10 +51,7 @@ export default function BlogCard({ post }: any) {
       <div className="content-container">
         <div className="content-header">
           <p>{formattedDate}</p>
-          <div className="estimated-time">
-            <Icon name="Clock" size="16" />
-            <p>{estimateReadingTime(post)} min</p>
-          </div>
+          <EstimatedTime post={post} />
         </div>
         <h4 className="title">{post.title}</h4>
         <p className="excerpt">{post.excerpt}</p>
