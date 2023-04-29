@@ -5,6 +5,8 @@ import FullProjectCard from "../components/FullProjectCard";
 import Icon from "../components/Icon";
 import Tag from "../components/Tag";
 import SEO from "../components/SEO";
+import EmptySearchState from "../components/EmptySearchState";
+import { media } from "../utils/mediaQueries";
 
 const ProjectsPageStyles = styled.section`
   display: grid;
@@ -73,6 +75,10 @@ const ProjectsPageStyles = styled.section`
     row-gap: 3rem;
     justify-content: center;
     justify-items: center;
+
+    ${media.tablet} {
+      margin-top: 2rem;
+    }
   }
 `;
 
@@ -165,6 +171,10 @@ export default function ProjectsPage({ data }: any) {
     }
   }
 
+  function handleEmptySearch() {
+    setSearchTerm("");
+  }
+
   return (
     <>
       <SEO title="Projects" />
@@ -200,9 +210,13 @@ export default function ProjectsPage({ data }: any) {
         </div>
 
         <div className="projects-container">
-          {projects.map((project: any) => {
-            return <FullProjectCard project={project} key={project.id} />;
-          })}
+          {projects.length === 0 ? (
+            <EmptySearchState handleEmptySearch={handleEmptySearch} />
+          ) : (
+            projects.map((project: any) => {
+              return <FullProjectCard project={project} key={project.id} />;
+            })
+          )}
         </div>
       </ProjectsPageStyles>
     </>

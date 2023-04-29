@@ -152,10 +152,16 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  button {
+    border-radius: var(--radius);
+    cursor: pointer;
+
+    transition: all 0.3s ease-in;
+  }
+
   button.primary {
     background: var(--primary-500);
     border: 1px solid var(---primary-500);
-    border-radius: var(--radius);
     color: var(--white);
 
     &:hover {
@@ -163,16 +169,16 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  /* button.secondary {
-    border: 1px solid $primary-500;
-    color: $primary-500;
+  button.secondary {
+    border: 1px solid var(--primary-500);
+    color: var(--primary-500);
     background: transparent;
 
     &:hover {
-      background: $primary-500;
-      color: $white;
+      background: var(--primary-500);
+      color: var(--white);
     }
-  } */
+  }
 
   button.normal {
     padding: 0.5rem 1rem;

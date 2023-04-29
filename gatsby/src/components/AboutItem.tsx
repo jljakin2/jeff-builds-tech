@@ -15,7 +15,7 @@ const AboutItemStyles = styled.div`
     text-align: left;
 
     flex-direction: row;
-    /* align-items: flex-start; */
+    align-items: flex-start;
     row-gap: 0;
     column-gap: 4rem;
   }

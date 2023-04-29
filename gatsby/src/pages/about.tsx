@@ -25,7 +25,7 @@ const AboutPageStyles = styled.section`
 
     h1 {
       font-size: 2rem
-      margin-bottom: -4rem;
+      margin-bottom: -8rem;
 
       ${media.tablet} {
         font-size: 1.75rem;
