@@ -14,6 +14,10 @@ const ProjectsPageStyles = styled.section`
 
   padding: 0 var(--gutter) 4rem var(--gutter);
 
+  ${media.tablet} {
+    padding: 0 var(--gutter) 8rem var(--gutter);
+  }
+
   .projects-header {
     text-align: center;
 

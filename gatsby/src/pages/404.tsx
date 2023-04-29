@@ -13,7 +13,7 @@ const NotFoundPageStyles = styled.main`
   row-gap: 1rem;
 
   width: 100vw;
-  height: 100%;
+  height: calc(100vh - 7rem);
 
   .text-container {
     display: flex;
@@ -52,7 +52,7 @@ const NotFoundPage: React.FC<PageProps> = () => {
       />
       <div className="text-container">
         <h1>Page not found</h1>
-        <p>Sorry 😔, we couldn't find what you were looking for.</p>
+        <p>Sorry 😔, the page you are looking for doesn't exist.</p>
       </div>
       <Link to="/" className="link-btn primary">
         Go home
