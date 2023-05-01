@@ -49,6 +49,9 @@ export default {
       options: {hotspot: true},
     },
     {
+      type: 'break',
+    },
+    {
       type: 'code',
       options: {
         withFilename: true,

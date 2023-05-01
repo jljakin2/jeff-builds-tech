@@ -12,6 +12,7 @@ import socialLink from './socialLink'
 import contact from './contact'
 import blockContent from './blockContent'
 import youtube from './youtube'
+import _break from './break'
 
 export const schemaTypes = [
   tag,
@@ -28,4 +29,5 @@ export const schemaTypes = [
   contact,
   blockContent,
   youtube,
+  _break,
 ]

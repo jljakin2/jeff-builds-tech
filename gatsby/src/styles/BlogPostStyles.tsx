@@ -6,6 +6,13 @@ export const BlogPostStyles = styled.article`
   max-width: 700px;
   margin: 64px auto 0 auto;
 
+  .section-break {
+    color: transparent;
+    border: none;
+
+    height: 2rem;
+  }
+
   h1,
   h2,
   h3,
@@ -15,23 +22,31 @@ export const BlogPostStyles = styled.article`
       sans-serif;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 1.5rem;
+    margin: 0;
   }
 
   h1 {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
+
+    margin-bottom: 0.75rem;
   }
 
   h2 {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
+
+    margin-bottom: 0.5rem;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+
+    margin-bottom: 0.5rem;
   }
 
   h4 {
     font-size: 1.125rem;
+
+    margin-bottom: 0.5rem;
   }
 
   p {
@@ -40,12 +55,11 @@ export const BlogPostStyles = styled.article`
       sans-serif;
     font-size: 1rem;
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   blockquote {
     border-left: 4px solid #dbdbdb;
-    font-style: italic;
     margin: 1.5rem 0;
     padding-left: 20px;
   }

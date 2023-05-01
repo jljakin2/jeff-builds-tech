@@ -12,6 +12,16 @@ export const BlogRichText = {
       return <CodeBlock {...props} />;
     },
     youtube: ({ node }: any) => <YoutubeEmbed url={node.url} />,
+    break: (props: any) => {
+      console.log("break props:", props);
+      const { style } = props.value;
+      if (style === "sectionBreak") {
+        return <hr className="section-break" />;
+      } else {
+        // add more styles as needed. see break.js in sanity schemas
+        return;
+      }
+    },
   },
 
   block: {
@@ -24,6 +34,7 @@ export const BlogRichText = {
     normal: ({ children }: any) => {
       return <p>{children}</p>;
     },
+    softBreak: () => <br />,
   },
   blockquote: ({ children }: any) => <blockquote>{children}</blockquote>,
 

@@ -4,6 +4,7 @@ import js from "refractor/lang/javascript";
 import ts from "refractor/lang/typescript";
 import tsx from "refractor/lang/tsx";
 import jsx from "refractor/lang/jsx";
+import python from "refractor/lang/python";
 import styled from "styled-components";
 import CopyBtn from "./CopyBtn";
 
@@ -11,6 +12,7 @@ Refractor.registerLanguage(js);
 Refractor.registerLanguage(ts);
 Refractor.registerLanguage(tsx);
 Refractor.registerLanguage(jsx);
+Refractor.registerLanguage(python);
 
 const CodeBlockContainerStyles = styled.aside`
   font-size: 0.875rem;
@@ -19,17 +21,18 @@ const CodeBlockContainerStyles = styled.aside`
   grid-template-rows: max-content;
 
   width: 100%;
+  margin: 1.5rem 0 2rem 0;
 
   .header {
-    background: #285575;
+    background: #20455e;
     color: var(--bg);
     border-radius: var(--radius) var(--radius) 0 0;
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
-    padding: 0.5rem 2rem;
+    padding: 0.25rem 1.5rem;
   }
 `;
 
@@ -81,7 +84,7 @@ const CodeBlockStyles = styled.div`
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {
     color: white;
-    background: #193549;
+    background: #152f40;
   }
   :not(pre) > code[class*="language-"] {
     padding: 0.1rem;

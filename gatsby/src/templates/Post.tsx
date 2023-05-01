@@ -22,7 +22,7 @@ const PostStyles = styled.article`
     padding: 1rem var(--gutter) 8rem var(--gutter);
   }
 
-  h1 {
+  .title {
     font-size: 2.5rem;
     font-weight: 600;
 
@@ -48,7 +48,6 @@ const PostStyles = styled.article`
     border-radius: var(--radius);
 
     ${media.laptop} {
-      width: 800px
       height: 600px;
     }
   }
@@ -62,6 +61,7 @@ const PostStyles = styled.article`
 
 export default function Post({ data }: any) {
   const post = data.post;
+  console.log("post:", post._rawBody);
   const formattedDate = formatDate(post.realCreatedDate || post._createdAt);
 
   return (
@@ -69,7 +69,7 @@ export default function Post({ data }: any) {
       <SEO title={post.title} />
 
       <PostStyles>
-        <h1>{post.title}</h1>
+        <h1 className="title">{post.title}</h1>
         <div className="post-info-container">
           <p className="date">{formattedDate}</p>
           <p>
@@ -82,6 +82,7 @@ export default function Post({ data }: any) {
         </div>
         <GatsbyImage image={post.featuredImage.asset.gatsbyImageData} alt="" />
         <BlogPostStyles>
+          {/* @ts-ignore */}
           <PortableText value={post._rawBody} components={BlogRichText} />
         </BlogPostStyles>
       </PostStyles>
