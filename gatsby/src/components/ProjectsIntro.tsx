@@ -93,7 +93,7 @@ const ProjectsIntroStyles = styled.section`
       height: 100%;
       width: 120%;
 
-      z-index: 1000;
+      z-index: 10000;
     }
   }
 
@@ -105,7 +105,7 @@ const ProjectsIntroStyles = styled.section`
     top: 50%;
     transform: translate(-50%, -50%);
 
-    z-index: 10000;
+    z-index: 100000;
   }
 `;
 
