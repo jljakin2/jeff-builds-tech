@@ -5,6 +5,7 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import styled from "styled-components";
 import SimpleProjectCard from "./SimpleProjectCard";
 import { media } from "../utils/mediaQueries";
+import { useMediaQuery } from "react-responsive";
 
 const ProjectsIntroStyles = styled.section`
   overflow: hidden;
@@ -135,8 +136,12 @@ export default function ProjectsIntro() {
 
   const timeoutRef = useRef(null);
 
-  const breakpoints = useBreakpoint();
-  const numPerRow = breakpoints.xs || breakpoints.sm ? 3 : 5;
+  const [isClient, setIsClient] = useState(false);
+  const isSmall = useMediaQuery({ maxWidth: 700 });
+
+  // const breakpoints = useBreakpoint();
+  // const numPerRow = breakpoints.xs || breakpoints.sm ? 3 : 5;
+  const numPerRow = isSmall ? 3 : 5;
 
   // make sure the projects array contains enough to have full rows only
   const cleanProjects = projects.nodes.slice(
@@ -176,6 +181,14 @@ export default function ProjectsIntro() {
       resetTimeout();
     };
   }, [activeRow]);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <ProjectsIntroStyles
