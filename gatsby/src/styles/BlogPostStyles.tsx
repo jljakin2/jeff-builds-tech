@@ -95,4 +95,8 @@ export const BlogPostStyles = styled.article`
       text-decoration: none;
     }
   }
+
+  .blog-img {
+    margin: 2rem 0;
+  }
 `;

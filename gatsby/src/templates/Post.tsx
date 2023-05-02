@@ -108,7 +108,7 @@ export const query = graphql`
       category {
         name
       }
-      _rawBody
+      _rawBody(resolveReferences: { maxDepth: 10 })
       author {
         name
         slug {

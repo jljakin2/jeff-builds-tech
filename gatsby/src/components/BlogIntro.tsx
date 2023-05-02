@@ -148,7 +148,7 @@ export default function BlogIntro() {
         <h1>Learn. Build. Write. Repeat.</h1>
         <h5>
           Welcome to my world of endless curiosity and creation. Explore the
-          categories below to get started:
+          categories below:
         </h5>
         <ul className="cat-container">
           {data.map((category: any) => (

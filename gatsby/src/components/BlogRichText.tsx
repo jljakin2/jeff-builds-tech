@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "gatsby";
+
 import Link from "gatsby";
 import { CodeBlock } from "./CodeBlock";
 import YoutubeEmbed from "./YouTubeEmbed";
@@ -7,13 +7,15 @@ import PortableTextImage from "./PortableTextImage";
 
 export const BlogRichText = {
   types: {
-    image: ({ node }: any) => <PortableTextImage node={node} />,
+    image: (props: any) => {
+      console.log({ props });
+      return <PortableTextImage node={props.value} />;
+    },
     code: (props: any) => {
       return <CodeBlock {...props} />;
     },
     youtube: ({ node }: any) => <YoutubeEmbed url={node.url} />,
     break: (props: any) => {
-      console.log("break props:", props);
       const { style } = props.value;
       if (style === "sectionBreak") {
         return <hr className="section-break" />;
