@@ -1,7 +1,5 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
-// @ts-ignore
-import { useBreakpoint } from "gatsby-plugin-breakpoints";
 import styled from "styled-components";
 import SimpleProjectCard from "./SimpleProjectCard";
 import { media } from "../utils/mediaQueries";
@@ -139,8 +137,6 @@ export default function ProjectsIntro() {
   const [isClient, setIsClient] = useState(false);
   const isSmall = useMediaQuery({ maxWidth: 700 });
 
-  // const breakpoints = useBreakpoint();
-  // const numPerRow = breakpoints.xs || breakpoints.sm ? 3 : 5;
   const numPerRow = isSmall ? 3 : 5;
 
   // make sure the projects array contains enough to have full rows only
