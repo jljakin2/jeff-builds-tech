@@ -320,8 +320,6 @@ export default function ProjectsPage({ data }: any) {
             <button
               // @ts-ignore
               onClick={handleTagSelection}
-              // @ts-ignore
-              onTouchStart={handleTagSelection}
               type="button">
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
             </button>
