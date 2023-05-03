@@ -53,6 +53,7 @@ const NavStyles = styled.nav`
     &.open {
       height: 100vh;
       visibility: visible;
+      z-index: 1000000;
 
       li {
         opacity: 100;

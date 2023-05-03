@@ -156,27 +156,27 @@ export default function ProjectsIntro() {
   ];
   const totalRows = Math.ceil(cleanProjects.length / numPerRow);
 
-  function resetTimeout() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }
+  // function resetTimeout() {
+  //   if (timeoutRef.current) {
+  //     clearTimeout(timeoutRef.current);
+  //   }
+  // }
 
-  useEffect(() => {
-    resetTimeout();
-    // @ts-ignore
-    timeoutRef.current = setTimeout(
-      () =>
-        setActiveRow(activeRow =>
-          activeRow === totalRows ? 0 : activeRow + 1
-        ),
-      1000
-    );
+  // useEffect(() => {
+  //   resetTimeout();
+  //   // @ts-ignore
+  //   timeoutRef.current = setTimeout(
+  //     () =>
+  //       setActiveRow(activeRow =>
+  //         activeRow === totalRows ? 0 : activeRow + 1
+  //       ),
+  //     1000
+  //   );
 
-    return () => {
-      resetTimeout();
-    };
-  }, [activeRow]);
+  //   return () => {
+  //     resetTimeout();
+  //   };
+  // }, [activeRow]);
 
   useEffect(() => {
     setIsClient(true);
