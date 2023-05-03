@@ -141,7 +141,11 @@ export default function ProjectsPage({ data }: any) {
     updateFilteredProjects(value, selectedTags);
   };
 
-  function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleTagSelection(
+    e:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.TouchEvent<HTMLDivElement>
+  ) {
     const tag = (e.currentTarget as HTMLElement).innerText;
 
     let updatedTags;
@@ -300,7 +304,10 @@ export default function ProjectsPage({ data }: any) {
         <div className="tags-container">
           {tags.map((tag: any) => (
             // @ts-ignore
-            <button onClick={handleTagSelection} type="button">
+            <button
+              onClick={handleTagSelection}
+              onTouchStart={handleTagSelection}
+              type="button">
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
             </button>
           ))}
