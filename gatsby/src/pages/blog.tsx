@@ -39,8 +39,14 @@ const BlogHomePageStyles = styled.section`
 
     .categories-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      row-gap: 2rem;
+
+      max-width: 100%;
+
+      ${media.tablet} {
+        column-gap: 2rem;
+      }
     }
   }
 `;

@@ -66,6 +66,11 @@ const ProjectsPageStyles = styled.section`
     justify-content: center;
     gap: 1rem;
 
+    button {
+      border: none;
+      background: transparent;
+    }
+
     .active {
       background: var(--primary-500);
       color: var(--white);
@@ -166,19 +171,6 @@ export default function ProjectsPage({ data }: any) {
 
   function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const tag = (e.currentTarget as HTMLElement).innerText;
-    console.log("i got pressed");
-
-    if (selectedTags.includes(tag)) {
-      const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
-      setSelectedTags(updatedTags);
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
-  }
-
-  function handleTagTouch(e: React.TouchEvent<HTMLDivElement>) {
-    e.preventDefault();
-    const tag = (e.currentTarget as HTMLElement).innerText;
 
     if (selectedTags.includes(tag)) {
       const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
@@ -220,9 +212,10 @@ export default function ProjectsPage({ data }: any) {
 
         <div className="tags-container">
           {tags.map((tag: any) => (
-            <div onClick={handleTagSelection} onTouchEnd={handleTagTouch}>
+            // @ts-ignore
+            <button onClick={handleTagSelection} type="button">
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
-            </div>
+            </button>
           ))}
         </div>
 
