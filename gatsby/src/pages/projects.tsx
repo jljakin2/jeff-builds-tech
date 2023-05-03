@@ -171,15 +171,47 @@ export default function ProjectsPage({ data }: any) {
     );
   }
 
+  // function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  //   const tag = (e.currentTarget as HTMLElement).innerText;
+
+  //   if (selectedTags.includes(tag)) {
+  //     const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
+  //     setSelectedTags(updatedTags);
+  //   } else {
+  //     setSelectedTags([...selectedTags, tag]);
+  //   }
+  // }
+
   function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const tag = (e.currentTarget as HTMLElement).innerText;
 
-    if (selectedTags.includes(tag)) {
-      const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
-      setSelectedTags(updatedTags);
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
+    setSelectedTags(prevSelectedTags => {
+      let updatedTags: any;
+      if (prevSelectedTags.includes(tag)) {
+        updatedTags = prevSelectedTags.filter(selectTag => selectTag !== tag);
+      } else {
+        updatedTags = [...prevSelectedTags, tag];
+      }
+
+      // Run filtering logic with the updated selected tags
+      const filteredProjects = data.projects.nodes.filter((project: any) => {
+        const nameMatch = project.name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+        const tagsMatch = project.tags.some((tag: string) =>
+          // @ts-expect-error
+          tag.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        const selectedTagsMatch = filterProjectsByTags(updatedTags, project);
+
+        return (nameMatch || tagsMatch) && selectedTagsMatch;
+      });
+
+      setProjects(filteredProjects);
+
+      return updatedTags;
+    });
   }
 
   function handleEmptySearch() {
