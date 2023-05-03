@@ -16,7 +16,7 @@ const ProjectsIntroStyles = styled.section`
     height: 50rem;
   }
 
-  &::before,
+  /* &::before,
   &::after {
     content: "";
     background: linear-gradient(
@@ -39,7 +39,7 @@ const ProjectsIntroStyles = styled.section`
   &::after {
     bottom: 0;
     right: 0;
-  }
+  } */
 
   .projects-container {
     display: grid;
@@ -82,19 +82,18 @@ const ProjectsIntroStyles = styled.section`
         calc(-22rem * ${({ activeRow }: { activeRow: number }) => activeRow})
       );
     }
+  }
+  .filter {
+    background: rgba(255, 255, 255, 0.8);
 
-    .filter {
-      background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
 
-      position: absolute;
-      top: 0;
-      left: 0;
+    height: 100%;
+    width: 120%;
 
-      height: 100%;
-      width: 120%;
-
-      z-index: 10000;
-    }
+    z-index: 1000;
   }
 
   .cta-container {
@@ -105,7 +104,7 @@ const ProjectsIntroStyles = styled.section`
     top: 50%;
     transform: translate(-50%, -50%);
 
-    z-index: 100000;
+    z-index: 10000;
   }
 `;
 
@@ -191,8 +190,6 @@ export default function ProjectsIntro() {
       // @ts-ignore
       activeRow={activeRow}>
       <div className="projects-container">
-        <div className="filter" />
-        <div className="fuzzy-border" />
         {finalProjects.map((project: any, idx: number) => (
           <SimpleProjectCard project={project} key={idx} />
         ))}
@@ -204,6 +201,7 @@ export default function ProjectsIntro() {
           See all projects 👀
         </Link>
       </div>
+      <div className="filter" />
     </ProjectsIntroStyles>
   );
 }
