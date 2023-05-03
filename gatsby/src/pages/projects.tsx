@@ -166,6 +166,7 @@ export default function ProjectsPage({ data }: any) {
 
   function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const tag = (e.currentTarget as HTMLElement).innerText;
+    console.log("i got pressed");
 
     if (selectedTags.includes(tag)) {
       const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
@@ -207,8 +208,7 @@ export default function ProjectsPage({ data }: any) {
 
         <div className="tags-container">
           {tags.map((tag: any) => (
-            // @ts-ignore
-            <div onClick={handleTagSelection} onTouchEnd={handleTagSelection}>
+            <div onClick={handleTagSelection}>
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
             </div>
           ))}
