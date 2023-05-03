@@ -135,34 +135,41 @@ export default function ProjectsPage({ data }: any) {
   );
   const [searchTerm, setSearchTerm] = React.useState<string>("");
 
-  console.log({ projects });
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
+    updateFilteredProjects(value, selectedTags);
   };
 
-  const filterProjects = React.useCallback(() => {
-    const filteredProjects = data.projects.nodes.filter((project: any) => {
+  function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const tag = (e.currentTarget as HTMLElement).innerText;
+
+    let updatedTags;
+    if (selectedTags.includes(tag)) {
+      updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
+    } else {
+      updatedTags = [...selectedTags, tag];
+    }
+
+    setSelectedTags(updatedTags);
+    updateFilteredProjects(searchTerm, updatedTags);
+  }
+
+  function updateFilteredProjects(searchTerm: string, selectedTags: string[]) {
+    const filteredProjects = data.projects.nodes.filter((project: Project) => {
       const nameMatch = project.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
-      const tagsMatch = project.tags.some((tag: string) =>
-        // @ts-expect-error
+      const tagsMatch = project.tags.some(tag =>
         tag.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
-
       const selectedTagsMatch = filterProjectsByTags(selectedTags, project);
 
       return (nameMatch || tagsMatch) && selectedTagsMatch;
     });
 
     setProjects(filteredProjects);
-  }, [searchTerm, selectedTags, data.projects.nodes]);
-
-  React.useEffect(() => {
-    filterProjects();
-  }, [searchTerm, selectedTags, filterProjects]);
+  }
 
   function filterProjectsByTags(selectedTags: string[], project: Project) {
     if (selectedTags.length === 0) return true;
@@ -170,6 +177,52 @@ export default function ProjectsPage({ data }: any) {
       project.tags.some(projectTag => projectTag.name === tag)
     );
   }
+
+  function handleEmptySearch() {
+    setSearchTerm("");
+  }
+  // const tags = data.tags.nodes;
+  // const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
+  // const [projects, setProjects] = React.useState<Project[]>(
+  //   data.projects.nodes
+  // );
+  // const [searchTerm, setSearchTerm] = React.useState<string>("");
+
+  // console.log({ projects });
+
+  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value;
+  //   setSearchTerm(value);
+  // };
+
+  // const filterProjects = React.useCallback(() => {
+  //   const filteredProjects = data.projects.nodes.filter((project: any) => {
+  //     const nameMatch = project.name
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase());
+  //     const tagsMatch = project.tags.some((tag: string) =>
+  //       // @ts-expect-error
+  //       tag.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //     );
+
+  //     const selectedTagsMatch = filterProjectsByTags(selectedTags, project);
+
+  //     return (nameMatch || tagsMatch) && selectedTagsMatch;
+  //   });
+
+  //   setProjects(filteredProjects);
+  // }, [searchTerm, selectedTags, data.projects.nodes]);
+
+  // React.useEffect(() => {
+  //   filterProjects();
+  // }, [searchTerm, selectedTags, filterProjects]);
+
+  // function filterProjectsByTags(selectedTags: string[], project: Project) {
+  //   if (selectedTags.length === 0) return true;
+  //   return selectedTags.every(tag =>
+  //     project.tags.some(projectTag => projectTag.name === tag)
+  //   );
+  // }
 
   // function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   //   const tag = (e.currentTarget as HTMLElement).innerText;
@@ -182,41 +235,41 @@ export default function ProjectsPage({ data }: any) {
   //   }
   // }
 
-  function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const tag = (e.currentTarget as HTMLElement).innerText;
+  // function handleTagSelection(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  //   const tag = (e.currentTarget as HTMLElement).innerText;
 
-    setSelectedTags(prevSelectedTags => {
-      let updatedTags: any;
-      if (prevSelectedTags.includes(tag)) {
-        updatedTags = prevSelectedTags.filter(selectTag => selectTag !== tag);
-      } else {
-        updatedTags = [...prevSelectedTags, tag];
-      }
+  //   setSelectedTags(prevSelectedTags => {
+  //     let updatedTags: any;
+  //     if (prevSelectedTags.includes(tag)) {
+  //       updatedTags = prevSelectedTags.filter(selectTag => selectTag !== tag);
+  //     } else {
+  //       updatedTags = [...prevSelectedTags, tag];
+  //     }
 
-      // Run filtering logic with the updated selected tags
-      const filteredProjects = data.projects.nodes.filter((project: any) => {
-        const nameMatch = project.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-        const tagsMatch = project.tags.some((tag: string) =>
-          // @ts-expect-error
-          tag.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+  //     // Run filtering logic with the updated selected tags
+  //     const filteredProjects = data.projects.nodes.filter((project: any) => {
+  //       const nameMatch = project.name
+  //         .toLowerCase()
+  //         .includes(searchTerm.toLowerCase());
+  //       const tagsMatch = project.tags.some((tag: string) =>
+  //         // @ts-expect-error
+  //         tag.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //       );
 
-        const selectedTagsMatch = filterProjectsByTags(updatedTags, project);
+  //       const selectedTagsMatch = filterProjectsByTags(updatedTags, project);
 
-        return (nameMatch || tagsMatch) && selectedTagsMatch;
-      });
+  //       return (nameMatch || tagsMatch) && selectedTagsMatch;
+  //     });
 
-      setProjects(filteredProjects);
+  //     setProjects(filteredProjects);
 
-      return updatedTags;
-    });
-  }
+  //     return updatedTags;
+  //   });
+  // }
 
-  function handleEmptySearch() {
-    setSearchTerm("");
-  }
+  // function handleEmptySearch() {
+  //   setSearchTerm("");
+  // }
 
   return (
     <>
