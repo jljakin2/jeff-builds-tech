@@ -207,7 +207,8 @@ export default function ProjectsPage({ data }: any) {
 
         <div className="tags-container">
           {tags.map((tag: any) => (
-            <div onClick={handleTagSelection}>
+            // @ts-ignore
+            <div onClick={handleTagSelection} onTouchEnd={handleTagSelection}>
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
             </div>
           ))}
