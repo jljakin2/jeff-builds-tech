@@ -176,6 +176,18 @@ export default function ProjectsPage({ data }: any) {
     }
   }
 
+  function handleTagTouch(e: React.TouchEvent<HTMLDivElement>) {
+    e.preventDefault();
+    const tag = (e.currentTarget as HTMLElement).innerText;
+
+    if (selectedTags.includes(tag)) {
+      const updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
+      setSelectedTags(updatedTags);
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  }
+
   function handleEmptySearch() {
     setSearchTerm("");
   }
@@ -208,7 +220,7 @@ export default function ProjectsPage({ data }: any) {
 
         <div className="tags-container">
           {tags.map((tag: any) => (
-            <div onClick={handleTagSelection}>
+            <div onClick={handleTagSelection} onTouchEnd={handleTagTouch}>
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
             </div>
           ))}
