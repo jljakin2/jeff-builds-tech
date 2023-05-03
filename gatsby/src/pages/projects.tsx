@@ -135,12 +135,14 @@ export default function ProjectsPage({ data }: any) {
   );
   const [searchTerm, setSearchTerm] = React.useState<string>("");
 
+  console.log({ projects });
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
   };
 
-  function filterProjects() {
+  const filterProjects = React.useCallback(() => {
     const filteredProjects = data.projects.nodes.filter((project: any) => {
       const nameMatch = project.name
         .toLowerCase()
@@ -156,11 +158,11 @@ export default function ProjectsPage({ data }: any) {
     });
 
     setProjects(filteredProjects);
-  }
+  }, [searchTerm, selectedTags, data.projects.nodes]);
 
   React.useEffect(() => {
     filterProjects();
-  }, [searchTerm, selectedTags]);
+  }, [searchTerm, selectedTags, filterProjects]);
 
   function filterProjectsByTags(selectedTags: string[], project: Project) {
     if (selectedTags.length === 0) return true;
