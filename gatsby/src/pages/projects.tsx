@@ -66,14 +66,8 @@ const ProjectsPageStyles = styled.section`
     justify-content: center;
     gap: 1rem;
 
-    button {
-      border: none;
-      background: transparent;
-    }
-
-    .active {
-      background: var(--primary-500);
-      color: var(--white);
+    & > * {
+      border-radius: 8rem;
     }
   }
 
@@ -145,6 +139,7 @@ export default function ProjectsPage({ data }: any) {
     e.preventDefault();
 
     const tag = e.currentTarget.textContent;
+    console.log("tag", tag);
 
     setSelectedTags(prevSelectedTags => {
       let updatedTags: any;
@@ -153,21 +148,6 @@ export default function ProjectsPage({ data }: any) {
       } else {
         updatedTags = [...prevSelectedTags, tag];
       }
-
-      const filteredProjects = data.projects.nodes.filter((project: any) => {
-        const nameMatch = project.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-        const tagsMatch = project.tags.some((tag: any) =>
-          tag.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        const selectedTagsMatch = filterProjectsByTags(updatedTags, project);
-
-        return (nameMatch || tagsMatch) && selectedTagsMatch;
-      });
-
-      setProjects(filteredProjects);
 
       return updatedTags;
     });
@@ -199,6 +179,11 @@ export default function ProjectsPage({ data }: any) {
   function handleEmptySearch() {
     setSearchTerm("");
   }
+
+  React.useEffect(() => {
+    updateFilteredProjects(searchTerm, selectedTags);
+  }, [searchTerm, selectedTags]);
+
   // const tags = data.tags.nodes;
   // const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   // const [projects, setProjects] = React.useState<Project[]>(
@@ -317,12 +302,11 @@ export default function ProjectsPage({ data }: any) {
 
         <div className="tags-container">
           {tags.map((tag: any) => (
-            <button
+            <div
               // @ts-ignore
-              onClick={handleTagSelection}
-              type="button">
+              onClick={handleTagSelection}>
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
-            </button>
+            </div>
           ))}
         </div>
 

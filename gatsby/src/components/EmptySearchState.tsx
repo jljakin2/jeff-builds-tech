@@ -10,6 +10,10 @@ const EmptySearchStateStyles = styled.div`
   align-items: center;
   row-gap: 1rem;
 
+  .image-container {
+    border-radius: 50%;
+  }
+
   .gatsby-image-wrapper {
     border-radius: 50%;
     box-shadow: var(--shadow);
