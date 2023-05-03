@@ -140,7 +140,7 @@ export default function ProjectsPage({ data }: any) {
     setSearchTerm(value);
   };
 
-  const filterProjects = React.useCallback(() => {
+  function filterProjects() {
     const filteredProjects = data.projects.nodes.filter((project: any) => {
       const nameMatch = project.name
         .toLowerCase()
@@ -156,11 +156,11 @@ export default function ProjectsPage({ data }: any) {
     });
 
     setProjects(filteredProjects);
-  }, [searchTerm, selectedTags, data.projects.nodes]);
+  }
 
   React.useEffect(() => {
     filterProjects();
-  }, [searchTerm, selectedTags, filterProjects]);
+  }, [searchTerm, selectedTags]);
 
   function filterProjectsByTags(selectedTags: string[], project: Project) {
     if (selectedTags.length === 0) return true;
