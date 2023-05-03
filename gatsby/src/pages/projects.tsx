@@ -141,22 +141,36 @@ export default function ProjectsPage({ data }: any) {
     updateFilteredProjects(value, selectedTags);
   };
 
-  function handleTagSelection(
-    e:
-      | React.MouseEvent<HTMLDivElement, MouseEvent>
-      | React.TouchEvent<HTMLDivElement>
-  ) {
-    const tag = (e.currentTarget as HTMLElement).innerText;
+  function handleTagSelection(e: any) {
+    e.preventDefault();
 
-    let updatedTags;
-    if (selectedTags.includes(tag)) {
-      updatedTags = selectedTags.filter(selectTag => selectTag !== tag);
-    } else {
-      updatedTags = [...selectedTags, tag];
-    }
+    const tag = e.currentTarget.textContent;
 
-    setSelectedTags(updatedTags);
-    updateFilteredProjects(searchTerm, updatedTags);
+    setSelectedTags(prevSelectedTags => {
+      let updatedTags: any;
+      if (prevSelectedTags.includes(tag)) {
+        updatedTags = prevSelectedTags.filter(selectTag => selectTag !== tag);
+      } else {
+        updatedTags = [...prevSelectedTags, tag];
+      }
+
+      const filteredProjects = data.projects.nodes.filter((project: any) => {
+        const nameMatch = project.name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+        const tagsMatch = project.tags.some((tag: any) =>
+          tag.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        const selectedTagsMatch = filterProjectsByTags(updatedTags, project);
+
+        return (nameMatch || tagsMatch) && selectedTagsMatch;
+      });
+
+      setProjects(filteredProjects);
+
+      return updatedTags;
+    });
   }
 
   function updateFilteredProjects(searchTerm: string, selectedTags: string[]) {
@@ -303,9 +317,10 @@ export default function ProjectsPage({ data }: any) {
 
         <div className="tags-container">
           {tags.map((tag: any) => (
-            // @ts-ignore
             <button
+              // @ts-ignore
               onClick={handleTagSelection}
+              // @ts-ignore
               onTouchStart={handleTagSelection}
               type="button">
               <Tag name={tag.name} active={selectedTags.includes(tag.name)} />
