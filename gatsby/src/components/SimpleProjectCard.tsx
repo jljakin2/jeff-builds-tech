@@ -55,7 +55,7 @@ export default function SimpleProjectCard({ project }: any) {
       </div>
       <div className="text-container">
         <h6 className="name">{project.name}</h6>
-        <p className="excerpt">{project.excerpt}</p>
+        {/* <p className="excerpt">{project.excerpt}</p> */}
       </div>
     </ProjectCardStyles>
   );
