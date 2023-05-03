@@ -44,7 +44,7 @@ const ProjectCardStyles = styled.div`
   }
 `;
 
-export default function ProjectCard({ project }: any) {
+export default function SimpleProjectCard({ project }: any) {
   return (
     <ProjectCardStyles>
       <div className="image-container">
